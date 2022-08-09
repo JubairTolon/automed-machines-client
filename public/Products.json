@@ -1,8 +1,8 @@
 [
     {
         "_id": 1,
-        "name": "",
-        "picture": "http://placehold.it/32x32",
+        "name": "SPARK PLUG",
+        "picture": "https://i.ibb.co/0GxqwS7/Automobile-Parts-Lfr5aix-11-4469-Iridium-IX-Auto-Car-Spark-Plugs.jpg",
         "description": "",
         "minOrder": 50,
         "price": 80,
@@ -10,8 +10,8 @@
     },
     {
         "_id": 2,
-        "name": "",
-        "picture": "http://placehold.it/32x32",
+        "name": "BATTERY",
+        "picture": "https://i.ibb.co/rM2LFbv/istockphoto-899016436-612x612.jpg",
         "description": "",
         "minOrder": 50,
         "price": 80,
@@ -19,8 +19,8 @@
     },
     {
         "_id": 3,
-        "name": "",
-        "picture": "http://placehold.it/32x32",
+        "name": "EXHAUST PIPE",
+        "picture": "https://i.ibb.co/wJ5LSDW/157783049-max.jpg",
         "description": "",
         "minOrder": 50,
         "price": 80,
@@ -28,8 +28,8 @@
     },
     {
         "_id": 4,
-        "name": "",
-        "picture": "http://placehold.it/32x32",
+        "name": "WINDSHIELD",
+        "picture": "https://i.ibb.co/MftdK5q/automotive-car-glass-500x500.jpg",
         "description": "",
         "minOrder": 50,
         "price": 80,
@@ -37,8 +37,8 @@
     },
     {
         "_id": 5,
-        "name": "",
-        "picture": "http://placehold.it/32x32",
+        "name": "CURBURETOR",
+        "picture": "https://i.ibb.co/6YFhMjq/H3846380f8aac4444b29cb9c35add55d3i.jpg",
         "description": "",
         "minOrder": 50,
         "price": 80,
@@ -46,8 +46,8 @@
     },
     {
         "_id": 6,
-        "name": "",
-        "picture": "http://placehold.it/32x32",
+        "name": "MIRROR",
+        "picture": "https://i.ibb.co/hYr7ZZN/107911583-car-back-and-side-mirrors-isolated-on-white-background-3d-illustration.jpg",
         "description": "",
         "minOrder": 50,
         "price": 80,
@@ -55,8 +55,8 @@
     },
     {
         "_id": 7,
-        "name": "",
-        "picture": "http://placehold.it/32x32",
+        "name": "TIRE",
+        "picture": "https://i.ibb.co/hZrG403/Cheap-Tyres-Melbourne-Australia.jpg",
         "description": "",
         "minOrder": 50,
         "price": 80,
@@ -64,8 +64,8 @@
     },
     {
         "_id": 8,
-        "name": "",
-        "picture": "http://placehold.it/32x32",
+        "name": "PISTON",
+        "picture": "https://i.ibb.co/3vrnHdT/car-piston-500x500.jpg",
         "description": "",
         "minOrder": 50,
         "price": 80,
@@ -73,8 +73,35 @@
     },
     {
         "_id": 9,
-        "name": "",
-        "picture": "http://placehold.it/32x32",
+        "name": "WHEEL",
+        "picture": "https://i.ibb.co/VtRSkKs/download.jpg",
+        "description": "",
+        "minOrder": 50,
+        "price": 80,
+        "avaiableQuentty": 350
+    },
+    {
+        "_id": 10,
+        "name": "BEEP",
+        "picture": "https://i.ibb.co/f4hm13g/61w6i-Ja-YCXS-AC-SS450.jpg",
+        "description": "",
+        "minOrder": 50,
+        "price": 80,
+        "avaiableQuentty": 350
+    },
+    {
+        "_id": 11,
+        "name": "BRAKE SHOE",
+        "picture": "https://i.ibb.co/99B08tY/1-click-extreme-z36-truck-and-tow-front-vented-rotors-brake-kit-3.jpg",
+        "description": "",
+        "minOrder": 50,
+        "price": 80,
+        "avaiableQuentty": 350
+    },
+    {
+        "_id": 12,
+        "name": "SPEEDMETER",
+        "picture": "https://i.ibb.co/VB3w7JF/images-1.jpg",
         "description": "",
         "minOrder": 50,
         "price": 80,
