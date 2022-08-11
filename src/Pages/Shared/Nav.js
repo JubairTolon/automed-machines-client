@@ -4,29 +4,8 @@ import logo from '../../Assets/logo.png'
 import { BsCartPlusFill, BsFillHeartFill } from 'react-icons/bs';
 import { RiDeleteBin6Line } from 'react-icons/ri';
 import { AiOutlineDown } from 'react-icons/ai';
-import Select from 'react-select'
 
 const Nav = () => {
-    const countries = [
-        { value: 'default', label: 'bangladesh' },
-        { value: 'chocolate', label: 'India' },
-        { value: 'strawberry', label: 'Swiden' },
-        { value: 'vanilla', label: 'Germeny' }
-    ]
-    const languages = [
-        { value: 'default', label: 'English' },
-        { value: 'chocolate', label: 'Bangla' },
-        { value: 'strawberry', label: 'Francis' },
-        { value: 'vanilla', label: 'Germeny' }
-    ]
-    const currencies = [
-        { value: 'default', label: 'Usd' },
-        { value: 'chocolate', label: 'Bdt' },
-        { value: 'strawberry', label: 'Euro' },
-        { value: 'vanilla', label: 'Rupi' }
-    ]
-
-
     return (
         <div>
             <nav class="bg-white border-gray-200 dark:bg-gray-900 my-2">
@@ -50,7 +29,7 @@ const Nav = () => {
                                 <svg aria-hidden="true" class="w-4 h-4 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7 4a3 3 0 016 0v4a3 3 0 11-6 0V4zm4 10.93A7.001 7.001 0 0017 8a1 1 0 10-2 0A5 5 0 015 8a1 1 0 00-2 0 7.001 7.001 0 006 6.93V17H6a1 1 0 100 2h8a1 1 0 100-2h-3v-2.07z" clip-rule="evenodd"></path></svg>
                             </button>
                         </div>
-                        <button type="submit" class="inline-flex justify-center py-2.5 px-3 ml-2 text-sm font-medium text-white bg-orange-500 rounded-lg border hover:bg-orange-700  dark:bg-blue-600 dark:hover:bg-blue-700">
+                        <button type="submit" class="inline-flex justify-center py-2.5 px-3 ml-2 text-sm font-medium text-white bg-orange-500 rounded-lg border hover:bg-orange-600  dark:bg-blue-600 dark:hover:bg-blue-700">
                             <svg aria-hidden="true" class="mr-2 ml-1 w-5 h-6" fill="none" stroke="currentColor" viewBox="0 0 10 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                         </button>
                     </form>
@@ -59,7 +38,7 @@ const Nav = () => {
                         <Link to='/' class="flex flex-nowrap items-center mr-6 text-sm font-medium text-gray-500 dark:text-white hover:underline hover:text-red-600">Wishlist<span className='mx-1'><BsFillHeartFill /></span>({0})
                         </Link>
                         <div class="indicator ">
-                            <span class="indicator-item badge badge-primary">0</span>
+                            <span class="indicator-item badge badge-primary bg-orange-500 border-none">0</span>
                             <div class="dropdown dropdown-end">
                                 <label tabindex="0" class="btn btn-outline btn-circle text-2xl text-gray-600">< BsCartPlusFill /></label>
                                 <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded">
@@ -81,10 +60,10 @@ const Nav = () => {
                                     </div>
                                     <div className='flex gap-8 items-center px-2 justify-between mt-8 mb-4'>
                                         <div className='font-bold'>
-                                            <button className='btn btn-sm btn-primary'><Link to='/cart'>View Cart</Link></button>
+                                            <button className='btn btn-sm btn-primary bg-orange-500 border-none'><Link to='/cart'>View Cart</Link></button>
                                         </div>
                                         <div className='font-bold'>
-                                            <button className='btn btn-sm btn-primary'><Link to='/checkout'>Checkout</Link></button>
+                                            <button className='btn btn-sm btn-primary bg-orange-500 border-none'><Link to='/checkout'>Checkout</Link></button>
                                         </div>
                                     </div>
 
@@ -149,12 +128,12 @@ const Nav = () => {
                                 </li>
                                 <li><Link to='/contact'>Contact</Link></li>
                                 <li tabindex="0">
-                                    <a class="justify-between">
+                                    <a class="">
                                         Features
                                         <svg class="fill-current" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
                                     </a>
                                     <ul class="p-2 bg-gray-50">
-                                        <div className='grid grid-flow-col gap-8'>
+                                        <div className='grid grid-flow-row gap-2 mb-4'>
                                             <div className='w-40'>
                                                 <h2 className='mb-8 mt-4 text-xl'>Column-1</h2>
                                                 <div className='my-2 hover:text-red-600 transition duration-0 hover:duration-100'>
@@ -268,10 +247,10 @@ const Nav = () => {
                                     Features
                                     <svg class="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" /></svg>
                                 </a>
-                                <ul class="p-2 bg-gray-50 rounded shadow-md">
+                                <ul class="p-2 bg-gray-50 rounded shadow-md z-10 ">
                                     <div className='grid grid-flow-col gap-8 mb-4'>
                                         <div className='w-40'>
-                                            <h2 className='mb-8 mt-4 text-xl'>Column-1</h2>
+                                            <h2 className='mb-8 mt-4 text-xl'>Shops</h2>
                                             <div className='my-2 hover:text-red-600 transition duration-0 hover:duration-100 font-medium'>
                                                 <Link to='/shop'>Shop</Link>
                                             </div>
@@ -289,7 +268,7 @@ const Nav = () => {
                                             </div>
                                         </div>
                                         <div className='w-40'>
-                                            <h2 className='mb-8 mt-4 text-xl'>Column-2</h2>
+                                            <h2 className='mb-8 mt-4 text-xl'>Cart</h2>
                                             <div className='my-2 hover:text-red-600 transition duration-0 hover:duration-100 font-medium'>
                                                 <Link to='/shop'>Shop</Link>
                                             </div>
@@ -307,7 +286,7 @@ const Nav = () => {
                                             </div>
                                         </div>
                                         <div className='w-40'>
-                                            <h2 className='mb-8 mt-4 text-xl '>Column-3</h2>
+                                            <h2 className='mb-8 mt-4 text-xl '>About</h2>
                                             <div className='my-2 hover:text-red-600 transition duration-0 hover:duration-100 font-medium'>
                                                 <Link to='/shop'>Shop</Link>
                                             </div>
@@ -332,36 +311,21 @@ const Nav = () => {
 
                     {/* address */}
                     <div class="navbar-end">
-                        <div class="dropdown dropdown-end mr-2">
-                            <label tabindex="0" class="btn btn-outline btn-md text-xs text-gray-00 hover:bg-gray-700">Country/Language/Currency<span className='font-bold ml-2'><AiOutlineDown /></span></label>
-                            <ul tabindex="0" class="grid dropdown-content menu p-2 shadow rounded bg-gray-50">
-                                <div className='items-center px-2 w-60 mb-2'>
-                                    <label htmlFor="select-con" className='font-bold text-sm'>Country</label>
-                                    <Select id='select-con' options={countries} />
-                                </div>
-                                <div className='items-center px-2 w-60 mb-2'>
-                                    <label htmlFor="select-lan" className='font-bold text-sm'>Language</label>
-                                    <Select id='select-lan' options={languages} />
-                                </div>
-                                <div className='items-center px-2 w-60 '>
-                                    <label htmlFor="select-car" className='font-bold text-sm'>Currency</label>
-                                    <Select styles={{ height: '10px' }} id='select-car' options={currencies} />
-                                </div>
-                                <div className='items-center text-center mt-4'>
-                                    <button className='btn btn-primary w-3/4 btn-sm'>save</button>
-                                </div>
-                            </ul>
-                        </div>
-
+                        <select class="select select-ghost border-none active:bg-none focus:outline-none max-w-xs">
+                            <option disabled selected>Language</option>
+                            <option>English</option>
+                            <option>Francis</option>
+                            <option>Germany</option>
+                        </select>
                         <div class="dropdown dropdown-end">
-                            <label tabindex="0" class="btn btn-mg rounded text-xs m-1">Account<span className='text-md ml-2'> <AiOutlineDown /></span></label>
+                            <label tabindex="0" class="btn btn-sm rounded text-xs m-1 flex-nowrap">Account<span className='text-md ml-2'> <AiOutlineDown /></span></label>
                             <ul tabindex="0" class="dropdown-content menu shadow bg-base-100 rounded">
                                 <div className='grid items-center py-2 bg-gray-50'>
                                     <div className='px-4'>
                                         <div className='w-60 mb-2'>
                                             <h2>Welcome to <Link className='font-medium hover:underline hover:decoration-2' to='/'>Automed Machines</Link></h2>
                                         </div>
-                                        <button className='btn btn-primary btn-wide btn-sm p-2 my-2'><Link to='/login'>Login</Link></button>
+                                        <button className='btn btn-primary btn-wide btn-sm p-2 my-2 bg-orange-500 border-none'><Link to='/login'>Login</Link></button>
                                     </div>
                                     <div class="divider m-1"></div>
                                     <div className=''>
@@ -372,7 +336,7 @@ const Nav = () => {
                                         <div className='hover:bg-gray-200 px-4 py-1'><Link to='/'>My Favourite Stories</Link></div>
                                         <div className='hover:bg-gray-200 px-4 py-1'><Link to='/'>My Cupons</Link></div>
                                     </div>
-                                    <button className='btn btn-primary btn-wide btn-sm p-2 my-2 mx-4'><Link to='/login'>Sign Out</Link></button>
+                                    <button className='btn btn-primary btn-wide btn-sm p-2 my-2 mx-4 bg-orange-500 border-none'><Link to='/login'>Sign Out</Link></button>
                                 </div>
                             </ul>
                         </div>
