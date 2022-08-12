@@ -1,0 +1,12 @@
+.buttons {
+    visibility: hidden;
+    margin-top: 40px;
+    transition-property: margin-top;
+    transition-duration: .5s;
+
+}
+
+.product-container:hover .buttons {
+    margin-top: 0;
+    visibility: visible;
+}

@@ -1,8 +1,9 @@
 import React from 'react';
-import About from '../About/About';
+import AboutHome from '../About/AboutHome';
 import Banner from './Banner';
 import Brands from './Brands';
-import Prodects from './Prodects';
+import BusinsessSummary from './BusinsessSummary';
+import Products from './Products';
 import Services from './Services';
 
 const Home = () => {
@@ -10,9 +11,10 @@ const Home = () => {
         <div>
             <Banner></Banner>
             <Brands></Brands>
-            <About></About>
+            <AboutHome></AboutHome>
             <Services></Services>
-            <Prodects></Prodects>
+            <Products></Products>
+            <BusinsessSummary></BusinsessSummary>
         </div>
     );
 };

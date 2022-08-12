@@ -1,15 +1,12 @@
 import React from 'react';
 import background2 from '../../Assets/background2.jpg'
-import { MdOutlinePrecisionManufacturing } from 'react-icons/md';
 import './Services.css'
 import { Zoom } from 'react-reveal';
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import s1 from '../../Assets/service/1.png'
 import s2 from '../../Assets/service/2.png'
 import s3 from '../../Assets/service/3.png'
 import s4 from '../../Assets/service/4.png'
-import s5 from '../../Assets/service/5.png'
 
 const Services = () => {
     const services = [
