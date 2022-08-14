@@ -45,11 +45,11 @@ const Product = ({ product }) => {
                         <span class="text-xl font-bold text-gray-900 dark:text-white">$ {price}</span>
                         {
                             offer &&
-                            <span className='bg-red-600 px-2 rounded text-white font-semibold'>{offer}</span>
+                            <span className='bg-red-600 px-2 rounded text-white font-semibold'>{offer} %</span>
                         }
                         {
                             offer &&
-                            <p className='line-through'>{(price / parseInt(offer)).toFixed(2)}</p>
+                            <p className='line-through'>$ {price * (parseInt(offer) / 100)}</p>
                         }
                     </div>
                 </div>

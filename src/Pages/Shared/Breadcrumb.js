@@ -48,7 +48,7 @@ export default function CustomSeparator() {
     ];
 
     return (
-        <div className='max-w-screen-xl mx-auto my-4 font-xs'>
+        <div className='max-w-screen-xl mx-auto my-4 font-xs hidden lg:block'>
             <Stack spacing={2}>
                 <Breadcrumbs
                     separator={<NavigateNextIcon fontSize="exrta-small" />}

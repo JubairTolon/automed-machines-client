@@ -42,7 +42,7 @@
         "avaiableQuentty": 350,
         "rating": 4,
         "status": "New",
-        "offer": "-70%"
+        "offer": "70"
     },
     {
         "_id": 4,
@@ -57,7 +57,7 @@
         "avaiableQuentty": 350,
         "rating": 3,
         "status": "Hot",
-        "offer": "-30%"
+        "offer": "30"
     },
     {
         "_id": 5,
@@ -87,7 +87,7 @@
         "avaiableQuentty": 350,
         "rating": 4,
         "status": "",
-        "offer": "-50%"
+        "offer": "50"
     },
     {
         "_id": 7,
@@ -117,7 +117,7 @@
         "avaiableQuentty": 350,
         "rating": 4,
         "status": "",
-        "offer": "-10%"
+        "offer": "10"
     },
     {
         "_id": 9,
@@ -147,7 +147,7 @@
         "avaiableQuentty": 350,
         "rating": 5,
         "status": "",
-        "offer": "-20%"
+        "offer": "20"
     },
     {
         "_id": 11,
@@ -166,6 +166,185 @@
     },
     {
         "_id": 12,
+        "category": "Large",
+        "color": "Black",
+        "name": "SPEEDMETER",
+        "picture": "https://i.ibb.co/VB3w7JF/images-1.jpg",
+        "description": "",
+        "minOrder": 50,
+        "price": 800,
+        "avaiableQuentty": 350,
+        "rating": 2,
+        "status": "New",
+        "offer": ""
+    },
+    {
+        "_id": 13,
+        "category": "Small",
+        "color": "Silver",
+        "name": "SPARK PLUG",
+        "brand": "Audi",
+        "picture": "https://i.ibb.co/0GxqwS7/Automobile-Parts-Lfr5aix-11-4469-Iridium-IX-Auto-Car-Spark-Plugs.jpg",
+        "description": "",
+        "minOrder": 50,
+        "price": 800,
+        "avaiableQuentty": 350,
+        "rating": 3,
+        "status": "Hot",
+        "offer": ""
+    },
+    {
+        "_id": 14,
+        "category": "Medium",
+        "color": "White",
+        "name": "BATTERY",
+        "brand": "Toyota",
+        "picture": "https://i.ibb.co/rM2LFbv/istockphoto-899016436-612x612.jpg",
+        "description": "",
+        "minOrder": 50,
+        "price": 800,
+        "avaiableQuentty": 350,
+        "rating": 4,
+        "status": "",
+        "offer": ""
+    },
+    {
+        "_id": 15,
+        "category": "Large",
+        "color": "Black",
+        "name": "EXHAUST PIPE",
+        "brand": "BMW",
+        "picture": "https://i.ibb.co/wJ5LSDW/157783049-max.jpg",
+        "description": "",
+        "minOrder": 50,
+        "price": 800,
+        "avaiableQuentty": 350,
+        "rating": 4,
+        "status": "New",
+        "offer": "70"
+    },
+    {
+        "_id": 16,
+        "category": "Extra-Large",
+        "color": "Blue",
+        "name": "WINDSHIELD",
+        "brand": "Audi",
+        "picture": "https://i.ibb.co/MftdK5q/automotive-car-glass-500x500.jpg",
+        "description": "",
+        "minOrder": 50,
+        "price": 800,
+        "avaiableQuentty": 350,
+        "rating": 3,
+        "status": "Hot",
+        "offer": "30"
+    },
+    {
+        "_id": 17,
+        "category": "Small",
+        "color": "Silver",
+        "name": "CURBURETOR",
+        "brand": "Toyota",
+        "picture": "https://i.ibb.co/6YFhMjq/H3846380f8aac4444b29cb9c35add55d3i.jpg",
+        "description": "",
+        "minOrder": 50,
+        "price": 800,
+        "avaiableQuentty": 350,
+        "rating": 3,
+        "status": "New",
+        "offer": ""
+    },
+    {
+        "_id": 18,
+        "category": "Medium",
+        "color": "White",
+        "name": "MIRROR",
+        "brand": "BMW",
+        "picture": "https://i.ibb.co/hYr7ZZN/107911583-car-back-and-side-mirrors-isolated-on-white-background-3d-illustration.jpg",
+        "description": "",
+        "minOrder": 50,
+        "price": 800,
+        "avaiableQuentty": 350,
+        "rating": 4,
+        "status": "",
+        "offer": "50"
+    },
+    {
+        "_id": 19,
+        "category": "Large",
+        "color": "Black",
+        "name": "TIRE",
+        "brand": "Toyota",
+        "picture": "https://i.ibb.co/hZrG403/Cheap-Tyres-Melbourne-Australia.jpg",
+        "description": "",
+        "minOrder": 50,
+        "price": 800,
+        "avaiableQuentty": 350,
+        "rating": 5,
+        "status": "New",
+        "offer": ""
+    },
+    {
+        "_id": 20,
+        "category": "Extra-Large",
+        "color": "Blue",
+        "name": "PISTON",
+        "brand": "Audi",
+        "picture": "https://i.ibb.co/3vrnHdT/car-piston-500x500.jpg",
+        "description": "",
+        "minOrder": 50,
+        "price": 800,
+        "avaiableQuentty": 350,
+        "rating": 4,
+        "status": "",
+        "offer": "10"
+    },
+    {
+        "_id": 21,
+        "category": "Small",
+        "color": "Blue",
+        "name": "WHEEL",
+        "brand": "BMW",
+        "picture": "https://i.ibb.co/VtRSkKs/download.jpg",
+        "description": "",
+        "minOrder": 50,
+        "price": 800,
+        "avaiableQuentty": 350,
+        "rating": 3,
+        "status": "Hot",
+        "offer": ""
+    },
+    {
+        "_id": 22,
+        "category": "Extra-Large",
+        "color": " Silver",
+        "name": "BEEP",
+        "brand": "Audi",
+        "picture": "https://i.ibb.co/f4hm13g/61w6i-Ja-YCXS-AC-SS450.jpg",
+        "description": "",
+        "minOrder": 50,
+        "price": 800,
+        "avaiableQuentty": 350,
+        "rating": 5,
+        "status": "",
+        "offer": "20"
+    },
+    {
+        "_id": 23,
+        "category": "Medium",
+        "color": "White",
+        "name": "BRAKE SHOE",
+        "brand": "Toyota",
+        "picture": "https://i.ibb.co/99B08tY/1-click-extreme-z36-truck-and-tow-front-vented-rotors-brake-kit-3.jpg",
+        "description": "",
+        "minOrder": 50,
+        "price": 800,
+        "avaiableQuentty": 350,
+        "rating": 3,
+        "status": "",
+        "offer": ""
+    },
+    {
+        "_id": 24,
         "category": "Large",
         "color": "Black",
         "name": "SPEEDMETER",

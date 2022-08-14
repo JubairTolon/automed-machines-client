@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { Button, styled } from '@mui/material';
 import Product from './Product';
-import { Repeat } from '@mui/icons-material';
+import { Link } from 'react-router-dom';
 
 
 function TabPanel(props) {
@@ -101,7 +101,6 @@ const Products = () => {
     return (
         <Box sx={{ marginLeft: 'auto', marginRight: 'auto', marginTop: 36, width: '75%' }}>
             <Box sx={{ textAlign: 'center' }}>
-                <Typography variant='h5' component="div" color='#F53005'>Collections</Typography>
                 <Typography variant='h3' component="div">Our Products Collections</Typography>
             </Box>
             <Box sx={{ marginTop: 6, borderBottom: 1, borderColor: 'divider' }}>
@@ -139,11 +138,13 @@ const Products = () => {
                 }
             </TabPanel>
             <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-                <Button sx={{
-                    borderColor: '#F53005', color: '#F53005', '&:hover': {
-                        borderColor: "#F53005",
-                    },
-                }} variant="outlined">See All Products</Button>
+                <Link to='/shop'>
+                    <Button sx={{
+                        borderColor: '#F53005', color: '#F53005', '&:hover': {
+                            borderColor: "#F53005",
+                        },
+                    }} variant="outlined">See All Products</Button>
+                </Link>
             </Box>
         </Box>
     );

@@ -1,12 +1,12 @@
-import React from 'react';
-import AboutHome from '../About/AboutHome';
+import ReviewsHome from '../Reviews/ReviewsHome';
+import AboutHome from './AboutHome';
 import Banner from './Banner';
 import Brands from './Brands';
 import BusinsessSummary from './BusinsessSummary';
 import Products from './Products';
 import Services from './Services';
 
-const Home = () => {
+const Home = ({ review }) => {
     return (
         <div>
             <Banner></Banner>
@@ -14,7 +14,10 @@ const Home = () => {
             <AboutHome></AboutHome>
             <Services></Services>
             <Products></Products>
+            <ReviewsHome></ReviewsHome>
             <BusinsessSummary></BusinsessSummary>
+
+
         </div>
     );
 };

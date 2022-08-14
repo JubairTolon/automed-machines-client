@@ -4,36 +4,11 @@ import './Services.css'
 import { Zoom } from 'react-reveal';
 import { motion } from "framer-motion";
 import s1 from '../../Assets/service/1.png'
-import s2 from '../../Assets/service/2.png'
 import s3 from '../../Assets/service/3.png'
 import s4 from '../../Assets/service/4.png'
 
 const Services = () => {
-    const services = [
-        {
-            id: 1,
-            name: 'Quality Choice',
-            img: {
-                id: 1,
-                s1
-            },
-            desc: 'New Car Warranty service and repairs are also be carried out by the mechanics at Eltham Motors - be assured that your new car warranty is protected at our workshop we use genuine.'
 
-        },
-        {
-            id: 2,
-            name: 'Quality Choice',
-            img: { s2 },
-            desc: 'New Car Warranty service and repairs are also be carried out by the mechanics at Eltham Motors - be assured that your new car warranty is protected at our workshop we use genuine.'
-
-        },
-        {
-            id: 3,
-            name: 'Quality Choice',
-            img: { s3 },
-            desc: 'New Car Warranty service and repairs are also be carried out by the mechanics at Eltham Motors - be assured that your new car warranty is protected at our workshop we use genuine.'
-        },
-    ]
     return (
         // <div className="example-container">
         //     <motion.div className='inside' whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.8 }}>

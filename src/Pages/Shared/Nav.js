@@ -7,8 +7,8 @@ import { AiOutlineDown } from 'react-icons/ai';
 
 const Nav = () => {
     return (
-        <div>
-            <nav class="bg-white border-gray-200 dark:bg-gray-900 my-2">
+        <div className=' bg-white fixed w-5/6 mx-auto left-0 right-0 z-20'>
+            <nav class="bg-white border-gray-200 dark:bg-gray-900 my-2 mt-8">
                 <div class="flex flex-wrap justify-between items-center max-w-screen-xl px-4 md:px-6 py-2.5 mx-auto">
                     <Link to='/' class="flex items-center">
                         <img src={logo} class="h-8 md:h-12 " alt="Automet logo" />
@@ -34,7 +34,7 @@ const Nav = () => {
                         </button>
                     </form>
 
-                    <div class="flex items-center">
+                    <div class="flex items-center mt-6 lg:mt-0">
                         <Link to='/' class="flex flex-nowrap items-center mr-6 text-sm font-medium text-gray-500 dark:text-white hover:underline hover:text-red-600">Wishlist<span className='mx-1'><BsFillHeartFill /></span>({0})
                         </Link>
                         <div class="indicator ">
@@ -82,12 +82,12 @@ const Nav = () => {
                             </label>
                             <ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow rounded w-52 bg-gray-50">
                                 <li><Link to='/'>Home</Link></li>
-                                <li><Link to='/about'>About</Link></li>
+                                <li><Link to='/aboutMore'>About</Link></li>
                                 <li tabindex="0">
-                                    <a class="justify-between">
+                                    <Link to='/shop' class="justify-between">
                                         Shop
                                         <svg class="fill-current" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
-                                    </a>
+                                    </Link>
                                     <ul class="p-2 bg-gray-50 w-40">
                                         <div className='my-2 hover:text-red-600 transition duration-0 hover:duration-100'>
                                             <Link to='/shop'>Shop</Link>
@@ -113,10 +113,10 @@ const Nav = () => {
                                     </ul>
                                 </li>
                                 <li tabindex="0">
-                                    <a class="justify-between">
+                                    <Link to='/blogs' class="justify-between">
                                         Blogs
                                         <svg class="fill-current" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
-                                    </a>
+                                    </Link>
                                     <ul class="p-2 bg-gray-50 w-40">
                                         <div className='my-2 hover:text-red-600 transition duration-0 hover:duration-100'>
                                             <Link to='/shop'>Blog</Link>
@@ -127,11 +127,12 @@ const Nav = () => {
                                     </ul>
                                 </li>
                                 <li><Link to='/contact'>Contact</Link></li>
+                                <li><Link to='/reviews'>Reviews</Link></li>
                                 <li tabindex="0">
-                                    <a class="">
+                                    <Link to='/features'>
                                         Features
                                         <svg class="fill-current" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
-                                    </a>
+                                    </Link>
                                     <ul class="p-2 bg-gray-50">
                                         <div className='grid grid-flow-row gap-2 mb-4'>
                                             <div className='w-40'>
@@ -197,12 +198,12 @@ const Nav = () => {
                     <div class="navbar-start hidden lg:flex md:w-full">
                         <ul class="menu menu-horizontal p-0 font-bold text-gray-600 text-sm">
                             <li><Link to='/'>Home</Link></li>
-                            <li><Link to='/about'>About</Link></li>
+                            <li><Link to='/aboutMore'>About</Link></li>
                             <li tabindex="0">
-                                <a>
+                                <Link to='/shop'>
                                     Shop
                                     <svg class="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" /></svg>
-                                </a>
+                                </Link>
                                 <ul class="p-2 bg-gray-50 rounded w-40 shadow-md">
                                     <div className='my-2 hover:text-red-600 transition duration-0 hover:duration-100 font-medium'>
                                         <Link to='/shop'>Shop</Link>
@@ -228,10 +229,10 @@ const Nav = () => {
                                 </ul>
                             </li>
                             <li tabindex="0">
-                                <a>
+                                <Link to='/blogs'>
                                     Blog
                                     <svg class="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" /></svg>
-                                </a>
+                                </Link>
                                 <ul class="p-2 bg-gray-50 rounded w-40 shadow-md">
                                     <div className='my-2 hover:text-red-600 transition duration-0 hover:duration-100 font-medium'>
                                         <Link to='/blog'>Blog</Link>
@@ -242,11 +243,12 @@ const Nav = () => {
                                 </ul>
                             </li>
                             <li><Link to='/contact'>Contact</Link></li>
+                            <li><Link to='/reviews'>Reviews</Link></li>
                             <li tabindex="0">
-                                <a>
+                                <Link to='/features'>
                                     Features
                                     <svg class="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" /></svg>
-                                </a>
+                                </Link>
                                 <ul class="p-2 bg-gray-50 rounded shadow-md z-10 ">
                                     <div className='grid grid-flow-col gap-8 mb-4'>
                                         <div className='w-40'>
