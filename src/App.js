@@ -9,6 +9,7 @@ import AboutMore from "./Pages/About/AboutMore";
 import ReviewsHome from "./Pages/Reviews/ReviewsHome";
 import Shop from "./Pages/Shop/Shop";
 import ReviewsMain from "./Pages/Reviews/ReviewsMain";
+import Footer from "./Pages/Shared/Footer";
 function App() {
   return (
     <div>
@@ -23,6 +24,7 @@ function App() {
         <Route path="/shop" element={<Shop></Shop>}></Route>
         <Route path="/login" element={<Login></Login>}></Route>
       </Routes>
+      <Footer></Footer>
     </div>
   );
 }

@@ -99,7 +99,7 @@ const Products = () => {
 
     //data load
     return (
-        <Box sx={{ marginLeft: 'auto', marginRight: 'auto', marginTop: 36, width: '75%' }}>
+        <Box sx={{ marginLeft: 'auto', marginRight: 'auto', py: 4, marginTop: 36, width: '75%', backgroundColor: '#f2f2f2' }}>
             <Box sx={{ textAlign: 'center' }}>
                 <Typography variant='h3' component="div">Our Products Collections</Typography>
             </Box>

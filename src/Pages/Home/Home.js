@@ -16,8 +16,6 @@ const Home = ({ review }) => {
             <Products></Products>
             <ReviewsHome></ReviewsHome>
             <BusinsessSummary></BusinsessSummary>
-
-
         </div>
     );
 };

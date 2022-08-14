@@ -7,9 +7,9 @@ import { AiOutlineDown } from 'react-icons/ai';
 
 const Nav = () => {
     return (
-        <div className=' bg-white fixed w-5/6 mx-auto left-0 right-0 z-20'>
-            <nav class="bg-white border-gray-200 dark:bg-gray-900 my-2 mt-8">
-                <div class="flex flex-wrap justify-between items-center max-w-screen-xl px-4 md:px-6 py-2.5 mx-auto">
+        <div className=' bg-white fixed mx-auto left-0 right-0 z-20 top-0 md:top-1'>
+            <nav class="bg-white border-gray-200 dark:bg-gray-900 mt-8">
+                <div class="flex flex-wrap justify-between items-center px-4 md:px-10 py-2.5 mx-auto">
                     <Link to='/' class="flex items-center">
                         <img src={logo} class="h-8 md:h-12 " alt="Automet logo" />
                     </Link>
@@ -33,7 +33,6 @@ const Nav = () => {
                             <svg aria-hidden="true" class="mr-2 ml-1 w-5 h-6" fill="none" stroke="currentColor" viewBox="0 0 10 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                         </button>
                     </form>
-
                     <div class="flex items-center mt-6 lg:mt-0">
                         <Link to='/' class="flex flex-nowrap items-center mr-6 text-sm font-medium text-gray-500 dark:text-white hover:underline hover:text-red-600">Wishlist<span className='mx-1'><BsFillHeartFill /></span>({0})
                         </Link>
@@ -74,7 +73,7 @@ const Nav = () => {
                 </div >
             </nav >
             <nav class=" dark:bg-gray-700">
-                <div class="bg-gray-50 navbar p-0 max-w-screen-xl mx-auto">
+                <div class="bg-gray-50 navbar pl-6 pr-8 mx-auto">
                     <div class="navbar-start lg:hidden">
                         <div class="dropdown">
                             <label tabindex="0" class="btn btn-outline text-gray-500 lg:hidden ml-2">
