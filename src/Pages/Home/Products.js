@@ -112,10 +112,14 @@ const Products = () => {
             </Box>
             <TabPanel value={value} index={0}>
                 {
-                    products.map(product => <Product
-                        key={product._id}
-                        product={product}
-                    ></Product>)
+                    products.map(product => {
+                        if (product._id <= 8) {
+                            return <Product
+                                key={product._id}
+                                product={product}
+                            ></Product>
+                        }
+                    })
                 }
             </TabPanel>
             <TabPanel value={value} index={0}>
@@ -123,18 +127,28 @@ const Products = () => {
             </TabPanel>
             <TabPanel value={value} index={1}>
                 {
-                    products.map(product => <Product
-                        key={product._id}
-                        product={product}
-                    ></Product>)
+                    products.map(product => {
+                        if (product._id <= 8) {
+                            return <Product
+                                key={product._id}
+                                product={product}
+                            ></Product>
+                        }
+                        return true
+                    })
                 }
             </TabPanel>
             <TabPanel value={value} index={2}>
                 {
-                    products.map(product => <Product
-                        key={product._id}
-                        product={product}
-                    ></Product>)
+                    products.map(product => {
+                        if (product._id <= 8) {
+                            return <Product
+                                key={product._id}
+                                product={product}
+                            ></Product>
+                        }
+                        return true
+                    })
                 }
             </TabPanel>
             <Box sx={{ display: 'flex', justifyContent: 'center' }}>
