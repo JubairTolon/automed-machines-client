@@ -21,7 +21,7 @@ const ReviewsHome = () => {
             </Flip>
             <div className='grid grid-flow-col justify-between grid-cols-2 lg:grid-cols-3 grid-rows-3 lg:grid-rows-2 gap-6'>
                 {
-                    reviews.map(review => {
+                    reviews?.map(review => {
                         if (review._id <= 6) {
                             return <Review
                                 key={review._id}
@@ -30,7 +30,6 @@ const ReviewsHome = () => {
                         }
                     })
                 }
-
             </div>
             <div>
                 <Link to='/reviewsMain'>

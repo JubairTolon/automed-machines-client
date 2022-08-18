@@ -1,0 +1,33 @@
+.single-product-image-container {
+    height: 400px;
+    width: 400px;
+    border-radius: 5px;
+    border: 2px solid rgb(222, 222, 222);
+}
+
+.single-product-image {
+    height: 100%;
+    width: 100%;
+    border-radius: 5px;
+}
+
+.single-product-image-more {
+    display: flex;
+    height: 100px;
+    width: 400px;
+    align-items: center;
+}
+
+.single-product-image-more img {
+    height: 80px;
+    width: 80px;
+    margin: 0 10px 0 10px;
+}
+
+.single-product-image-more img:hover {
+    cursor: pointer;
+}
+
+.select-active {
+    color: rgb(41, 41, 41);
+}

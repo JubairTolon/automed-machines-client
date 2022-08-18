@@ -5,6 +5,7 @@ import { GiBattleship } from 'react-icons/gi';
 import { BiHappyBeaming } from 'react-icons/bi';
 import { VscPreview } from 'react-icons/vsc';
 import { Bounce, Slide } from 'react-reveal';
+import { Link } from 'react-router-dom';
 
 const BusinsessSummary = () => {
     return (
@@ -46,7 +47,7 @@ const BusinsessSummary = () => {
                 <div>
                     <h1 className='text-xl lg:text-2xt text-orange-500 mb-6 font-bold'>Get update about us</h1>
                     <div className='flex gap-6 lg:gap-8'>
-                        <button className='btn btn-gosst rounded btn-xs lg:btn-md'>Contact Us</button>
+                        <Link to='/contact'><button className='btn btn-gosst rounded btn-xs lg:btn-md'>Contact Us</button></Link>
                     </div>
                 </div>
             </div>

@@ -10,6 +10,9 @@ import Shop from "./Pages/Shop/Shop";
 import ReviewsMain from "./Pages/Reviews/ReviewsMain";
 import Footer from "./Pages/Shared/Footer";
 import AboutHome from "./Pages/Home/AboutHome";
+import Contact from "./Pages/Contact/Contact";
+import SingleProductDeails from "./Pages/SingleProductDetails/SingleProductDeails";
+import AboutMore from "./Pages/About/AboutMore";
 function App() {
   return (
     <div>
@@ -19,9 +22,12 @@ function App() {
       <Routes>
         <Route path="/" element={<Home></Home>}></Route>
         <Route path="/aboutHome" element={<AboutHome></AboutHome>}></Route>
+        <Route path="/aboutMore" element={<AboutMore></AboutMore>}></Route>
         <Route path="/reviewsHome" element={<ReviewsHome></ReviewsHome>}></Route>
         <Route path="/reviewsMain" element={<ReviewsMain></ReviewsMain>}></Route>
+        <Route path="/contact" element={<Contact></Contact>}></Route>
         <Route path="/shop" element={<Shop></Shop>}></Route>
+        <Route path="/productDetails" element={<SingleProductDeails></SingleProductDeails>}></Route>
         <Route path="/login" element={<Login></Login>}></Route>
       </Routes>
       <Footer></Footer>

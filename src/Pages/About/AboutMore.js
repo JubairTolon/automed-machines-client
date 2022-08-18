@@ -1,9 +1,12 @@
 import React from 'react';
+import AboutHome from '../Home/AboutHome';
+import BusinsessSummary from '../Home/BusinsessSummary';
 
 const AboutMore = () => {
     return (
-        <div>
-            <h2>more about Us</h2>
+        <div className='mt-32'>
+            <AboutHome></AboutHome>
+            <BusinsessSummary></BusinsessSummary>
         </div>
     );
 };

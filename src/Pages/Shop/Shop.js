@@ -113,7 +113,7 @@ const Shop = () => {
                     <li key={`${itemTitels[0]}`}>
                         <ul>
                             <ListSubheader sx={{ fontSize: 28, fontWeight: 'bold' }}>{`${itemTitels[0]}`}</ListSubheader>
-                            {categories.map((item) => (
+                            {categories?.map((item) => (
                                 <ListItem key={`${itemTitels[0]}-${item}`}>
                                     <Link sx={{ textDecoration: 'none', color: '#303030', '&:hover': { cursor: 'pointer', color: '#FF5733' } }}>
                                         <ListItemText primary={`${item}`} />
@@ -125,7 +125,7 @@ const Shop = () => {
                     <li key={`${itemTitels[1]}`}>
                         <ul>
                             <ListSubheader sx={{ fontSize: 28, fontWeight: 'bold' }}>{`${itemTitels[1]}`}</ListSubheader>
-                            {brandsItems.map((item) => (
+                            {brandsItems?.map((item) => (
                                 <ListItem key={`${itemTitels[1]}-${item}`}>
                                     <Link sx={{ textDecoration: 'none', color: '#303030', '&:hover': { cursor: 'pointer', color: '#FF5733' } }}>
                                         <ListItemText primary={`${item}`} />
@@ -157,7 +157,7 @@ const Shop = () => {
                     <li key={`${itemTitels[3]}`}>
                         <ul>
                             <ListSubheader sx={{ fontSize: 28, fontWeight: 'bold' }}>{`${itemTitels[3]}`}</ListSubheader>
-                            {colorItems.map((item) => (
+                            {colorItems?.map((item) => (
                                 <ListItem key={`${itemTitels[3]}`}>
                                     <Link sx={{ textDecoration: 'none', color: '#303030', '&:hover': { cursor: 'pointer', color: '#FF5733' } }}>
                                         <ListItemText primary={`${item}`} />
@@ -170,7 +170,7 @@ const Shop = () => {
                         <ul>
                             <ListSubheader sx={{ fontSize: 28, fontWeight: 'bold' }}>{`${itemTitels[4]}`}</ListSubheader>
                             <ListItem sx={{ display: 'flex', columnGap: 2, rowGap: 2, flexWrap: 'wrap' }} key={`${itemTitels[4]}`}>
-                                {tags.map((item) => (
+                                {tags?.map((item) => (
                                     <Button sx={{ borderColor: '#303030', color: '#303030', '&:hover': { cursor: 'pointer', color: '#FF5733' } }} primary={`${item}`} size="small" variant="outlined">{item}</Button>
                                 ))}
                             </ListItem>
@@ -178,10 +178,10 @@ const Shop = () => {
                     </li>
                 </List>
             </div>
-            <div className='w-2/3 lg:w-5/6 px-2 lg:px-8'>
+            <div className='w-2/3 lg:w-5/6 px-2 lg:px-2'>
                 <div className='bg-orange-100 px-4 py-2 my-4 flex justify-between items-center'>
                     <div className='flex gap-5'>
-                        <div>
+                        <div className='flex items-center'>
                             <ToggleButtonGroup
                                 value={alignment}
                                 exclusive
@@ -236,13 +236,13 @@ const Shop = () => {
                         </div>
                     </div>
                     <div>
-                        <h1 className='font-bold text-lg hidden lg:block'>Page 1 of 15</h1>
+                        <h1 className='font-semibold text-md hidden lg:block text-gray-600'>Page 1 of 15</h1>
                     </div>
                 </div>
-                <div className='w-full grid grid-flow-row grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-5'>
+                <div className='w-full grid grid-flow-row grid-cols-2 lg:grid-cols-5 gap-2 lg:gap-2'>
                     {
-                        products.map(product => {
-                            if (product._id <= 12) {
+                        products?.map(product => {
+                            if (product._id <= 15) {
                                 return <Product
                                     key={product._id}
                                     product={product}
@@ -253,7 +253,7 @@ const Shop = () => {
                     }
                 </div>
                 <div className='w-full flex justify-center my-8'>
-                    <Pagination count={10} variant="outlined" shape="rounded" />
+                    <Pagination size='large' count={10} variant="outlined" shape="rounded" />
                 </div>
             </div>
         </div>

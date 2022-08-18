@@ -6,16 +6,16 @@ import { Rating } from '@mui/material';
 import './Product.css'
 
 const Product = ({ product }) => {
-    const { id, category, color, name, brand, picture, status, description, minOrder, price, avaiableQuentty, rating, offer } = product;
+    const { id, category, color, name, brand, pictures, status, description, minOrder, price, avaiableQuentty, rating, offer } = product;
     return (
-        <div className="product-container w-full max-w-sm bg-white rounded-lg shadow-md text-gray-500 dark:bg-gray-800 dark:border-gray-700 relative">
-            <Link to='/productDetails' className='z-0' >
+        <div className="product-container z-0  bg-white rounded-lg shadow-md text-gray-500 dark:bg-gray-800 dark:border-gray-700 relative">
+            <Link to='/productDetails' className='' >
                 {
                     status &&
                     <span className='bg-red-600 px-3 py-1 rounded text-white text-xs font-semibold absolute top-4 left-4'>{status}</span>
                 }
-                <Link to='/productDetails' className='flex justify-center h-36 mb-16'>
-                    <img class="px-4 rounded-t-lg pt-1" width='60%' alt='' src={picture} />
+                <Link to='/productDetails' className='flex justify-center h-32 mb-12'>
+                    <img class="px-4 rounded-t-lg pt-1" width='60%' alt='' src={pictures[0].img1} />
                 </Link>
                 <div className='buttons absolute top-40 left-4 z-10'>
                     <Link to='/wishlist'>
@@ -35,10 +35,11 @@ const Product = ({ product }) => {
                     </Link>
 
                 </div>
-                <div class="px-4 pb-3">
+                <div class="px-4 pb-3 absolute bottom-0">
                     <Link to='/productDetails'>
                         <h5 class="text-lg font-semibold tracking-tight text-gray-700 dark:text-white">{brand} {name} {color}</h5>
                         <p>Available Quantity: {avaiableQuentty}</p>
+                        <p>Minimum Order: {minOrder}</p>
                     </Link>
                     <Rating name="read-only" value={rating} readOnly />
                     <div class="flex gap-4 items-center">

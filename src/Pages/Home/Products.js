@@ -22,7 +22,7 @@ function TabPanel(props) {
         >
             {value === index && (
                 <Box sx={{ p: 3, }}>
-                    <Typography sx={{ display: 'grid', gridTemplateColumns: { sm: 'repeat(2, 1fr)', md: 'repeat(4, 1fr)' }, gap: 4 }} variant='overline'>{children}</Typography>
+                    <Typography sx={{ display: 'grid', gridTemplateColumns: { sm: 'repeat(2, 1fr)', md: 'repeat(4, 1fr)' }, gap: 2 }} variant='overline'>{children}</Typography>
                 </Box>
             )
             }
@@ -112,13 +112,14 @@ const Products = () => {
             </Box>
             <TabPanel value={value} index={0}>
                 {
-                    products.map(product => {
+                    products?.map(product => {
                         if (product._id <= 8) {
                             return <Product
                                 key={product._id}
                                 product={product}
                             ></Product>
                         }
+                        return true
                     })
                 }
             </TabPanel>
@@ -127,7 +128,7 @@ const Products = () => {
             </TabPanel>
             <TabPanel value={value} index={1}>
                 {
-                    products.map(product => {
+                    products?.map(product => {
                         if (product._id <= 8) {
                             return <Product
                                 key={product._id}
@@ -140,7 +141,7 @@ const Products = () => {
             </TabPanel>
             <TabPanel value={value} index={2}>
                 {
-                    products.map(product => {
+                    products?.map(product => {
                         if (product._id <= 8) {
                             return <Product
                                 key={product._id}

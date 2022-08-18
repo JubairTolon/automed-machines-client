@@ -81,7 +81,7 @@ const Nav = () => {
                             </label>
                             <ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow rounded w-52 bg-gray-50">
                                 <li><Link to='/'>Home</Link></li>
-                                <li><Link to='/aboutHome'>About</Link></li>
+                                <li><Link to='/aboutMore'>About</Link></li>
                                 <li tabindex="0">
                                     <Link to='/shop' class="justify-between">
                                         Shop
@@ -126,7 +126,7 @@ const Nav = () => {
                                     </ul>
                                 </li>
                                 <li><Link to='/contact'>Contact</Link></li>
-                                <li><Link to='/reviews'>Reviews</Link></li>
+                                <li><Link to='/reviewsMain'>Reviews</Link></li>
                                 <li tabindex="0">
                                     <Link to='/features'>
                                         Features
@@ -197,7 +197,7 @@ const Nav = () => {
                     <div class="navbar-start hidden lg:flex md:w-full">
                         <ul class="menu menu-horizontal p-0 font-bold text-gray-600 text-sm">
                             <li><Link to='/'>Home</Link></li>
-                            <li><Link to='/aboutHome'>About</Link></li>
+                            <li><Link to='/aboutMore'>About</Link></li>
                             <li tabindex="0">
                                 <Link to='/shop'>
                                     Shop
@@ -242,7 +242,7 @@ const Nav = () => {
                                 </ul>
                             </li>
                             <li><Link to='/contact'>Contact</Link></li>
-                            <li><Link to='/reviews'>Reviews</Link></li>
+                            <li><Link to='/reviewsMain'>Reviews</Link></li>
                             <li tabindex="0">
                                 <Link to='/features'>
                                     Features

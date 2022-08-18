@@ -6,7 +6,11 @@
 
 }
 
+.product-container {
+    height: 350px;
+}
+
 .product-container:hover .buttons {
-    top: 150px;
+    top: 130px;
     visibility: visible;
 }
