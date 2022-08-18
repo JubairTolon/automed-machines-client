@@ -14,6 +14,8 @@ import Contact from "./Pages/Contact/Contact";
 import SingleProductDeails from "./Pages/SingleProductDetails/SingleProductDeails";
 import AboutMore from "./Pages/About/AboutMore";
 import SignUp from "./Pages/Login/SignUp";
+import Cart from "./Pages/Cart/Cart";
+import Checkout from "./Pages/Checkout/Checkout";
 function App() {
   return (
     <div>
@@ -29,6 +31,8 @@ function App() {
         <Route path="/contact" element={<Contact></Contact>}></Route>
         <Route path="/shop" element={<Shop></Shop>}></Route>
         <Route path="/productDetails" element={<SingleProductDeails></SingleProductDeails>}></Route>
+        <Route path="/cart" element={<Cart></Cart>}></Route>
+        <Route path="/checkout" element={<Checkout></Checkout>}></Route>
         <Route path="/login" element={<Login></Login>}></Route>
         <Route path="/signup" element={<SignUp></SignUp>}></Route>
       </Routes>

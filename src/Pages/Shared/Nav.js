@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../Assets/logo.png'
 import { BsCartPlusFill, BsFillHeartFill } from 'react-icons/bs';
-import { RiDeleteBin6Line } from 'react-icons/ri';
 import { AiOutlineDown } from 'react-icons/ai';
 import brake from '../../Assets/brakes/1.jpg'
 import { IconButton } from '@mui/material';
