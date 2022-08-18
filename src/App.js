@@ -13,6 +13,7 @@ import AboutHome from "./Pages/Home/AboutHome";
 import Contact from "./Pages/Contact/Contact";
 import SingleProductDeails from "./Pages/SingleProductDetails/SingleProductDeails";
 import AboutMore from "./Pages/About/AboutMore";
+import SignUp from "./Pages/Login/SignUp";
 function App() {
   return (
     <div>
@@ -29,6 +30,7 @@ function App() {
         <Route path="/shop" element={<Shop></Shop>}></Route>
         <Route path="/productDetails" element={<SingleProductDeails></SingleProductDeails>}></Route>
         <Route path="/login" element={<Login></Login>}></Route>
+        <Route path="/signup" element={<SignUp></SignUp>}></Route>
       </Routes>
       <Footer></Footer>
     </div>

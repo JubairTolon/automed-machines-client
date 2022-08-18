@@ -4,6 +4,9 @@ import logo from '../../Assets/logo.png'
 import { BsCartPlusFill, BsFillHeartFill } from 'react-icons/bs';
 import { RiDeleteBin6Line } from 'react-icons/ri';
 import { AiOutlineDown } from 'react-icons/ai';
+import brake from '../../Assets/brakes/1.jpg'
+import { IconButton } from '@mui/material';
+import { MdDelete } from 'react-icons/md';
 
 const Nav = () => {
     return (
@@ -41,13 +44,16 @@ const Nav = () => {
                             <div class="dropdown dropdown-end">
                                 <label tabindex="0" class="btn btn-outline btn-circle text-2xl text-gray-600">< BsCartPlusFill /></label>
                                 <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded">
-                                    <div className='flex gap-8 items-center px-2 my-2'>
-                                        <div className='w-30'>Image</div>
+                                    <div className='flex gap-8 items-center px-2 my-2 bg-zinc-200 rounded py-2'>
+                                        <div className='w-28 rounded'><img className='rounded' width='70%' src={brake} alt="" /></div>
                                         <div className='w-60'>
                                             <h2>Name</h2>
                                             <p>Price and quentity</p>
                                         </div>
-                                        <div><span className='hover:text-red-600 cursor-pointer'><RiDeleteBin6Line /></span></div>
+                                        <div className='w-12'>
+                                            <IconButton aria-label="delete">
+                                                <span className='hover:text-red-500'><MdDelete /></span>
+                                            </IconButton></div>
                                     </div>
                                     <div className='flex gap-8 items-center px-2 justify-between mt-8 mb-4'>
                                         <div className='font-bold'>
