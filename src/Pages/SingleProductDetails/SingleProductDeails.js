@@ -5,60 +5,20 @@ import { BiMinusCircle } from 'react-icons/bi';
 import { BsPlusCircle, BsSuitHeart } from 'react-icons/bs';
 import { FaFacebookF, FaPinterestP } from 'react-icons/fa';
 import { MdEmail } from 'react-icons/md';
+import { useParams } from 'react-router-dom';
 import Product from '../Home/Product';
 import './singleProduct.css'
 
 
-
-const SingleProductDeails = () => {
-    const [products, setProducts] = React.useState([]);
-    const url = 'Products.json';
-    React.useEffect(() => {
-        fetch(url)
-            .then(res => res.json())
-            .then(data => setProducts(data));
-    }, []);
-    const images = [
-        "https://i.ibb.co/MZjt6nJ/1.jpg",
-        "https://i.ibb.co/jfT91NT/2.jpg",
-        "https://i.ibb.co/mRvg6P0/3.webp",
-        "https://i.ibb.co/12hstgx/4.jpg"
-    ]
-    //for images change
-    const [selectedImage, setSelectedImage] = useState(images[0]);
-
+const SingleProductDeails = ({ products }) => {
+    const { productId } = useParams();
     //for single product information
-    const product = [
-        {
-            "_id": 1,
-            "category": "Small",
-            "color": "Silver",
-            "name": "SPARK PLUG",
-            "brand": "Audi",
-            "pictures": [
-                {
-                    "img1": "https://i.ibb.co/0GxqwS7/Automobile-Parts-Lfr5aix-11-4469-Iridium-IX-Auto-Car-Spark-Plugs.jpg",
-                    "img2": "https://i.ibb.co/MZjt6nJ/1.jpg",
-                    "img3": "https://i.ibb.co/jfT91NT/2.jpg",
-                    "img4": "https://i.ibb.co/mRvg6P0/3.webp",
-                    "img5": "https://i.ibb.co/12hstgx/4.jpg"
-                }
-            ],
-            "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex molestias iure eaque vero expedita consequuntur accusamus, perferendis fugit, ut ratione blanditiis veritatis aut, temporibus esse doloremque dicta? Corporis odio fuga est veritatis dignissimos obcaecati? Iusto autem praesentium earum quasi ipsa pariatur laboriosam, temporibus quas incidunt? Sed labore repellendus necessitatibus dolore?",
-            "minOrder": 50,
-            "price": 800,
-            "avaiableQuentty": 350,
-            "rating": [
-                {
-                    "rating": 4.5,
-                    "review": "Good packaging with good product Quality. Overall good product & color"
-                }
-            ],
-            "status": "Hot",
-            "offer": "30",
-            "tag": "Car"
-        }
-    ]
+    const product = products?.filter(product => product._id === parseInt(productId));
+
+
+    //for multiple image change
+    const images = Object.values(product[0].pictures);
+    const [selectedImage, setSelectedImage] = useState(images[0]);
 
     //for product + -
     const [counter, setCounter] = useState(product[0].minOrder);
@@ -113,7 +73,7 @@ const SingleProductDeails = () => {
                 </div>
                 <div className=''>
                     <h1 className='text-3xl font-semibold'>{product[0]?.name}</h1>
-                    <div className='flex items-center my-4'><Rating className='mr-2' name="read-only" value={product[0]?.rating} readOnly /> 2 Rating <span>(S)</span></div>
+                    <div className='flex items-center my-4'><Rating className='mr-2' name="half-rating" value={product[0].rating} precision={0.5} readOnly /> 2 Rating <span>(S)</span></div>
                     <div class="flex gap-4 items-center my-4">
                         <span class="text-xl font-bold text-gray-900 dark:text-white">$ {product[0]?.price}</span>
                         {
@@ -173,8 +133,8 @@ const SingleProductDeails = () => {
                             <div className='w-2/3'>
                                 <figure class="flex flex-col justify-center items-center p-8 text-center bg-white border-2 rounded dark:bg-gray-800 dark:border-gray-700">
                                     <blockquote class="mx-auto mb-4 max-w-2xl text-gray-500 lg:mb-8 dark:text-gray-400">
-                                        <Rating name="half-rating" defaultValue={product[0].rating[0].rating} precision={0.5} />
-                                        <p class="my-4 font-light">{product[0].rating[0].review}</p>
+                                        <Rating name="half-rating" value={product[0].rating} precision={0.5} readOnly />
+                                        <p class="my-4 font-light">{product[0].review}</p>
                                     </blockquote>
                                     <figcaption class="flex justify-center items-center space-x-3">
                                         <img class="w-9 h-9 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/karen-nelson.png" alt="profile picture" />

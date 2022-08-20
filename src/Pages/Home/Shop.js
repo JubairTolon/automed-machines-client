@@ -1,6 +1,6 @@
 import { Button, FormControl, InputLabel, Link, List, ListItem, ListItemText, ListSubheader, MenuItem, Pagination, Select, Slider, ToggleButton, ToggleButtonGroup } from '@mui/material';
 import React from 'react';
-import Product from '../Home/Product';
+import Product from './Product';
 import { BsFillGrid3X3GapFill } from 'react-icons/bs';
 import { BiGridVertical } from 'react-icons/bi';
 
@@ -11,15 +11,7 @@ function valuetext(value) {
 
 const minDistance = 20000;
 
-const Shop = () => {
-    const [products, setProducts] = React.useState([]);
-
-    const url = 'Products.json';
-    React.useEffect(() => {
-        fetch(url)
-            .then(res => res.json())
-            .then(data => setProducts(data));
-    }, []);
+const Shop = ({ products, handleAddToCartButton }) => {
 
     const itemTitels = ['Categories', 'Brands', 'Price', 'Color', 'Tags'];
     const categories = ['Small', 'Medium', 'Large', 'Extra-Large']
@@ -96,6 +88,7 @@ const Shop = () => {
             return num; // if value < 1000, nothing to do
         }
     }
+
 
     return (
         <div className='mt-52 lg:mt-32 flex'>
@@ -246,6 +239,7 @@ const Shop = () => {
                                 return <Product
                                     key={product._id}
                                     product={product}
+                                    handleAddToCartButton={handleAddToCartButton}
                                 ></Product>
                             }
                             return true;

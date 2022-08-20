@@ -82,14 +82,16 @@ const AntTab = styled((props) => <Tab disableRipple {...props} />)(({ theme }) =
     },
 }));
 
-const Products = () => {
-    const [products, setProducts] = React.useState([]);
-    const url = 'Products.json';
-    React.useEffect(() => {
-        fetch(url)
-            .then(res => res.json())
-            .then(data => setProducts(data));
-    }, []);
+const Products = ({ products, handleAddToCartButton }) => {
+
+    //**********for all product load
+    // const [products, setProducts] = React.useState([]);
+    // const url = 'Products.json';
+    // React.useEffect(() => {
+    //     fetch(url)
+    //         .then(res => res.json())
+    //         .then(data => setProducts(data));
+    // }, []);
 
     const [value, setValue] = React.useState(0);
 
@@ -97,7 +99,6 @@ const Products = () => {
         setValue(newValue);
     };
 
-    //data load
     return (
         <Box sx={{ marginLeft: 'auto', marginRight: 'auto', py: 4, marginTop: 36, width: '75%', backgroundColor: '#f2f2f2' }}>
             <Box sx={{ textAlign: 'center' }}>
@@ -113,10 +114,11 @@ const Products = () => {
             <TabPanel value={value} index={0}>
                 {
                     products?.map(product => {
-                        if (product._id <= 8) {
+                        if (product?._id <= 8) {
                             return <Product
                                 key={product._id}
                                 product={product}
+                                handleAddToCartButton={handleAddToCartButton}
                             ></Product>
                         }
                         return true
@@ -129,10 +131,11 @@ const Products = () => {
             <TabPanel value={value} index={1}>
                 {
                     products?.map(product => {
-                        if (product._id <= 8) {
+                        if (product?._id <= 8) {
                             return <Product
                                 key={product._id}
                                 product={product}
+                                handleAddToCartButton={handleAddToCartButton}
                             ></Product>
                         }
                         return true
@@ -142,10 +145,11 @@ const Products = () => {
             <TabPanel value={value} index={2}>
                 {
                     products?.map(product => {
-                        if (product._id <= 8) {
+                        if (product?._id <= 8) {
                             return <Product
                                 key={product._id}
                                 product={product}
+                                handleAddToCartButton={handleAddToCartButton}
                             ></Product>
                         }
                         return true
