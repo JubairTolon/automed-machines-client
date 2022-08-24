@@ -82,16 +82,7 @@ const AntTab = styled((props) => <Tab disableRipple {...props} />)(({ theme }) =
     },
 }));
 
-const Products = ({ products, handleAddToCartButton }) => {
-
-    //**********for all product load
-    // const [products, setProducts] = React.useState([]);
-    // const url = 'Products.json';
-    // React.useEffect(() => {
-    //     fetch(url)
-    //         .then(res => res.json())
-    //         .then(data => setProducts(data));
-    // }, []);
+const Products = ({ products }) => {
 
     const [value, setValue] = React.useState(0);
 
@@ -118,7 +109,6 @@ const Products = ({ products, handleAddToCartButton }) => {
                             return <Product
                                 key={product._id}
                                 product={product}
-                                handleAddToCartButton={handleAddToCartButton}
                             ></Product>
                         }
                         return true
@@ -135,7 +125,6 @@ const Products = ({ products, handleAddToCartButton }) => {
                             return <Product
                                 key={product._id}
                                 product={product}
-                                handleAddToCartButton={handleAddToCartButton}
                             ></Product>
                         }
                         return true
@@ -149,7 +138,6 @@ const Products = ({ products, handleAddToCartButton }) => {
                             return <Product
                                 key={product._id}
                                 product={product}
-                                handleAddToCartButton={handleAddToCartButton}
                             ></Product>
                         }
                         return true

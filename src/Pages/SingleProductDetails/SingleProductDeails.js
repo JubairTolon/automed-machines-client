@@ -1,17 +1,20 @@
 import { IconButton, Rating } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { AiFillInstagram, AiOutlineTwitter } from 'react-icons/ai';
 import { BiMinusCircle } from 'react-icons/bi';
 import { BsPlusCircle, BsSuitHeart } from 'react-icons/bs';
 import { FaFacebookF, FaPinterestP } from 'react-icons/fa';
 import { MdEmail } from 'react-icons/md';
 import { useParams } from 'react-router-dom';
+import { AddItemContext } from '../../App';
 import Product from '../Home/Product';
 import './singleProduct.css'
 
 
 const SingleProductDeails = ({ products }) => {
     const { productId } = useParams();
+    const handleAddToCartButton = useContext(AddItemContext);
+
     //for single product information
     const product = products?.filter(product => product._id === parseInt(productId));
 
@@ -20,24 +23,24 @@ const SingleProductDeails = ({ products }) => {
     const images = Object.values(product[0].pictures);
     const [selectedImage, setSelectedImage] = useState(images[0]);
 
-    //for product + -
-    const [counter, setCounter] = useState(product[0].minOrder);
-    const incrementCounter = () => {
-        if (counter >= product[0]?.avaiableQuentty) {
-            setCounter(product[0]?.avaiableQuentty);
-        }
-        else {
-            setCounter(counter + 1)
-        }
-    };
-    const decrementCounter = () => {
-        if (counter <= product[0]?.minOrder) {
-            setCounter(product[0]?.minOrder);
-        }
-        else {
-            setCounter(counter - 1)
-        }
-    }
+    // //for product + -
+    // const [counter, setCounter] = useState(product[0].minOrder);
+    // const incrementCounter = () => {
+    //     if (counter >= product[0]?.avaiableQuentty) {
+    //         setCounter(product[0]?.avaiableQuentty);
+    //     }
+    //     else {
+    //         setCounter(counter + 1)
+    //     }
+    // };
+    // const decrementCounter = () => {
+    //     if (counter <= product[0]?.minOrder) {
+    //         setCounter(product[0]?.minOrder);
+    //     }
+    //     else {
+    //         setCounter(counter - 1)
+    //     }
+    // }
 
     // for description and review state change
     const [description, setDescription] = useState(true);
@@ -88,16 +91,16 @@ const SingleProductDeails = ({ products }) => {
                     <p className='text-lg'>{product[0]?.description}</p>
                     <div className='flex gap-8 my-6 items-center'>
                         <div className='flex gap-2 items-center border border-gray-400 rounded-md py-1'>
-                            <IconButton onClick={decrementCounter} aria-label="delete">
+                            <IconButton aria-label="delete">
                                 <BiMinusCircle />
                             </IconButton>
-                            <p className='text-lg text-gray-600'>{counter}</p>
-                            <IconButton onClick={incrementCounter} aria-label="delete">
+                            <p className='text-lg text-gray-600'>{product[0].minOrder}</p>
+                            <IconButton aria-label="delete">
                                 <BsPlusCircle />
                             </IconButton>
                         </div>
                         <div>
-                            <button className='btn btn-goust border-0 bg-orange-500'>Add to cart</button>
+                            <button onClick={() => handleAddToCartButton(product[0])} className='btn btn-goust border-0 bg-orange-500'>Add to cart</button>
                         </div>
                         <div className='flex jestify-center hover:text-base-200'>
                             <button className='btn btn-outline rounded border-gray-400 '><BsSuitHeart /></button>

@@ -3,11 +3,10 @@ import { Link } from 'react-router-dom';
 import logo from '../../Assets/logo.png'
 import { BsCartPlusFill, BsFillHeartFill } from 'react-icons/bs';
 import { AiOutlineDown } from 'react-icons/ai';
-import brake from '../../Assets/brakes/1.jpg'
-import { IconButton } from '@mui/material';
-import { MdDelete } from 'react-icons/md';
+import NavCartSingleItem from './NavCartSingleItem';
 
-const Nav = () => {
+const Nav = ({ cart, subTotal }) => {
+
     return (
         <div className=' bg-white fixed mx-auto left-0 right-0 z-20 top-0 md:top-1'>
             <nav class="bg-white border-gray-200 dark:bg-gray-900 mt-8">
@@ -39,30 +38,25 @@ const Nav = () => {
                         <Link to='/' class="flex flex-nowrap items-center mr-6 text-sm font-medium text-gray-500 dark:text-white hover:underline hover:text-red-600">Wishlist<span className='mx-1'><BsFillHeartFill /></span>({0})
                         </Link>
                         <div class="indicator ">
-                            <span class="indicator-item badge badge-primary bg-orange-500 border-none">0</span>
+                            <span class="indicator-item badge badge-primary bg-orange-500 border-none">{cart.length}</span>
                             <div class="dropdown dropdown-end">
                                 <label tabindex="0" class="btn btn-outline btn-circle text-2xl text-gray-600">< BsCartPlusFill /></label>
-                                <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded">
-                                    <div className='flex gap-8 items-center px-2 my-2 bg-zinc-200 rounded py-2'>
-                                        <div className='w-28 rounded'><img className='rounded' width='70%' src={brake} alt="" /></div>
-                                        <div className='w-60'>
-                                            <h2>Name</h2>
-                                            <p>Price and quentity</p>
-                                        </div>
-                                        <div className='w-12'>
-                                            <IconButton aria-label="delete">
-                                                <span className='hover:text-red-500'><MdDelete /></span>
-                                            </IconButton></div>
-                                    </div>
+                                <ul tabindex="0" class="dropdown-content menu py-4 px-4 shadow overflow-hidden bg-zinc-200 rounded">
+                                    {
+                                        cart?.map(item => <NavCartSingleItem
+                                            key={item._id}
+                                            item={item}
+                                        ></NavCartSingleItem>)
+                                    }
                                     <div className='flex gap-8 items-center px-2 justify-between mt-8 mb-4'>
                                         <div className='font-bold'>
                                             <h2>Subtotal</h2>
                                         </div>
                                         <div className='font-bold'>
-                                            <h2>$ 1234</h2>
+                                            <h2>$ {subTotal}</h2>
                                         </div>
                                     </div>
-                                    <div className='flex gap-8 items-center px-2 justify-between mt-8 mb-4'>
+                                    <div className='flex gap-8 items-center justify-between mt-4 mb-4'>
                                         <div className='font-bold'>
                                             <button className='btn btn-sm btn-primary bg-orange-500 border-none'><Link to='/cart'>View Cart</Link></button>
                                         </div>

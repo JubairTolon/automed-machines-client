@@ -4,8 +4,9 @@ import React, { useMemo, useState } from 'react';
 import { MdOutlineExpandMore } from 'react-icons/md';
 import countryList from 'react-select-country-list';
 import CountrySelector from '../Shared/CountrySelector';
+import OrderRow from './OrderRow';
 
-const Checkout = () => {
+const Checkout = ({ cart, total, quantity }) => {
 
     const [value, setValue] = useState('')
     const options = useMemo(() => countryList().getData(), [])
@@ -92,7 +93,7 @@ const Checkout = () => {
 
                     <div class="overflow-x-auto relative mt-10">
                         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                            <thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
+                            <thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400 text-center">
                                 <tr>
                                     <th scope="col" class="py-3 px-6 rounded-l-lg">
                                         Serial No
@@ -109,125 +110,19 @@ const Checkout = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class=" dark:bg-gray-800">
-                                    <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        1
-                                    </th>
-                                    <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        Apple MacBook Pro 17"
-                                    </th>
-                                    <td class="py-4 px-6">
-                                        1
-                                    </td>
-                                    <td class="py-4 px-6">
-                                        $2999
-                                    </td>
-                                </tr>
-                                <tr class=" dark:bg-gray-800">
-                                    <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        1
-                                    </th>
-                                    <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        Apple MacBook Pro 17"
-                                    </th>
-                                    <td class="py-4 px-6">
-                                        1
-                                    </td>
-                                    <td class="py-4 px-6">
-                                        $2999
-                                    </td>
-                                </tr>
-                                <tr class=" dark:bg-gray-800">
-                                    <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        1
-                                    </th>
-                                    <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        Apple MacBook Pro 17"
-                                    </th>
-                                    <td class="py-4 px-6">
-                                        1
-                                    </td>
-                                    <td class="py-4 px-6">
-                                        $2999
-                                    </td>
-                                </tr>
-                                <tr class=" dark:bg-gray-800">
-                                    <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        1
-                                    </th>
-                                    <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        Apple MacBook Pro 17"
-                                    </th>
-                                    <td class="py-4 px-6">
-                                        1
-                                    </td>
-                                    <td class="py-4 px-6">
-                                        $2999
-                                    </td>
-                                </tr>
-                                <tr class=" dark:bg-gray-800">
-                                    <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        1
-                                    </th>
-                                    <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        Apple MacBook Pro 17"
-                                    </th>
-                                    <td class="py-4 px-6">
-                                        1
-                                    </td>
-                                    <td class="py-4 px-6">
-                                        $2999
-                                    </td>
-                                </tr>
-                                <tr class=" dark:bg-gray-800">
-                                    <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        1
-                                    </th>
-                                    <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        Apple MacBook Pro 17"
-                                    </th>
-                                    <td class="py-4 px-6">
-                                        1
-                                    </td>
-                                    <td class="py-4 px-6">
-                                        $2999
-                                    </td>
-                                </tr>
-                                <tr class=" dark:bg-gray-800">
-                                    <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        1
-                                    </th>
-                                    <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        Apple MacBook Pro 17"
-                                    </th>
-                                    <td class="py-4 px-6">
-                                        1
-                                    </td>
-                                    <td class="py-4 px-6">
-                                        $2999
-                                    </td>
-                                </tr>
-                                <tr class=" dark:bg-gray-800">
-                                    <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        1
-                                    </th>
-                                    <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        Apple MacBook Pro 17"
-                                    </th>
-                                    <td class="py-4 px-6">
-                                        1
-                                    </td>
-                                    <td class="py-4 px-6">
-                                        $2999
-                                    </td>
-                                </tr>
+                                {
+                                    cart?.map(item => <OrderRow
+                                        key={item._id}
+                                        item={item}
+                                    ></OrderRow>)
+                                }
                             </tbody>
                             <tfoot>
-                                <tr class="font-semibold text-gray-900 dark:text-white">
+                                <tr class="font-semibold text-gray-900 dark:text-white text-center">
                                     <th scope="row" class="py-3 px-6 text-base">Total</th>
-                                    <th scope="row" class="py-3 px-6 text-base"></th>
-                                    <td class="py-3 px-6">3</td>
-                                    <td class="py-3 px-6">21,000</td>
+                                    <td class="py-3 px-6"></td>
+                                    <td class="py-3 px-6">{quantity}</td>
+                                    <td class="py-3 px-6">$ {total}</td>
                                 </tr>
                             </tfoot>
                         </table>

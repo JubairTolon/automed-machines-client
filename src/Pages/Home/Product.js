@@ -4,10 +4,14 @@ import { BsCartPlus, BsSuitHeart } from 'react-icons/bs';
 import { MdOutlineCompareArrows } from 'react-icons/md';
 import { Rating } from '@mui/material';
 import './Product.css'
+import { useContext } from 'react';
+import { AddItemContext } from '../../App';
 
-const Product = ({ product, handleAddToCartButton }) => {
+const Product = ({ product }) => {
     const { _id, category, color, name, brand, pictures, status, description, minOrder, price, avaiableQuentty, rating, offer } = product;
+
     const navigate = useNavigate();
+    const handleAddToCartButton = useContext(AddItemContext);
 
     const navigateToDetailsPage = id => {
         navigate(`/productDetails/${id}`)

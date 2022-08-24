@@ -11,7 +11,7 @@ function valuetext(value) {
 
 const minDistance = 20000;
 
-const Shop = ({ products, handleAddToCartButton }) => {
+const Shop = ({ products }) => {
 
     const itemTitels = ['Categories', 'Brands', 'Price', 'Color', 'Tags'];
     const categories = ['Small', 'Medium', 'Large', 'Extra-Large']
@@ -239,7 +239,6 @@ const Shop = ({ products, handleAddToCartButton }) => {
                                 return <Product
                                     key={product._id}
                                     product={product}
-                                    handleAddToCartButton={handleAddToCartButton}
                                 ></Product>
                             }
                             return true;

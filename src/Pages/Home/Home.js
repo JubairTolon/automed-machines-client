@@ -6,7 +6,7 @@ import BusinsessSummary from './BusinsessSummary';
 import Products from './Products';
 import Services from './Services';
 
-const Home = ({ products, handleAddToCartButton }) => {
+const Home = ({ products }) => {
     return (
         <div>
             <Banner></Banner>
@@ -15,7 +15,6 @@ const Home = ({ products, handleAddToCartButton }) => {
             <Services></Services>
             <Products
                 products={products}
-                handleAddToCartButton={handleAddToCartButton}
             ></Products>
             <ReviewsHome></ReviewsHome>
             <BusinsessSummary></BusinsessSummary>

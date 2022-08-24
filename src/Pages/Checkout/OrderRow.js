@@ -1,21 +1,21 @@
 import React from 'react';
 
-const OrderRow = () => {
+const OrderRow = ({ item }) => {
+    const quantity = item.minOrder + item.quantity;
+    const price = quantity * item.price;
     return (
-        <div>
-            <tr class="bg-white dark:bg-gray-800">
-                <td>1</td>
-                <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    Brake pad
-                </th>
-                <td class="py-4 px-6">
-                    50
-                </td>
-                <td class="py-4 px-6">
-                    $2999
-                </td>
-            </tr>
-        </div>
+        <tr class="bg-white dark:bg-gray-800 text-center">
+            <td>{item._id}</td>
+            <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                {item.name}
+            </th>
+            <td class="py-4 px-6">
+                {quantity}
+            </td>
+            <td class="py-4 px-6">
+                $ {price.toFixed(2)}
+            </td>
+        </tr>
     );
 };
 

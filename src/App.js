@@ -14,39 +14,103 @@ import Contact from "./Pages/Contact/Contact";
 import SingleProductDeails from "./Pages/SingleProductDetails/SingleProductDeails";
 import AboutMore from "./Pages/About/AboutMore";
 import SignUp from "./Pages/Login/SignUp";
-import Cart from "./Pages/Home/Cart";
+import Cart from "./Pages/Cart/Cart";
 import Checkout from "./Pages/Checkout/Checkout";
-import React from "react";
+import React, { createContext, useEffect } from "react";
 import NotFound from "./Pages/Shared/NotFound";
+import { addToDb, getStoredCart, removeFromDb } from "./Utlities/SetToLocalStorage";
+
+export const AddItemContext = createContext('handleAddToCartButton')
+export const RemoveItemContext = createContext('handleRemoveCartItem')
 
 
 
 function App() {
 
   const [products, setProducts] = React.useState([]);
+  const [cart, setCart] = React.useState([])
+  const [wishList, setWishList] = React.useState([])
+
   const url = 'Products.json';
-  React.useEffect(() => {
+  useEffect(() => {
     fetch(url)
       .then(res => res.json())
       .then(data => setProducts(data));
   }, []);
 
-  const [cart, setCart] = React.useState([])
+
+  //for get stored product from local storage
+  React.useEffect(() => {
+    const storedCart = getStoredCart();
+    const savedCart = [];
+    for (const id in storedCart) {
+      const addedProduct = products?.find(product => product._id == id);
+      if (addedProduct) {
+        const quantity = storedCart[id];
+        addedProduct.quantity = quantity;
+        savedCart.push(addedProduct)
+      }
+    }
+    setCart(savedCart);
+  }, [products]);
+
+  //cart calculation
+  let subTotal = 0;
+  let shippingCost = 0;
+  let coupon = 300.204;
+  let total = 0;
+  let quantity = 0;
+
+  cart?.map(product => {
+    quantity = quantity + (product.quantity + product.minOrder);
+    subTotal = subTotal + (product.price * (product.quantity + product.minOrder));
+    shippingCost = shippingCost + product.shipping;
+    total = (subTotal + shippingCost) - coupon;
+    return [subTotal, shippingCost, total, quantity]
+  })
+
+  //product add to cart and database
 
   const handleAddToCartButton = (product) => {
-    const newCart = [...cart, product]
-    setCart(newCart)
+    const exist = cart?.find(item => item._id === product._id)
+    if (exist) {
+      alert('This item already in cart !!!')
+    }
+    else {
+      const newCart = [...cart, product]
+      setCart(newCart)
+      addToDb(product?._id)
+    }
   }
+
+  //product remove from cart and databse
+  const handleRemoveCartItem = (product) => {
+    const rest = cart?.filter(item => item._id !== product._id);
+    setCart(rest);
+    removeFromDb(product._id);
+  }
+
+  const handleIncrement = (product) => {
+
+  }
+
   return (
-    <div>
+    <AddItemContext.Provider value={handleAddToCartButton}>
       <AccessLink></AccessLink>
-      <Nav></Nav>
+      <RemoveItemContext.Provider value={handleRemoveCartItem}>
+        <Nav
+          subTotal={subTotal}
+          cart={cart}
+        >
+        </Nav>
+      </RemoveItemContext.Provider>
       <Breadcrumb></Breadcrumb>
       <Routes>
-        <Route path="/" element={<Home
-          products={products}
-          handleAddToCartButton={handleAddToCartButton}
-        ></Home>}></Route>
+        <Route path="/" element={
+          <Home
+            products={products}>
+          </Home>}>
+        </Route>
         <Route path="/aboutHome" element={<AboutHome></AboutHome>}></Route>
         <Route path="/aboutMore" element={<AboutMore></AboutMore>}></Route>
         <Route path="/reviewsHome" element={<ReviewsHome></ReviewsHome>}></Route>
@@ -54,23 +118,35 @@ function App() {
         <Route path="/contact" element={<Contact></Contact>}></Route>
         <Route path="/shop" element={
           <Shop
-            products={products}
-            handleAddToCartButton={handleAddToCartButton}>
+            products={products}>
           </Shop>}>
         </Route>
-        <Route path="/productDetails/:productId" element={<SingleProductDeails
-          products={products}
-        ></SingleProductDeails>}></Route>
-        <Route path="/cart" element={<Cart
-          cart={cart}
-        ></Cart>}></Route>
-        <Route path="/checkout" element={<Checkout></Checkout>}></Route>
+        <Route path="/productDetails/:productId" element={
+          <SingleProductDeails
+            products={products}>
+          </SingleProductDeails>}>
+        </Route>
+        <Route path="/cart" element={
+          <Cart
+            subTotal={subTotal}
+            total={total}
+            cart={cart}
+            handleRemoveCartItem={handleRemoveCartItem}>
+          </Cart>}>
+        </Route>
+        <Route path="/checkout" element={
+          <Checkout
+            quantity={quantity}
+            total={total}
+            cart={cart}>
+          </Checkout>}>
+        </Route>
         <Route path="/login" element={<Login></Login>}></Route>
         <Route path="/signup" element={<SignUp></SignUp>}></Route>
         <Route path="*" element={<NotFound></NotFound>}></Route>
       </Routes>
       <Footer></Footer>
-    </div>
+    </AddItemContext.Provider>
   );
 }
 
