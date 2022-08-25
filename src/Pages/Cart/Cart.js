@@ -1,9 +1,10 @@
 import { Button } from '@mui/material';
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import SingleCartItem from './SingleCartItem';
 
 const Cart = ({ subTotal, total, cart, handleRemoveCartItem }) => {
+
 
     return (
         <div className='mt-32'>

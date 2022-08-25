@@ -19,6 +19,7 @@ import Checkout from "./Pages/Checkout/Checkout";
 import React, { createContext, useEffect } from "react";
 import NotFound from "./Pages/Shared/NotFound";
 import { addToDb, getStoredCart, removeFromDb } from "./Utlities/SetToLocalStorage";
+import useCart from "./Hooks/useCart";
 
 export const AddItemContext = createContext('handleAddToCartButton')
 export const RemoveItemContext = createContext('handleRemoveCartItem')
@@ -28,10 +29,10 @@ export const RemoveItemContext = createContext('handleRemoveCartItem')
 function App() {
 
   const [products, setProducts] = React.useState([]);
-  const [cart, setCart] = React.useState([])
+  const [cart, setCart] = useCart(products)
   const [wishList, setWishList] = React.useState([])
 
-  const url = 'Products.json';
+  const url = 'http://localhost:5000/product';
   useEffect(() => {
     fetch(url)
       .then(res => res.json())
@@ -40,19 +41,19 @@ function App() {
 
 
   //for get stored product from local storage
-  React.useEffect(() => {
-    const storedCart = getStoredCart();
-    const savedCart = [];
-    for (const id in storedCart) {
-      const addedProduct = products?.find(product => product._id == id);
-      if (addedProduct) {
-        const quantity = storedCart[id];
-        addedProduct.quantity = quantity;
-        savedCart.push(addedProduct)
-      }
-    }
-    setCart(savedCart);
-  }, [products]);
+  // React.useEffect(() => {
+  //   const storedCart = getStoredCart();
+  //   const savedCart = [];
+  //   for (const id in storedCart) {
+  //     const addedProduct = products?.find(product => product._id == id);
+  //     if (addedProduct) {
+  //       const quantity = storedCart[id];
+  //       addedProduct.quantity = quantity;
+  //       savedCart.push(addedProduct)
+  //     }
+  //   }
+  //   setCart(savedCart);
+  // }, [products]);
 
   //cart calculation
   let subTotal = 0;
@@ -60,6 +61,7 @@ function App() {
   let coupon = 300.204;
   let total = 0;
   let quantity = 0;
+
 
   cart?.map(product => {
     quantity = quantity + (product.quantity + product.minOrder);

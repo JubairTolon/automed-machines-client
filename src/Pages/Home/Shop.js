@@ -3,6 +3,7 @@ import React from 'react';
 import Product from './Product';
 import { BsFillGrid3X3GapFill } from 'react-icons/bs';
 import { BiGridVertical } from 'react-icons/bi';
+import { useState } from 'react';
 
 
 function valuetext(value) {
@@ -14,7 +15,7 @@ const minDistance = 20000;
 const Shop = ({ products }) => {
 
     const itemTitels = ['Categories', 'Brands', 'Price', 'Color', 'Tags'];
-    const categories = ['Small', 'Medium', 'Large', 'Extra-Large']
+    const categories = ['All items', 'Small', 'Medium', 'Large', 'Extra-Large']
     const colorItems = ['Black', 'Blue', 'Silver', 'Yellow', 'Red', 'Mercury Black', 'White']
     const brandsItems = ['Audi', 'Toyota', 'Bugati', 'Lemborgeni', 'BMW', 'Acura', 'Alfa Romeo', 'Bentley', 'Buick', 'Chevrolet', 'Cadillac', 'Honda', 'Ford', 'Hyundai']
     const tags = ['Car', 'Bus', 'Truck', 'Pickup']
@@ -33,6 +34,7 @@ const Shop = ({ products }) => {
     const handleChangePageItemShow = (event) => {
         setShowingItem(event.target.value);
     };
+
     const handleChangeSortItem = (event) => {
         setSortBy(event.target.value);
     };
@@ -101,8 +103,8 @@ const Shop = ({ products }) => {
                         maxHeight: 1200,
                         '& ul': { padding: 0 },
                     }}
-                    subheader={<li />}
-                >
+                    subheader={<li />}>
+
                     <li key={`${itemTitels[0]}`}>
                         <ul>
                             <ListSubheader sx={{ fontSize: 28, fontWeight: 'bold' }}>{`${itemTitels[0]}`}</ListSubheader>
@@ -220,7 +222,7 @@ const Shop = ({ products }) => {
                                     onChange={handleChangeSortItem}
                                     defaultValue={3}
                                 >
-                                    <MenuItem value={1}>TrendingItems</MenuItem>
+                                    <MenuItem value={1}>Trending items</MenuItem>
                                     <MenuItem value={2}>Newest items</MenuItem>
                                     <MenuItem value={3}>Price: Low to high</MenuItem>
                                     <MenuItem value={4}>Price: high to low</MenuItem>
@@ -234,15 +236,11 @@ const Shop = ({ products }) => {
                 </div>
                 <div className='w-full grid grid-flow-row grid-cols-2 lg:grid-cols-5 gap-2 lg:gap-2'>
                     {
-                        products?.map(product => {
-                            if (product._id <= 15) {
-                                return <Product
-                                    key={product._id}
-                                    product={product}
-                                ></Product>
-                            }
-                            return true;
-                        })
+                        products?.map(product =>
+                            <Product
+                                key={product._id}
+                                product={product}
+                            ></Product>)
                     }
                 </div>
                 <div className='w-full flex justify-center my-8'>

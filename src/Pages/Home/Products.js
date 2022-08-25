@@ -104,15 +104,12 @@ const Products = ({ products }) => {
             </Box>
             <TabPanel value={value} index={0}>
                 {
-                    products?.map(product => {
-                        if (product?._id <= 8) {
-                            return <Product
-                                key={product._id}
-                                product={product}
-                            ></Product>
-                        }
-                        return true
-                    })
+                    products?.map(product =>
+                        <Product
+                            key={product._id}
+                            product={product}
+                        ></Product>
+                    )
                 }
             </TabPanel>
             <TabPanel value={value} index={0}>
@@ -120,28 +117,22 @@ const Products = ({ products }) => {
             </TabPanel>
             <TabPanel value={value} index={1}>
                 {
-                    products?.map(product => {
-                        if (product?._id <= 8) {
-                            return <Product
-                                key={product._id}
-                                product={product}
-                            ></Product>
-                        }
-                        return true
-                    })
+                    products?.map(product =>
+                        <Product
+                            key={product._id}
+                            product={product}
+                        ></Product>
+                    )
                 }
             </TabPanel>
             <TabPanel value={value} index={2}>
                 {
-                    products?.map(product => {
-                        if (product?._id <= 8) {
-                            return <Product
-                                key={product._id}
-                                product={product}
-                            ></Product>
-                        }
-                        return true
-                    })
+                    products?.map(product =>
+                        <Product
+                            key={product._id}
+                            product={product}
+                        ></Product>
+                    )
                 }
             </TabPanel>
             <Box sx={{ display: 'flex', justifyContent: 'center' }}>

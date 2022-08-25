@@ -1,6 +1,5 @@
 [
     {
-        "_id": 1,
         "category": "Small",
         "color": "Silver",
         "name": "SPARK PLUG",
@@ -21,10 +20,10 @@
         "review": "Avarage good with value and quality",
         "status": "Hot",
         "offer": "",
-        "tag": "Car"
+        "tag": "Car",
+        "stock": "available"
     },
     {
-        "_id": 2,
         "category": "Medium",
         "color": "White",
         "name": "BATTERY",
@@ -45,10 +44,10 @@
         "review": "Avarage good with value and quality",
         "status": "",
         "offer": "",
-        "tag": "Truck"
+        "tag": "Truck",
+        "stock": "available"
     },
     {
-        "_id": 3,
         "category": "Large",
         "color": "Black",
         "name": "EXHAUST PIPE",
@@ -69,10 +68,10 @@
         "review": "Avarage good with value and quality",
         "status": "New",
         "offer": "70",
-        "tag": "Car"
+        "tag": "Car",
+        "stock": "out"
     },
     {
-        "_id": 4,
         "category": "Extra-Large",
         "color": "Blue",
         "name": "WINDSHIELD",
@@ -93,10 +92,10 @@
         "review": "Avarage good with value and quality",
         "status": "Hot",
         "offer": "30",
-        "tag": "Pickup"
+        "tag": "Pickup",
+        "stock": "available"
     },
     {
-        "_id": 5,
         "category": "Small",
         "color": "Silver",
         "name": "CURBURETOR",
@@ -117,10 +116,10 @@
         "review": "Avarage good with value and quality",
         "status": "New",
         "offer": "",
-        "tag": "Bus"
+        "tag": "Bus",
+        "stock": "out"
     },
     {
-        "_id": 6,
         "category": "Medium",
         "color": "White",
         "name": "MIRROR",
@@ -141,10 +140,10 @@
         "review": "Avarage good with value and quality",
         "status": "",
         "offer": "50",
-        "tag": "Car"
+        "tag": "Car",
+        "stock": "available"
     },
     {
-        "_id": 7,
         "category": "Large",
         "color": "Black",
         "name": "TIRE",
@@ -165,10 +164,10 @@
         "review": "Avarage good with value and quality",
         "status": "New",
         "offer": "",
-        "tag": "Truck"
+        "tag": "Truck",
+        "stock": "out"
     },
     {
-        "_id": 8,
         "category": "Extra-Large",
         "color": "Blue",
         "name": "PISTON",
@@ -189,10 +188,10 @@
         "review": "Avarage good with value and quality",
         "status": "",
         "offer": "10",
-        "tag": "Pickup"
+        "tag": "Pickup",
+        "stock": "available"
     },
     {
-        "_id": 9,
         "category": "Small",
         "color": "Blue",
         "name": "WHEEL",
@@ -213,10 +212,10 @@
         "review": "Avarage good with value and quality",
         "status": "Hot",
         "offer": "",
-        "tag": "Bus"
+        "tag": "Bus",
+        "stock": "out"
     },
     {
-        "_id": 10,
         "category": "Extra-Large",
         "color": " Silver",
         "name": "BEEP",
@@ -237,10 +236,10 @@
         "review": "Avarage good with value and quality",
         "status": "",
         "offer": "20",
-        "tag": "Car"
+        "tag": "Car",
+        "stock": "available"
     },
     {
-        "_id": 11,
         "category": "Medium",
         "color": "White",
         "name": "BRAKE SHOE",
@@ -261,10 +260,10 @@
         "review": "Avarage good with value and quality",
         "status": "",
         "offer": "",
-        "tag": "Bus"
+        "tag": "Bus",
+        "stock": "out"
     },
     {
-        "_id": 12,
         "category": "Large",
         "color": "Black",
         "name": "SPEEDMETER",
@@ -285,10 +284,10 @@
         "review": "Avarage good with value and quality",
         "status": "New",
         "offer": "",
-        "tag": "Pickup"
+        "tag": "Pickup",
+        "stock": "available"
     },
     {
-        "_id": 13,
         "category": "Small",
         "color": "Silver",
         "name": "SPARK PLUG",
@@ -309,10 +308,10 @@
         "review": "Avarage good with value and quality",
         "status": "Hot",
         "offer": "",
-        "tag": "Truck"
+        "tag": "Truck",
+        "stock": "available"
     },
     {
-        "_id": 14,
         "category": "Medium",
         "color": "White",
         "name": "BATTERY",
@@ -333,10 +332,10 @@
         "review": "Avarage good with value and quality",
         "status": "",
         "offer": "",
-        "tag": "Car"
+        "tag": "Car",
+        "stock": "available"
     },
     {
-        "_id": 15,
         "category": "Large",
         "color": "Black",
         "name": "EXHAUST PIPE",
@@ -357,10 +356,10 @@
         "review": "Avarage good with value and quality",
         "status": "New",
         "offer": "70",
-        "tag": "Bus"
+        "tag": "Bus",
+        "stock": "available"
     },
     {
-        "_id": 16,
         "category": "Extra-Large",
         "color": "Blue",
         "name": "WINDSHIELD",
@@ -381,10 +380,10 @@
         "review": "Avarage good with value and quality",
         "status": "Hot",
         "offer": "30",
-        "tag": "Pickup"
+        "tag": "Pickup",
+        "stock": "available"
     },
     {
-        "_id": 17,
         "category": "Small",
         "color": "Silver",
         "name": "CURBURETOR",
@@ -405,10 +404,10 @@
         "review": "Avarage good with value and quality",
         "status": "New",
         "offer": "",
-        "tag": "Truck"
+        "tag": "Truck",
+        "stock": "available"
     },
     {
-        "_id": 18,
         "category": "Medium",
         "color": "White",
         "name": "MIRROR",
@@ -429,10 +428,10 @@
         "review": "Avarage good with value and quality",
         "status": "",
         "offer": "50",
-        "tag": "Car"
+        "tag": "Car",
+        "stock": "available"
     },
     {
-        "_id": 19,
         "category": "Large",
         "color": "Black",
         "name": "TIRE",
@@ -453,10 +452,10 @@
         "review": "Avarage good with value and quality",
         "status": "New",
         "offer": "",
-        "tag": "Bus"
+        "tag": "Bus",
+        "stock": "out"
     },
     {
-        "_id": 20,
         "category": "Extra-Large",
         "color": "Blue",
         "name": "PISTON",
@@ -477,10 +476,10 @@
         "review": "Avarage good with value and quality",
         "status": "",
         "offer": "10",
-        "tag": "Pickup"
+        "tag": "Pickup",
+        "stock": "available"
     },
     {
-        "_id": 21,
         "category": "Small",
         "color": "Mercury Black",
         "name": "WHEEL",
@@ -501,10 +500,10 @@
         "review": "Avarage good with value and quality",
         "status": "Hot",
         "offer": "",
-        "tag": "Truck"
+        "tag": "Truck",
+        "stock": "available"
     },
     {
-        "_id": 22,
         "category": "Extra-Large",
         "color": " Red",
         "name": "BEEP",
@@ -525,10 +524,10 @@
         "review": "Avarage good with value and quality",
         "status": "",
         "offer": "20",
-        "tag": "Car"
+        "tag": "Car",
+        "stock": "available"
     },
     {
-        "_id": 23,
         "category": "Medium",
         "color": "Yellow",
         "name": "BRAKE SHOE",
@@ -549,10 +548,10 @@
         "review": "Avarage good with value and quality",
         "status": "",
         "offer": "",
-        "tag": "Bus"
+        "tag": "Bus",
+        "stock": "available"
     },
     {
-        "_id": 24,
         "category": "Large",
         "color": "Black",
         "name": "SPEEDMETER",
@@ -573,6 +572,7 @@
         "review": "Avarage good with value and quality",
         "status": "New",
         "offer": "",
-        "tag": "Car Truck Pickup Bus"
+        "tag": "Pickup",
+        "stock": "available"
     }
 ]
