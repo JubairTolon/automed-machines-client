@@ -19,17 +19,17 @@ const SingleCartItem = ({ product, handleRemoveCartItem }) => {
     }
 
     return (
-        <tr class="bg-white border-b text-center dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+        <tr className="bg-white border-b text-center dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
             <td>
                 <img className='mx-auto' width='40%' src={product.pictures.img1} alt="" />
             </td>
-            <th class="font-md text-gray-700 whitespace-nowrap dark:text-white">
+            <th className="font-md text-gray-700 whitespace-nowrap dark:text-white">
                 {product?.name}
             </th>
-            <td class="">
+            <td className="">
                 $ {product?.price}
             </td>
-            <td class="">
+            <td className="">
                 <div className='flex gap-2 items-center justify-center w-2/4 rounded-md py-1 mx-auto'>
                     <IconButton onClick={() => decQuantity(product._id)} aria-label="delete">
                         <span className='hover:text-red-500'><BiMinusCircle /></span>
@@ -40,10 +40,10 @@ const SingleCartItem = ({ product, handleRemoveCartItem }) => {
                     </IconButton>
                 </div>
             </td>
-            <td class="">
+            <td className="">
                 $ {quantity * product?.price}
             </td>
-            <td class="">
+            <td className="">
                 <IconButton onClick={() => handleRemoveCartItem(product)} aria-label="delete">
                     <span className='hover:text-red-500'><MdDelete /></span>
                 </IconButton>

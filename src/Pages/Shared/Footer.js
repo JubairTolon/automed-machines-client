@@ -14,41 +14,41 @@ const Footer = () => {
                         <h1 className='text-5xl'>Get All Updates</h1>
                         <h3 className='text-xl my-8'>Sign up aur newsleter today. Also get alarts for new product.</h3>
                     </div>
-                    <div class="relative mx-auto">
-                        <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                    <div className="relative mx-auto">
+                        <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
                             <span className='text-xl'><MdEmail /></span>
                         </div>
-                        <input type="search" id="default-search" class="block p-4 pl-10  w-96 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter your email..." required />
-                        <button type="submit" class="text-white absolute right-2.5 bottom-2.5 bg-orange-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Subscribe</button>
+                        <input type="search" id="default-search" className="block p-4 pl-10  w-96 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter your email..." required />
+                        <button type="submit" className="text-white absolute right-2.5 bottom-2.5 bg-orange-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Subscribe</button>
                     </div>
                 </div>
             </footer >
-            <footer class="footer p-10 bg-base-200 items-center justify-around">
+            <footer className="footer p-10 bg-base-200 items-center justify-around">
                 <div>
-                    <span class="footer-title">Service</span>
-                    <Link to="/" class="link link-hover">Blogs</Link>
-                    <Link to="/" class="link link-hover">Checkout</Link>
-                    <Link to="/" class="link link-hover">Contact</Link>
-                    <Link to="/" class="link link-hover">Cart</Link>
+                    <span className="footer-title">Service</span>
+                    <Link to="/" className="link link-hover">Blogs</Link>
+                    <Link to="/" className="link link-hover">Checkout</Link>
+                    <Link to="/" className="link link-hover">Contact</Link>
+                    <Link to="/" className="link link-hover">Cart</Link>
                 </div>
                 <div>
-                    <span class="footer-title">Service</span>
-                    <Link to="/" class="link link-hover">Blogs</Link>
-                    <Link to="/" class="link link-hover">Checkout</Link>
-                    <Link to="/" class="link link-hover">Contact</Link>
-                    <Link to="/" class="link link-hover">Cart</Link>
+                    <span className="footer-title">Service</span>
+                    <Link to="/" className="link link-hover">Blogs</Link>
+                    <Link to="/" className="link link-hover">Checkout</Link>
+                    <Link to="/" className="link link-hover">Contact</Link>
+                    <Link to="/" className="link link-hover">Cart</Link>
                 </div>
                 <div>
-                    <span class="footer-title">Service</span>
-                    <Link to="/" class="link link-hover">Blogs</Link>
-                    <Link to="/" class="link link-hover">Checkout</Link>
-                    <Link to="/" class="link link-hover">Contact</Link>
-                    <Link to="/" class="link link-hover">Cart</Link>
+                    <span className="footer-title">Service</span>
+                    <Link to="/" className="link link-hover">Blogs</Link>
+                    <Link to="/" className="link link-hover">Checkout</Link>
+                    <Link to="/" className="link link-hover">Contact</Link>
+                    <Link to="/" className="link link-hover">Cart</Link>
                 </div>
                 <div>
-                    <footer class="footer px-10 py-4 border-t bg-base-200 text-base-content border-base-300">
-                        <div class="md:place-self-center md:justify-self-end">
-                            <div class="grid grid-flow-col gap-4">
+                    <footer className="footer px-10 py-4 border-t bg-base-200 text-base-content border-base-300">
+                        <div className="md:place-self-center md:justify-self-end">
+                            <div className="grid grid-flow-col gap-4">
                                 <Link to='/'><span className='text-3xl text-gray-500 hover:text-orange-500 hover:cursor-pointer'><FaFacebookF /></span></Link>
                                 <Link to='/'><span className='text-3xl text-gray-500 hover:text-orange-500 hover:cursor-pointer'><AiFillInstagram /></span></Link>
                                 <Link to='/'><span className='text-3xl text-gray-500 hover:text-orange-500 hover:cursor-pointer'><AiOutlineTwitter /></span></Link>

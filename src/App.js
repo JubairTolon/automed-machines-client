@@ -18,8 +18,9 @@ import Cart from "./Pages/Cart/Cart";
 import Checkout from "./Pages/Checkout/Checkout";
 import React, { createContext, useEffect } from "react";
 import NotFound from "./Pages/Shared/NotFound";
-import { addToDb, getStoredCart, removeFromDb } from "./Utlities/SetToLocalStorage";
+import { addToDb, removeFromDb } from "./Utlities/SetToLocalStorage";
 import useCart from "./Hooks/useCart";
+import RequireAuth from "./Pages/Login/RequireAuth";
 
 export const AddItemContext = createContext('handleAddToCartButton')
 export const RemoveItemContext = createContext('handleRemoveCartItem')
@@ -92,9 +93,7 @@ function App() {
     removeFromDb(product._id);
   }
 
-  const handleIncrement = (product) => {
 
-  }
 
   return (
     <AddItemContext.Provider value={handleAddToCartButton}>
@@ -129,19 +128,25 @@ function App() {
           </SingleProductDeails>}>
         </Route>
         <Route path="/cart" element={
-          <Cart
-            subTotal={subTotal}
-            total={total}
-            cart={cart}
-            handleRemoveCartItem={handleRemoveCartItem}>
-          </Cart>}>
+          <RequireAuth>
+            <Cart
+              subTotal={subTotal}
+              total={total}
+              cart={cart}
+              handleRemoveCartItem={handleRemoveCartItem}>
+            </Cart>
+          </RequireAuth>
+        }>
         </Route>
         <Route path="/checkout" element={
-          <Checkout
-            quantity={quantity}
-            total={total}
-            cart={cart}>
-          </Checkout>}>
+          <RequireAuth>
+            <Checkout
+              quantity={quantity}
+              total={total}
+              cart={cart}>
+            </Checkout>
+          </RequireAuth>
+        }>
         </Route>
         <Route path="/login" element={<Login></Login>}></Route>
         <Route path="/signup" element={<SignUp></SignUp>}></Route>
