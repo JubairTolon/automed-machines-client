@@ -1,9 +1,8 @@
 import React from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import { useForm } from "react-hook-form";
-import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import Loading from '../Shared/Loading';
 
 const Login = () => {
@@ -16,7 +15,9 @@ const Login = () => {
         error,
     ] = useSignInWithEmailAndPassword(auth);
 
+
     let signInErrorMessage;
+
     const navigate = useNavigate();
     const location = useLocation()
     let from = location.state?.from?.pathname || "/";
@@ -25,7 +26,7 @@ const Login = () => {
         return <Loading></Loading>
     }
     if (error || gError) {
-        signInErrorMessage = <p className='text-red-500'>{error?.message || gError.message}</p>
+        signInErrorMessage = <p className='text-red-500'>{error?.message || gError?.message}</p>
     }
 
     if (user || gUser) {
@@ -34,13 +35,13 @@ const Login = () => {
     }
     const onSubmit = (data) => {
         console.log(data);
-        signInWithEmailAndPassword(data.email, data.password)
+        signInWithEmailAndPassword(data.email, data.password);
     };
 
     if (error) {
         return (
             <div>
-                <p>Error: {error.message}</p>
+                <p>Error: {error?.message}</p>
             </div>
         );
     }
@@ -49,7 +50,7 @@ const Login = () => {
             <div className='w-2/3 lg:w-1/3 grid grid-rows-1 Justify-center items-center mx-auto border border-gray-400 rounded mt-36 p-16'>
                 <h2 className='text-3xl font-semibold mb-8 text-center'>Login</h2>
                 <form onSubmit={handleSubmit(onSubmit)}>
-                    <div class="relative z-0 mb-6 w-full group">
+                    <div className="relative z-0 mb-6 w-full group">
                         <input
                             type="email"
                             name="email"
@@ -60,21 +61,21 @@ const Login = () => {
                                     message: 'email is required'
                                 },
                                 pattern: {
-                                    value: /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/,
+                                    value: /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
                                     message: 'provide a valid email'
                                 }
                             })}
-                            class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" />
-                        <label for="email" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Email address</label>
+                            className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" />
+                        <label for="email" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Email address</label>
                         {
 
                             <label htmlFor="email">
-                                {errors.email?.type === 'required' && <span className='text-red-500 text-sm'>{errors.email.message}</span>}
-                                {errors.email?.type === 'pattern' && <span className='text-red-500 text-sm'>{errors.email.message}</span>}
+                                {errors.email?.type === 'required' && <span className='text-red-500 text-sm'>{errors.email?.message}</span>}
+                                {errors.email?.type === 'pattern' && <span className='text-red-500 text-sm'>{errors.email?.message}</span>}
                             </label>
                         }
                     </div>
-                    <div class="relative z-0 mb-6 w-full group">
+                    <div className="relative z-0 mb-6 w-full group">
                         <input
                             type="password"
                             name="password"
@@ -89,11 +90,11 @@ const Login = () => {
                                     message: 'must be 6 characters or longer'
                                 }
                             })}
-                            class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" />
-                        <label for="password" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Password</label>
+                            className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" />
+                        <label for="password" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Password</label>
                         <label htmlFor="password">
-                            {errors.password?.type === 'required' && <span className='text-red-500 text-sm'>{errors.password.message}</span>}
-                            {errors.password?.type === 'minLength' && <span className='text-red-500 text-sm'>{errors.password.message}</span>}
+                            {errors.password?.type === 'required' && <span className='text-red-500 text-sm'>{errors.password?.message}</span>}
+                            {errors.password?.type === 'minLength' && <span className='text-red-500 text-sm'>{errors.password?.message}</span>}
                         </label>
                     </div>
 
@@ -122,7 +123,6 @@ const Login = () => {
                     </button>
                 </div>
             </div>
-
         </div>
     );
 };

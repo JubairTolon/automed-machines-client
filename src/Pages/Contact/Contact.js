@@ -13,7 +13,6 @@ const Contact = () => {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const onSubmit = data => console.log(data);
 
-    console.log(watch("example"));
     return (
         <div className='mt-32 grid grid-cols-1 lg:grid-cols-2'>
             <div className='my-16 px-14'>

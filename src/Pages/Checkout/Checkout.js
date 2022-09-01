@@ -1,19 +1,66 @@
-import { Accordion, AccordionDetails, AccordionSummary, Select, Typography } from '@mui/material';
-import { Box } from '@mui/system';
-import React, { useMemo, useState } from 'react';
+import { Accordion, AccordionDetails, AccordionSummary, Typography } from '@mui/material';
+import React from 'react';
 import { MdOutlineExpandMore } from 'react-icons/md';
-import countryList from 'react-select-country-list';
-import CountrySelector from '../Shared/CountrySelector';
 import OrderRow from './OrderRow';
+import { format } from 'date-fns';
+import auth from '../../firebase.init';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { toast } from 'react-toastify';
+import { deleteShoppingCart } from '../../Utlities/SetToLocalStorage'
 
 const Checkout = ({ cart, total, quantity }) => {
+    const [user] = useAuthState(auth);
+    const date = new Date();
+    const formatedDate = format(date, 'PP');
 
-    const [value, setValue] = useState('')
-    const options = useMemo(() => countryList().getData(), [])
+    // const { data: countrys, isLoading } = useQuery('country', () =>
+    //     fetch('https://restcountries.com/v3.1/all')
+    //         .then(res => res.json())
+    // )
+    // if (isLoading) {
+    //     return <Loading></Loading>
+    // }
 
-    const changeHandler = value => {
-        setValue(value)
+    const handleOrder = event => {
+        event.preventDefault();
+        const country = event.target.country.value;
+        const customer_name = event.target.name.value;
+        const customer_phone = event.target.phone.value;
+        const company = event.target.company.value;
+        const customer_address = event.target.address.value;
+        const city = event.target.city.value;
+        const state = event.target.state.value;
+        const postcode = event.target.postcode.value;
+        const customer_email = event.target.email.value;
+        const order = {
+            cart,
+            date: formatedDate,
+            user: user?.email,
+            customer_name,
+            customer_phone,
+            customer_email,
+            total,
+            quantity,
+            address: {
+                company, customer_address, city, state, postcode, country
+            }
+        }
+        fetch('http://localhost:5000/order', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(order)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data) {
+                }
+                toast('your order is placed successfully');
+            })
+        deleteShoppingCart();
     }
+    let no = 1;
 
     return (
         <div className='mt-32 w-5/6 mx-auto'>
@@ -41,50 +88,62 @@ const Checkout = ({ cart, total, quantity }) => {
                     </AccordionDetails>
                 </Accordion>
             </div>
-            <div className='grid grid-cols-2 gap-6  bg-zinc-200 pt-8'>
+            <form onSubmit={handleOrder} className='grid grid-cols-2 gap-6  bg-zinc-200 pt-8'>
                 <div className='px-6'>
-                    <form>
-                        <h1 className='text-2xl text-gray-700 font-semibold uppercase'>Billing Information</h1>
-                        <div className='divider my-4'></div>
-                        <div className="grid gap-6 mb-6 md:grid-cols-2">
-                            <div>
-                                <label for="first_name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Country</label>
-                                <CountrySelector></CountrySelector>
-                            </div>
-                            <div>
-                                <label for="last_name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Name</label>
-                                <input type="text" id="last_name" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Name" required="" />
-                            </div>
-                            <div>
-                                <label for="company" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Company Name</label>
-                                <input type="text" id="company" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" required="" />
-                            </div>
-                            <div>
-                                <label for="phone" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Phone number</label>
-                                <input type="tel" id="phone" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="123-45-678" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" required="" />
-                            </div>
-                            <div>
-                                <label for="website" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Address</label>
-                                <input type="text" id="website" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" required="" />
-                            </div>
-                            <div>
-                                <label for="visitors" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">City/Town</label>
-                                <input type="text" id="visitors" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" required="" />
-                            </div>
+
+                    <h1 className='text-2xl text-gray-700 font-semibold uppercase'>Billing Information</h1>
+                    <div className='divider my-4'></div>
+                    <div className="grid gap-6 mb-6 md:grid-cols-2">
+                        <div>
+                            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Country</label>
+                            <select defaultValue="default" name='country' className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full max-w-xs'>
+                                {/* {
+                                    countrys?.map((country, index) => <option
+                                        key={index}
+                                        value={country.name?.common}
+                                    >{country.name.common}
+                                    </option>)
+                                } */}
+                                <option value='default'>Bangladesh</option>
+                                <option>China</option>
+                                <option>Usa</option>
+                                <option>Kuria</option>
+                            </select>
                         </div>
-                        <div className="mb-6">
-                            <label for="state" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">State/Country</label>
-                            <input type="text" id="state" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" required="" />
+                        <div>
+                            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Your name</label>
+                            <input name='name' type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Name" required />
                         </div>
-                        <div className="mb-6">
-                            <label for="postcode" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Postcode/Zip</label>
-                            <input type="number" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" required="" />
+                        <div>
+                            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Company Name</label>
+                            <input name='company' type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" required />
                         </div>
-                        <div className="mb-6">
-                            <label for="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Email address</label>
-                            <input type="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="abc@company.com" required="" />
+                        <div>
+                            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Phone number</label>
+                            <input name='phone' type="tel" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="123-45-678" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" required />
                         </div>
-                    </form>
+                        <div>
+                            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Address</label>
+                            <input name='address' type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" required />
+                        </div>
+                        <div>
+                            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">City/Town</label>
+                            <input name='city' type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" required />
+                        </div>
+                    </div>
+                    <div className="mb-6">
+                        <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">State/Country</label>
+                        <input name='state' type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" required />
+                    </div>
+                    <div className="mb-6">
+                        <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Postcode/Zip</label>
+                        <input name='postcode' type="number" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" required />
+                    </div>
+                    <div className="mb-6">
+                        <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Email address</label>
+                        <input name='email' type="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="abc@company.com" required />
+                    </div>
+
                 </div>
                 <div className='pr-6 relative pb-10'>
                     <h1 className='text-2xl text-gray-700 font-semibold uppercase'>Your order</h1>
@@ -97,6 +156,9 @@ const Checkout = ({ cart, total, quantity }) => {
                                 <tr>
                                     <th scope="col" className="py-3 px-6 rounded-l-lg">
                                         Serial No
+                                    </th>
+                                    <th scope="col" className="py-3 px-6 rounded-l-lg">
+                                        Product Id
                                     </th>
                                     <th scope="col" className="py-3 px-6 rounded-l-lg">
                                         Product name
@@ -114,12 +176,14 @@ const Checkout = ({ cart, total, quantity }) => {
                                     cart?.map(item => <OrderRow
                                         key={item._id}
                                         item={item}
+                                        no={no++}
                                     ></OrderRow>)
                                 }
                             </tbody>
                             <tfoot>
                                 <tr className="font-semibold text-gray-900 dark:text-white text-center">
                                     <th scope="row" className="py-3 px-6 text-base">Total</th>
+                                    <td className="py-3 px-6"></td>
                                     <td className="py-3 px-6"></td>
                                     <td className="py-3 px-6">{quantity}</td>
                                     <td className="py-3 px-6">$ {total}</td>
@@ -135,19 +199,19 @@ const Checkout = ({ cart, total, quantity }) => {
                                 aria-controls="panel1a-content"
                                 id="panel1a-header"
                             >
-                                <Typography sx={{ fontSize: '', fontWeight: 'bold' }}>Payment</Typography>
+                                <Typography sx={{ fontWeight: 'bold' }}>Payment</Typography>
                             </AccordionSummary>
                             <AccordionDetails sx={{ borderRadius: '5px', backgroundColor: '#E8E8E8' }}>
                                 <Typography>
                                     <div className='h-60'>Payment cart</div>
-                                    <button className='btn btn-goust w-full right-4'>Place order</button>
+                                    <input className='btn btn-goust w-full uppercase' type="submit" value='Place Order' />
                                 </Typography>
                             </AccordionDetails>
                         </Accordion>
                     </div>
                 </div>
-            </div>
-        </div>
+            </form >
+        </div >
     );
 };
 

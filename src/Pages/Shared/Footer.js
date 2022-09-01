@@ -7,8 +7,8 @@ import { Link } from 'react-router-dom';
 
 const Footer = () => {
     return (
-        <div className='mt-6'>
-            <footer className='footer p-10 bg-base-200'>
+        <div className='bg-gray-200 mt-6'>
+            <footer className='footer p-10'>
                 <div className='grid grid-flow-row grid-cols-2 items-center justify-between w-full'>
                     <div className='mx-auto'>
                         <h1 className='text-5xl'>Get All Updates</h1>
@@ -23,7 +23,7 @@ const Footer = () => {
                     </div>
                 </div>
             </footer >
-            <footer className="footer p-10 bg-base-200 items-center justify-around">
+            <footer className="footer p-10 items-center justify-around">
                 <div>
                     <span className="footer-title">Service</span>
                     <Link to="/" className="link link-hover">Blogs</Link>
@@ -46,7 +46,7 @@ const Footer = () => {
                     <Link to="/" className="link link-hover">Cart</Link>
                 </div>
                 <div>
-                    <footer className="footer px-10 py-4 border-t bg-base-200 text-base-content border-base-300">
+                    <footer className="footer px-10 py-4 border-t text-base-content">
                         <div className="md:place-self-center md:justify-self-end">
                             <div className="grid grid-flow-col gap-4">
                                 <Link to='/'><span className='text-3xl text-gray-500 hover:text-orange-500 hover:cursor-pointer'><FaFacebookF /></span></Link>
@@ -59,7 +59,6 @@ const Footer = () => {
                     </footer>
                 </div>
             </footer>
-
         </div >
     );
 };
