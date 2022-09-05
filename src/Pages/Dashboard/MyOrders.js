@@ -1,14 +1,12 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const MyOrders = ({ orders, refetch }) => {
+const MyOrders = ({ orders }) => {
     const navigate = useNavigate();
 
     const navigateToSingleOrder = (id) => {
-        navigate(`/singleOrder/${id}`)
+        navigate(`singleOrder/${id}`)
     }
-    refetch();
-
     return (
         <div>
             <h1 className='my-2 text-xl font-semibold text-purple-500'>Total Orders: {orders?.length}</h1>
@@ -79,7 +77,6 @@ const MyOrders = ({ orders, refetch }) => {
                     </tbody>
                 </table>
             </div>
-
         </div>
     );
 };

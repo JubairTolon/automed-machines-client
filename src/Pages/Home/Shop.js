@@ -3,7 +3,6 @@ import React from 'react';
 import Product from './Product';
 import { BsFillGrid3X3GapFill } from 'react-icons/bs';
 import { BiGridVertical } from 'react-icons/bi';
-import { useState } from 'react';
 
 
 function valuetext(value) {

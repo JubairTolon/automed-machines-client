@@ -378,7 +378,10 @@ const Nav = ({ cart, subTotal }) => {
                                         {!user ? <Link to='/login'>
                                             <button className='btn btn-primary btn-wide btn-sm p-2 my-2 bg-orange-500 border-none'>Login</button>
                                         </Link> :
-                                            <h1 className='text-2xl text-purple-500 font-semibold'>{user.displayName}</h1>
+                                            <div className='flex gap-2 items-center'>
+                                                <img className="w-9 h-9 rounded-full" src={user.photoURL} alt="profile" />
+                                                <h1 className='text-md text-purple-500 font-semibold'>{user.displayName}</h1>
+                                            </div>
                                         }
 
                                     </div>

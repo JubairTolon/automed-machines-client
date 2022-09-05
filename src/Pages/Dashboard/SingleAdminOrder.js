@@ -1,14 +1,13 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 
-const SingleOrder = ({ orders }) => {
+const SingleAdminOrder = ({ allOrders }) => {
     const { orderId } = useParams();
-    const order = orders.find(order => order._id === orderId);
+    const order = allOrders.find(order => order._id === orderId);
     const items = order.cart;
 
     let total = 0;
     items.map(item => total = total + ((item.minOrder + item.quantity) * item.price))
-
     return (
         <div>
             <div className="w-5/6 mx-auto overflow-x-auto relative shadow-md sm:rounded-lg">
@@ -66,4 +65,4 @@ const SingleOrder = ({ orders }) => {
     );
 };
 
-export default SingleOrder;
+export default SingleAdminOrder;
