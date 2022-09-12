@@ -71,9 +71,12 @@ const Cart = ({ subTotal, total, cart, handleRemoveCartItem }) => {
                             <h1 className='text-2xl text-gray-700 font-bold uppercase'>Total</h1>
                             <h1 className='text-md text-gray-700 font-bold'>$ {(total).toFixed(2)}</h1>
                         </div>
-                        <Link to='/checkout' className='mt-16'>
-                            <button className='btn btn-goust hover:bg-orange-500 border-none'>Proceed To Checkout</button>
-                        </Link>
+                        {cart?.length > 0 &&
+
+                            <Link to='/checkout' className='mt-16'>
+                                <button className='btn btn-goust hover:bg-orange-500 border-none'>Proceed To Checkout</button>
+                            </Link>
+                        }
                     </div>
                 </div>
             </div>

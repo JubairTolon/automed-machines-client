@@ -1,4 +1,4 @@
-import { Button, FormControl, InputLabel, Link, List, ListItem, ListItemText, ListSubheader, MenuItem, Pagination, Select, Slider, ToggleButton, ToggleButtonGroup } from '@mui/material';
+import { FormControl, InputLabel, MenuItem, Pagination, Select, Slider, ToggleButton, ToggleButtonGroup } from '@mui/material';
 import React from 'react';
 import Product from './Product';
 import { BsFillGrid3X3GapFill } from 'react-icons/bs';
@@ -9,18 +9,11 @@ function valuetext(value) {
     return `${value}`;
 }
 
-const minDistance = 20000;
+const minDistance = 5000;
 
 const Shop = ({ products }) => {
 
-    const itemTitels = ['Categories', 'Brands', 'Price', 'Color', 'Tags'];
-    const categories = ['All items', 'Small', 'Medium', 'Large', 'Extra-Large']
-    const colorItems = ['Black', 'Blue', 'Silver', 'Yellow', 'Red', 'Mercury Black', 'White']
-    const brandsItems = ['Audi', 'Toyota', 'Bugati', 'Lemborgeni', 'BMW', 'Acura', 'Alfa Romeo', 'Bentley', 'Buick', 'Chevrolet', 'Cadillac', 'Honda', 'Ford', 'Hyundai']
-    const tags = ['Car', 'Bus', 'Truck', 'Pickup']
-
     //for product showing by toggle
-
     const [alignment, setAlignment] = React.useState('left');
 
     const handleAlignment = (event, newAlignment) => {
@@ -39,7 +32,7 @@ const Shop = ({ products }) => {
     };
 
     //for price range selector
-    const [value2, setValue2] = React.useState([10000, 30000]);
+    const [value2, setValue2] = React.useState([1000, 20000]);
 
     const handleChange2 = (event, newValue, activeThumb) => {
         if (!Array.isArray(newValue)) {
@@ -93,84 +86,68 @@ const Shop = ({ products }) => {
 
     return (
         <div className='mt-52 lg:mt-32 flex'>
-            <div className='w-1/3 lg:w-1/5 pl-5'>
-                <List
-                    sx={{
-                        bgcolor: 'background.paper',
-                        overflow: 'auto',
-                        position: 'relative',
-                        maxHeight: 1200,
-                        '& ul': { padding: 0 },
-                    }}
-                    subheader={<li />}>
+            <div className='w-1/3 lg:w-1/5 px-5 bg-zinc-100'>
+                <div>
+                    <h1 className='text-gray-500 font-bold uppercase text-2xl my-4'>Vehicle Category</h1>
+                    <ul className=''>
+                        <li><button className=' text-gray-600 text-lg mb-1 font-semibold focus:text-orange-500 hover:text-gray-800'>All items</button></li>
+                        <li><button className=' text-gray-600 text-lg mb-1 font-semibold focus:text-orange-500 hover:text-gray-800'>Small</button></li>
+                        <li><button className=' text-gray-600 text-lg mb-1 font-semibold focus:text-orange-500 hover:text-gray-800'>Medium</button></li>
+                        <li><button className=' text-gray-600 text-lg mb-1 font-semibold focus:text-orange-500 hover:text-gray-800'>Large</button></li>
+                        <li><button className=' text-gray-600 text-lg mb-1 font-semibold focus:text-orange-500 hover:text-gray-800'>Extra-Large</button></li>
+                    </ul>
+                </div>
+                <div>
+                    <h1 className='text-gray-500 font-bold uppercase text-2xl my-4'>Brands</h1>
+                    <ul className=''>
+                        <li><button className=' text-gray-600 text-lg mb-1 font-semibold focus:text-orange-500 hover:text-gray-800'>Audi</button></li>
+                        <li><button className=' text-gray-600 text-lg mb-1 font-semibold focus:text-orange-500 hover:text-gray-800'>BMW</button></li>
+                        <li><button className=' text-gray-600 text-lg mb-1 font-semibold focus:text-orange-500 hover:text-gray-800'>Bentley</button></li>
+                        <li><button className=' text-gray-600 text-lg mb-1 font-semibold focus:text-orange-500 hover:text-gray-800'>Ford</button></li>
+                        <li><button className=' text-gray-600 text-lg mb-1 font-semibold focus:text-orange-500 hover:text-gray-800'>Honda</button></li>
+                        <li><button className=' text-gray-600 text-lg mb-1 font-semibold focus:text-orange-500 hover:text-gray-800'>Hyundai</button></li>
+                        <li><button className=' text-gray-600 text-lg mb-1 font-semibold focus:text-orange-500 hover:text-gray-800'>Toyota</button></li>
+                    </ul>
+                </div>
+                <div>
+                    <h1 className='text-gray-500 font-bold uppercase text-2xl my-4'>Color</h1>
+                    <ul className=''>
+                        <li><button className=' text-gray-600 text-lg mb-2 font-semibold focus:text-orange-500 hover:text-gray-800'>Black</button></li>
+                        <li><button className=' text-gray-600 text-lg mb-2 font-semibold focus:text-orange-500 hover:text-gray-800'>Blue</button></li>
+                        <li><button className=' text-gray-600 text-lg mb-2 font-semibold focus:text-orange-500 hover:text-gray-800'>Silver</button></li>
+                        <li><button className=' text-gray-600 text-lg mb-2 font-semibold focus:text-orange-500 hover:text-gray-800'>Yellow</button></li>
+                        <li><button className=' text-gray-600 text-lg mb-2 font-semibold focus:text-orange-500 hover:text-gray-800'>Red</button></li>
+                        <li><button className=' text-gray-600 text-lg mb-2 font-semibold focus:text-orange-500 hover:text-gray-800'>Mercury Black</button></li>
+                        <li><button className=' text-gray-600 text-lg mb-2 font-semibold focus:text-orange-500 hover:text-gray-800'>White</button></li>
+                    </ul>
+                </div>
+                <div>
+                    <h1 className='text-gray-500 font-bold uppercase text-2xl mt-4'>Price</h1>
+                    <Slider
+                        sx={{ my: 5, color: '#FF5733' }}
+                        getAriaLabel={() => 'Minimum distance shift'}
+                        value={value2}
+                        onChange={handleChange2}
+                        valueLabelDisplay="auto"
+                        getAriaValueText={valuetext}
+                        max='100000'
+                        step='1000'
+                        marks={followersMarks}
+                        valueLabelFormat={numFormatter}
+                        disableSwap
+                    />
 
-                    <li key={`${itemTitels[0]}`}>
-                        <ul>
-                            <ListSubheader sx={{ fontSize: 28, fontWeight: 'bold' }}>{`${itemTitels[0]}`}</ListSubheader>
-                            {categories?.map((item) => (
-                                <ListItem key={`${itemTitels[0]}-${item}`}>
-                                    <Link sx={{ textDecoration: 'none', color: '#303030', '&:hover': { cursor: 'pointer', color: '#FF5733' } }}>
-                                        <ListItemText primary={`${item}`} />
-                                    </Link>
-                                </ListItem>
-                            ))}
-                        </ul>
-                    </li>
-                    <li key={`${itemTitels[1]}`}>
-                        <ul>
-                            <ListSubheader sx={{ fontSize: 28, fontWeight: 'bold' }}>{`${itemTitels[1]}`}</ListSubheader>
-                            {brandsItems?.map((item) => (
-                                <ListItem key={`${itemTitels[1]}-${item}`}>
-                                    <Link sx={{ textDecoration: 'none', color: '#303030', '&:hover': { cursor: 'pointer', color: '#FF5733' } }}>
-                                        <ListItemText primary={`${item}`} />
-                                    </Link>
-                                </ListItem>
-                            ))}
-                        </ul>
-                    </li>
-                    <li key={`${itemTitels[2]}`}>
-                        <ul>
-                            <ListSubheader sx={{ fontSize: 28, fontWeight: 'bold' }}>{`${itemTitels[2]}`}</ListSubheader>
-                            <ListItem>
-                                <Slider
-                                    sx={{ my: 5, color: '#FF5733' }}
-                                    getAriaLabel={() => 'Minimum distance shift'}
-                                    value={value2}
-                                    onChange={handleChange2}
-                                    valueLabelDisplay="auto"
-                                    getAriaValueText={valuetext}
-                                    max='100000'
-                                    step='1000'
-                                    marks={followersMarks}
-                                    valueLabelFormat={numFormatter}
-                                    disableSwap
-                                />
-                            </ListItem>
-                        </ul>
-                    </li>
-                    <li key={`${itemTitels[3]}`}>
-                        <ul>
-                            <ListSubheader sx={{ fontSize: 28, fontWeight: 'bold' }}>{`${itemTitels[3]}`}</ListSubheader>
-                            {colorItems?.map((item) => (
-                                <ListItem key={`${itemTitels[3]}`}>
-                                    <Link sx={{ textDecoration: 'none', color: '#303030', '&:hover': { cursor: 'pointer', color: '#FF5733' } }}>
-                                        <ListItemText primary={`${item}`} />
-                                    </Link>
-                                </ListItem>
-                            ))}
-                        </ul>
-                    </li>
-                    <li key={`${itemTitels[4]}`}>
-                        <ul>
-                            <ListSubheader sx={{ fontSize: 28, fontWeight: 'bold' }}>{`${itemTitels[4]}`}</ListSubheader>
-                            <ListItem sx={{ display: 'flex', columnGap: 2, rowGap: 2, flexWrap: 'wrap' }} key={`${itemTitels[4]}`}>
-                                {tags?.map((item) => (
-                                    <Button sx={{ borderColor: '#303030', color: '#303030', '&:hover': { cursor: 'pointer', color: '#FF5733' } }} primary={`${item}`} size="small" variant="outlined">{item}</Button>
-                                ))}
-                            </ListItem>
-                        </ul>
-                    </li>
-                </List>
+                </div>
+                <div>
+                    <h1 className='text-gray-500 font-bold uppercase text-2xl my-4'>Tags</h1>
+                    <div className='flex flex-wrap gap-2'>
+                        <button className='btn btn-sm btn-outline px-4 focus:text-white focus:bg-gray-800'>Car</button>
+                        <button className='btn btn-sm btn-outline px-4 focus:text-white focus:bg-gray-800'>Bus</button>
+                        <button className='btn btn-sm btn-outline px-4 focus:text-white focus:bg-gray-800'>Truck</button>
+                        <button className='btn btn-sm btn-outline px-4 focus:text-white focus:bg-gray-800'>Pckup</button>
+                    </div>
+
+                </div>
             </div>
             <div className='w-2/3 lg:w-5/6 px-2 lg:px-2'>
                 <div className='bg-orange-100 px-4 py-2 my-4 flex justify-between items-center'>

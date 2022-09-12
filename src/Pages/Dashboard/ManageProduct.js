@@ -1,13 +1,16 @@
-import { Rating } from '@mui/material';
 import React from 'react';
+import { useState } from 'react';
+import DeleteConfirmModal from '../Shared/DeleteConfirmModal';
 import Loading from '../Shared/Loading';
+import ManageProductRow from './ManageProductRow';
+;
 
-const AllProducts = ({ products, isLoading }) => {
-
+const ManageProduct = ({ products, isLoading, refetch }) => {
+    const [deletingProduct, setDeletingProduct] = useState(null);
+    const api = 'http://localhost:5000/product';
     if (isLoading) {
         return <Loading></Loading>
     }
-
     return (
         <div className='relative'>
             <div className='my-4 mb-4 sticky z-10'>
@@ -55,56 +58,32 @@ const AllProducts = ({ products, isLoading }) => {
                                 Price
                             </th>
                             <th scope="col" className="py-2 px-2">
-                                Rating
-                            </th>
-                            <th scope="col" className="py-2 px-2">
-                                Ordered
+                                Action
                             </th>
                         </tr>
                     </thead>
                     <tbody>
                         {
                             products?.map(product =>
-                                <tr
+                                <ManageProductRow
                                     key={product._id}
-                                    className="bg-white border-b h-11 dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                    <th className="py-2 px-2">
-                                        {product._id}
-                                    </th>
-                                    <th className="py-2 px-2">
-                                        <img className='w-16' width='25%' src={product.pictures?.img1} alt="" />
-                                    </th>
-                                    <td className="py-2 px-2">
-                                        {product.name}
-                                    </td>
-                                    <td className="py-2 px-2">
-                                        {product.stock}
-                                    </td>
-                                    <td className="py-2 px-2">
-                                        {product.color}
-                                    </td>
-                                    <td className="py-2 px-2">
-                                        {product.avaiableQuentty}
-                                    </td>
-                                    <td className="py-2 px-2">
-                                        {`$ ${product.price}`}
-                                    </td>
-                                    <td className="py-2 px-2">
-                                        <Rating name="read-only" value={product.rating} precision={0.5} readOnly />
-                                    </td>
-                                    <td className="py-2 px-2">
-                                        {product.minOrder}
-                                    </td>
-
-                                </tr>
+                                    product={product}
+                                    setDeletingProduct={setDeletingProduct}
+                                ></ManageProductRow>
                             )
                         }
 
                     </tbody>
                 </table>
             </div>
+            {deletingProduct && <DeleteConfirmModal
+                refetch={refetch}
+                deletingProduct={deletingProduct}
+                setDeletingProduct={setDeletingProduct}
+                api={api}
+            ></DeleteConfirmModal>}
         </div >
     );
 };
 
-export default AllProducts;
+export default ManageProduct;

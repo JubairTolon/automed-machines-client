@@ -57,8 +57,8 @@ const Checkout = ({ cart, total, quantity }) => {
                 if (data) {
                 }
                 toast('your order is placed successfully');
+                deleteShoppingCart();
             })
-        deleteShoppingCart();
     }
     let no = 1;
 
@@ -81,7 +81,7 @@ const Checkout = ({ cart, total, quantity }) => {
                                 <div className="relative w-full flex justify-center">
                                     <input type="text" id="simple-cupon" className="bg-gray-50 mr-4 text-gray-900 text-sm rounded-lg block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="cupon" required />
 
-                                    <button type="button" className="text-gray-900 bg-white  hover:bg-gray-100  rounded-3xl text-md px-5 py-2.5 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">Apply</button>
+                                    <button type="button" className="text-white bg-purple-500 rounded-3xl text-md px-5 py-2.5 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">Apply</button>
                                 </div>
                             </form>
                         </Typography>

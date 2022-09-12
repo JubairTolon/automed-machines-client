@@ -10,10 +10,10 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { signOut } from 'firebase/auth';
 
 const Nav = ({ cart, subTotal }) => {
-    const [user, loading, error] = useAuthState(auth);
-
+    const [user] = useAuthState(auth);
     const logout = () => {
         signOut(auth);
+        localStorage.removeItem('accessToken');
     }
     return (
         <div className=' bg-white fixed mx-auto left-0 right-0 z-20 top-0 md:top-1'>
@@ -135,7 +135,7 @@ const Nav = ({ cart, subTotal }) => {
                                 <li><Link to='/reviewsMain'>Reviews</Link></li>
 
                                 <li tabIndex="0">
-                                    <Link to='/features'>
+                                    <Link to='/features' className='justify-between'>
                                         Features
                                         <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
                                     </Link>
@@ -198,26 +198,28 @@ const Nav = ({ cart, subTotal }) => {
                                         </div>
                                     </ul>
                                 </li>
-                                <li tabIndex="0">
-                                    <Link to='/dashboard' className="justify-between">
-                                        Dashboard
-                                        <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
-                                    </Link>
-                                    <ul className="p-2 bg-gray-50 w-40">
-                                        <div className='my-2 hover:text-red-600 transition duration-0 hover:duration-100'>
-                                            <Link to='/addProduct'>Products</Link>
-                                        </div>
-                                        <div className='my-2 hover:text-red-600 transition duration-0 hover:duration-100'>
-                                            <Link to='/addProduct'>Add a product</Link>
-                                        </div>
-                                        <div className='my-2 hover:text-red-600 transition duration-0 hover:duration-100'>
-                                            <Link to='/addProduct'>Users</Link>
-                                        </div>
-                                        <div className='my-2 hover:text-red-600 transition duration-0 hover:duration-100'>
-                                            <Link to='/addProduct'>Orders</Link>
-                                        </div>
-                                    </ul>
-                                </li>
+                                {user &&
+                                    <li tabIndex="0">
+                                        <Link to='/dashboard' className="justify-between">
+                                            Dashboard
+                                            <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+                                        </Link>
+                                        <ul className="p-2 bg-gray-50 w-40">
+                                            <div className='my-2 hover:text-red-600 transition duration-0 hover:duration-100'>
+                                                <Link to='/addProduct'>Products</Link>
+                                            </div>
+                                            <div className='my-2 hover:text-red-600 transition duration-0 hover:duration-100'>
+                                                <Link to='/addProduct'>Add a product</Link>
+                                            </div>
+                                            <div className='my-2 hover:text-red-600 transition duration-0 hover:duration-100'>
+                                                <Link to='/addProduct'>Users</Link>
+                                            </div>
+                                            <div className='my-2 hover:text-red-600 transition duration-0 hover:duration-100'>
+                                                <Link to='/addProduct'>Orders</Link>
+                                            </div>
+                                        </ul>
+                                    </li>
+                                }
                             </ul>
                         </div>
                     </div>
@@ -375,11 +377,18 @@ const Nav = ({ cart, subTotal }) => {
                                         <div className='w-60 mb-2'>
                                             <h2>Welcome to <Link className='font-medium hover:underline hover:decoration-2' to='/'>Automed Machines</Link></h2>
                                         </div>
-                                        {!user ? <Link to='/login'>
-                                            <button className='btn btn-primary btn-wide btn-sm p-2 my-2 bg-orange-500 border-none'>Login</button>
-                                        </Link> :
-                                            <div className='flex gap-2 items-center'>
-                                                <img className="w-9 h-9 rounded-full" src={user.photoURL} alt="profile" />
+                                        {!user ?
+                                            <Link to='/login'><button className='btn btn-primary btn-wide btn-sm p-2 my-2 bg-orange-500 border-none'>Login</button></Link>
+                                            :
+                                            <div className='flex gap-2 items-center cursor-pointer rounded-md px-2 py-1 hover:bg-slate-200'>
+                                                {
+                                                    user?.photoURL ? <img className="w-9 h-9 rounded-full" src={user.photoURL} alt="profile" />
+                                                        :
+                                                        <div class="overflow-hidden relative w-10 h-10 bg-gray-100 rounded-full dark:bg-gray-600">
+                                                            <svg class="absolute -left-1 w-12 h-12 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
+                                                        </div>
+
+                                                }
                                                 <h1 className='text-md text-purple-500 font-semibold'>{user.displayName}</h1>
                                             </div>
                                         }
@@ -394,7 +403,7 @@ const Nav = ({ cart, subTotal }) => {
                                         <div className='hover:bg-gray-200 px-4 py-1'><Link to='/'>My Favourite Stories</Link></div>
                                         <div className='hover:bg-gray-200 px-4 py-1'><Link to='/'>My Cupons</Link></div>
                                     </div>
-                                    {user && <Link onClick={logout} to='/signup'>
+                                    {user && <Link onClick={logout} to='/login'>
                                         <button className='btn btn-primary btn-wide btn-sm p-2 my-2 mx-4 bg-orange-500 border-none'>Log out</button>
                                     </Link>}
                                 </div>

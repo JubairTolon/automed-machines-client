@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { BsCartPlus, BsSuitHeart } from 'react-icons/bs';
 import { MdOutlineCompareArrows } from 'react-icons/md';
 import { Rating } from '@mui/material';
@@ -8,7 +8,7 @@ import { useContext } from 'react';
 import { AddItemContext } from '../../App';
 
 const Product = ({ product }) => {
-    const { _id, category, color, name, brand, pictures, status, description, minOrder, price, avaiableQuentty, rating, offer } = product;
+    const { _id, category, color, name, brand, pictures, status, description, minOrder, price, avaiableQuentty, rating, offer, stock } = product;
 
     const navigate = useNavigate();
     const handleAddToCartButton = useContext(AddItemContext);
@@ -20,7 +20,7 @@ const Product = ({ product }) => {
         <div className="product-container z-0  bg-white rounded-lg shadow-md text-gray-500 dark:bg-gray-800 dark:border-gray-700 relative">
             <div className='hover:cursor-pointer' onClick={() => navigateToDetailsPage(_id)}>
                 {
-                    status &&
+                    status && stock === 'available' &&
                     <span className='bg-red-600 px-3 py-1 rounded text-white text-xs font-semibold absolute top-4 left-4'>{status}</span>
                 }
                 <div className='flex justify-center h-32 mb-12 w-full'>
@@ -36,11 +36,12 @@ const Product = ({ product }) => {
                     <div className="flex gap-4 items-center">
                         <span className="text-xl font-bold text-gray-900 dark:text-white">$ {price}</span>
                         {
-                            offer &&
-                            <span className='bg-red-600 px-2 rounded text-white font-semibold'>{offer} %</span>
+                            offer && stock === 'available' ?
+                                <span className='bg-red-600 px-2 rounded text-white font-semibold'>{offer} %</span>
+                                : <div className='flex items-center bg-gray-200  btn-sm rounded-sm text-gray-800'>Stock out</div>
                         }
                         {
-                            offer &&
+                            offer && stock === 'available' &&
                             <p className='line-through'>$ {price * (parseInt(offer) / 100)}</p>
                         }
                     </div>
@@ -57,7 +58,7 @@ const Product = ({ product }) => {
                     <span className=""><BsCartPlus /></span>
                 </button>
             </div>
-        </div>
+        </div >
 
     );
 };

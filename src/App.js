@@ -29,51 +29,33 @@ import DashboardContent from "./Pages/Dashboard/DashboardContent";
 import MyReviews from "./Pages/Dashboard/MyReviews";
 import AllProducts from "./Pages/Dashboard/AllProducts";
 import ProductsReviews from "./Pages/Dashboard/ProductsReviews";
-import AddProduct from "./Pages/Dashboard/AddProduct";
 import Users from "./Pages/Dashboard/Users";
 import Orders from "./Pages/Dashboard/Orders";
 import SingleOrder from "./Pages/Dashboard/SingleOrder";
 import AnualAnalysis from "./Pages/Dashboard/AnualAnalysis";
-import { useAuthState } from "react-firebase-hooks/auth";
-import auth from "./firebase.init";
-import { useQuery } from "react-query";
 import SingleAdminOrder from "./Pages/Dashboard/SingleAdminOrder";
 import Message from "./Pages/Dashboard/Message";
 import MyMessages from "./Pages/Dashboard/MyMessages";
 import SingleProductReviews from "./Pages/Dashboard/SingleProductReviews";
+import RequireAdmin from "./Pages/Login/RequireAdmin";
+import Subscriptions from "./Pages/Dashboard/Subscriptions";
+import AddAProduct from "./Pages/Dashboard/AddAProduct";
+import ManageProduct from "./Pages/Dashboard/ManageProduct";
+import useLoadReviews from "./Hooks/useLoadReviews";
+import useLoadProduct from "./Hooks/useLoadProduct";
 
 export const AddItemContext = createContext('handleAddToCartButton')
 export const RemoveItemContext = createContext('handleRemoveCartItem')
 
-
-
 function App() {
-  const [user] = useAuthState(auth);
-  const { data: products, isLoading } = useQuery('product', () =>
-    fetch('http://localhost:5000/product')
-      .then(res => res.json())
-  )
 
-  const [cart, setCart] = useCart(products);
+  const { reviews } = useLoadReviews();
+  const { products, isLoading, refetch } = useLoadProduct(reviews);
+
+  //for mainain cart 
+  const [cart, setCart, subTotal, total, quantity] = useCart(products);
+
   // const [wishList, setWishList] = React.useState([]);
-
-  //cart calculation
-  let subTotal = 0;
-  let shippingCost = 0;
-  let coupon = 300.204;
-  let total = 0;
-  let quantity = 0;
-
-
-  cart?.map(product => {
-    quantity = quantity + (product.quantity + product.minOrder);
-    subTotal = subTotal + (product.price * (product.quantity + product.minOrder));
-    shippingCost = shippingCost + product.shipping;
-    total = (subTotal + shippingCost) - coupon;
-    return [subTotal, shippingCost, total, quantity]
-  })
-
-  //product add to cart and database
 
   const handleAddToCartButton = (product) => {
     const exist = cart?.find(item => item._id === product._id)
@@ -94,47 +76,6 @@ function App() {
     removeFromDb(product._id);
   }
 
-  //for load all orders
-  const { data: allOrders } = useQuery('order', () =>
-    fetch('http://localhost:5000/orders')
-      .then(res => res.json())
-  );
-
-  //for find orders individual user
-  const { data: orders, refetch } = useQuery(['order', user], () =>
-    fetch(`http://localhost:5000/userOrders?user=${user?.email}`)
-      .then(res => res.json())
-  )
-
-  //for load all product reviews
-  const { data: reviews } = useQuery('review', () =>
-    fetch('http://localhost:5000/productReview')
-      .then(res => res.json())
-  )
-
-  const updatedProducts = products?.map(p => {
-    let totalRatings = 0;
-    const sprs = reviews?.filter(r => r.productId === p._id);
-    sprs?.map(element => totalRatings = totalRatings + element.rating);
-    let rating = Math.round(totalRatings / sprs?.length);
-    if (isNaN(rating)) {
-      p.rating = 0;
-    }
-    else {
-      p.rating = rating;
-    }
-    return p;
-  })
-  console.log(updatedProducts)
-
-
-
-  // if (isLoading) {
-  //   return <Loading></Loading>
-  // }
-
-
-
   return (
     <AddItemContext.Provider value={handleAddToCartButton}>
       <AccessLink></AccessLink>
@@ -146,29 +87,32 @@ function App() {
         </Nav>
       </RemoveItemContext.Provider>
       <Breadcrumb></Breadcrumb>
+
       <Routes>
         <Route path="/" element={
           <Home
-            products={updatedProducts}>
+            products={products}>
           </Home>}>
         </Route>
+
         <Route path="/aboutHome" element={<AboutHome></AboutHome>}></Route>
         <Route path="/aboutMore" element={<AboutMore></AboutMore>}></Route>
         <Route path="/reviewsHome" element={<ReviewsHome></ReviewsHome>}></Route>
         <Route path="/reviewsMain" element={<ReviewsMain></ReviewsMain>}></Route>
         <Route path="/contact" element={<Contact></Contact>}></Route>
+
         <Route path="/shop" element={
           <Shop
-            products={updatedProducts}>
+            products={products}>
           </Shop>}>
         </Route>
+
         <Route path="/productDetails/:pId" element={
           <SingleProductDeails
-            products={updatedProducts}
-            reviews={reviews}
-          >
+            products={products}>
           </SingleProductDeails>}>
         </Route>
+
         <Route path="/cart" element={
           <RequireAuth>
             <Cart
@@ -177,9 +121,9 @@ function App() {
               cart={cart}
               handleRemoveCartItem={handleRemoveCartItem}>
             </Cart>
-          </RequireAuth>
-        }>
+          </RequireAuth>}>
         </Route>
+
         <Route path="/checkout" element={
           <RequireAuth>
             <Checkout
@@ -188,46 +132,82 @@ function App() {
               cart={cart}
               setCart={setCart}>
             </Checkout>
-          </RequireAuth>
-        }>
+          </RequireAuth>}>
         </Route>
+
         <Route path="/login" element={<Login></Login>}></Route>
         <Route path="/signup" element={<SignUp></SignUp>}></Route>
-        <Route path="/dashboard" element={
-          <DashBoard />
-        }>
+
+        <Route path="/dashboard" element={<DashBoard></DashBoard>}>
           <Route index element={<DashboardContent></DashboardContent>} />
-          <Route path="myOrders" element={<MyOrders
-            orders={orders}
-          ></MyOrders>} />
-          <Route path='/dashboard/myOrders/singleOrder/:orderId' element={<SingleOrder
-            orders={orders}
-          ></SingleOrder>}></Route>
+
+          <Route path="myOrders" element={<MyOrders></MyOrders>} />
+
+          <Route path='/dashboard/myOrders/singleOrder/:orderId' element={<SingleOrder></SingleOrder>}></Route>
+
           <Route path='myReviews' element={<MyReviews></MyReviews>} />
-          <Route path='allProducts' element={<AllProducts
-            products={updatedProducts}
-          ></AllProducts>} />
-          <Route path='productReviews' element={<ProductsReviews
-            reviews={reviews}
-            isLoading={isLoading}
-          ></ProductsReviews>} />
-          <Route path='/dashboard/productReviews/singleProductReviews/:pId' element={<SingleProductReviews
-            reviews={reviews}
-          ></SingleProductReviews>} />
-          <Route path='addProduct' element={<AddProduct></AddProduct>} />
-          <Route path='users' element={<Users></Users>} />
-          <Route path='orders' element={<Orders
-            allOrders={allOrders}
-            refetch={refetch}
-          ></Orders>} />
-          <Route path='/dashboard/orders/singleAdminOrder/:orderId' element={<SingleAdminOrder
-            allOrders={allOrders}
-          ></SingleAdminOrder>} />
-          <Route path='message' element={<Message
-          ></Message>} />
+
+          <Route path='allProducts' element={
+            <RequireAdmin>
+              <AllProducts
+                products={products}
+                refetch={refetch}
+                isLoading={isLoading}
+              ></AllProducts>
+            </RequireAdmin>} />
+
+          <Route path='productReviews' element={
+            <RequireAdmin>
+              <ProductsReviews></ProductsReviews>
+            </RequireAdmin>} />
+
+          <Route path='/dashboard/productReviews/singleProductReviews/:pId' element={
+            <RequireAdmin>
+              <SingleProductReviews></SingleProductReviews>
+            </RequireAdmin>} />
+
+          <Route path='add' element={
+            <RequireAdmin>
+              <AddAProduct></AddAProduct>
+            </RequireAdmin>} />
+
+          <Route path='manageProduct' element={
+            <RequireAdmin>
+              <ManageProduct
+                products={products}
+                refetch={refetch}>
+              </ManageProduct>
+            </RequireAdmin>} />
+
+          <Route path='users' element={<RequireAdmin><Users></Users></RequireAdmin>} />
+
+          <Route path='orders' element={
+            <RequireAdmin>
+              <Orders></Orders>
+            </RequireAdmin>} />
+
+          <Route path='/dashboard/orders/singleAdminOrder/:orderId' element={
+            <RequireAdmin>
+              <SingleAdminOrder></SingleAdminOrder>
+            </RequireAdmin>} />
+
+          <Route path='Subscription' element={
+            <RequireAdmin>
+              <Subscriptions></Subscriptions>
+            </RequireAdmin>} />
+          <Route path='message' element={
+            <RequireAdmin>
+              <Message></Message>
+            </RequireAdmin>} />
+
           <Route path='myMessage' element={<MyMessages></MyMessages>} />
-          <Route path='anualAnalysis' element={<AnualAnalysis></AnualAnalysis>} />
+
+          <Route path='anualAnalysis' element={
+            <RequireAdmin>
+              <AnualAnalysis></AnualAnalysis>
+            </RequireAdmin>} />
         </Route>
+
         <Route path="*" element={<NotFound></NotFound>}></Route>
       </Routes>
       <Footer></Footer>

@@ -16,7 +16,22 @@ const useCart = (products) => {
         }
         setCart(savedCart);
     }, [products]);
-    return [cart, setCart];
+
+    //cart calculation
+    let subTotal = 0;
+    let shippingCost = 0;
+    let total = 0;
+    let quantity = 0;
+
+    cart?.map(product => {
+        quantity = quantity + product.minOrder;
+        subTotal = subTotal + (product.price * product.minOrder);
+        shippingCost = shippingCost + product.shipping;
+        total = subTotal + shippingCost;
+        return [subTotal, shippingCost, total, quantity];
+    })
+
+    return [cart, setCart, subTotal, total, quantity];
 }
 
 export default useCart;

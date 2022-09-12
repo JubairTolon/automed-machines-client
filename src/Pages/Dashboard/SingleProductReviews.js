@@ -1,10 +1,19 @@
 import { Rating } from '@mui/material';
 import React from 'react';
 import { useParams } from 'react-router-dom';
+import useLoadReviews from '../../Hooks/useLoadReviews';
+import Loading from '../Shared/Loading';
 
-const SingleProductReviews = ({ reviews }) => {
+const SingleProductReviews = () => {
     const { pId } = useParams();
-    const pReviews = reviews.filter(review => review.productId === pId);
+    //Load reviews
+    const { reviews, isLoading } = useLoadReviews();
+
+    if (isLoading) {
+        return <Loading></Loading>
+    }
+
+    const pReviews = reviews?.filter(review => review.productId === pId);
 
     return (
         <div>
@@ -17,10 +26,13 @@ const SingleProductReviews = ({ reviews }) => {
                             <p className="my-4 font-light">{pR.review}</p>
                         </blockquote>
                         <figcaption className="flex justify-center items-center space-x-3">
-                            <img className="w-9 h-9 rounded-full" src={pR?.userImg} alt="profile" />
+                            {pR?.userImg ?
+                                <img className="w-9 h-9 rounded-full" src={pR?.userImg} alt="profile" /> : <div class="overflow-hidden relative w-10 h-10 bg-gray-100 rounded-full dark:bg-gray-600">
+                                    <svg class="absolute -left-1 w-12 h-12 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
+                                </div>
+                            }
                             <div className="space-y-0.5 font-medium dark:text-white text-left">
-                                <div>Bonnie Green</div>
-                                <div className="text-sm font-light text-gray-500 dark:text-gray-400">Developer at Open AI</div>
+                                <div>{pR.user}</div>
                                 <Rating name="half-rating" value={pR.rating} precision={0.5} readOnly />
                             </div>
                         </figcaption>

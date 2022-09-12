@@ -1,8 +1,13 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
+import useLoadOrders from '../../Hooks/useLoadOrders';
 
-const SingleAdminOrder = ({ allOrders }) => {
+const SingleAdminOrder = () => {
     const { orderId } = useParams();
+
+    //for load all orders
+    const { allOrders } = useLoadOrders();
+
     const order = allOrders.find(order => order._id === orderId);
     const items = order.cart;
 

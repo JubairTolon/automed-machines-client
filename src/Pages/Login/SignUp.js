@@ -5,10 +5,13 @@ import auth from '../../firebase.init';
 import { useForm } from "react-hook-form";
 import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
 import Loading from '../Shared/Loading';
+import { toast } from 'react-toastify';
+import useToken from '../../Hooks/useToken';
 
 const SignUp = () => {
-    const { register, formState: { errors }, handleSubmit } = useForm();
+
     const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
+    const { register, formState: { errors }, handleSubmit, reset } = useForm();
     const [
         createUserWithEmailAndPassword,
         user,
@@ -18,8 +21,11 @@ const SignUp = () => {
     const [sendEmailVerification, sending, vError] = useSendEmailVerification(auth);
     const [updateProfile, updating, updateError] = useUpdateProfile(auth);
 
-    let signInErrorMessage;
+    const [token] = useToken(user || gUser)
+
     const navigate = useNavigate();
+
+    let signInErrorMessage;
 
     if (loading || gLoading || updating || sending) {
         return <Loading></Loading>
@@ -27,25 +33,18 @@ const SignUp = () => {
     if (error || gError || updateError || vError) {
         signInErrorMessage = <p className='text-red-500'>{error?.message || gError?.message || updateError?.message || vError?.message}</p>
     }
-    if (user || gUser) {
-        console.log(user || gUser);
-        navigate('/')
-
+    if (token) {
+        navigate('/checkout');
     }
-    const onSubmit = async data => {
+
+    const onSubmit = async (data) => {
         await createUserWithEmailAndPassword(data.email, data.password);
-        await sendEmailVerification(data?.email);
-        alert('Sent email');
+        await sendEmailVerification(data.email);
         await updateProfile({ displayName: data.name });
+        toast('verification sent')
+        reset();
     };
 
-    if (error) {
-        return (
-            <div>
-                <p>Error: {error?.message}</p>
-            </div>
-        );
-    }
     return (
         <div className='mt-48 lg:mt-32'>
             <div className='w-2/3 lg:w-1/3 grid grid-rows-1 Justify-center items-center mx-auto border border-gray-400 rounded mt-36 p-16'>
@@ -55,7 +54,6 @@ const SignUp = () => {
                         <input
                             type="text"
                             name="name"
-                            id="name"
                             {...register("name", {
                                 required: {
                                     value: true,
@@ -67,7 +65,7 @@ const SignUp = () => {
                         {
 
                             <label htmlFor="email">
-                                {errors.name?.type === 'required' && <span className='text-red-500 text-sm'>{errors.name?.message}</span>}
+                                {errors.name?.type === 'required' && <span className='text-red-500 text-sm'>{errors.name.message}</span>}
                             </label>
                         }
                     </div>
@@ -75,7 +73,6 @@ const SignUp = () => {
                         <input
                             type="email"
                             name="email"
-                            id="email"
                             {...register("email", {
                                 required: {
                                     value: true,
@@ -100,7 +97,6 @@ const SignUp = () => {
                         <input
                             type="password"
                             name="password"
-                            id="password"
                             {...register("password", {
                                 required: {
                                     value: true,
@@ -128,7 +124,11 @@ const SignUp = () => {
                 <div className="divider" > OR</div >
                 <div>
                     <button
-                        onClick={() => signInWithGoogle()}
+                        onClick={async () => {
+                            await signInWithGoogle()
+                            await sendEmailVerification();
+                            toast('verification sent')
+                        }}
                         type="button" className="text-white bg-[#4285F4] hover:bg-[#4285F4]/90 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#4285F4]/55 mr-2 mb-2">
                         <svg className="mr-2 -ml-1 w-4 h-4" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="google" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 488 512"><path fill="currentColor" d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"></path></svg>
                         Sign in with Google

@@ -11,11 +11,16 @@ import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { AddItemContext } from '../../App';
 import auth from '../../firebase.init';
+import useLoadReviews from '../../Hooks/useLoadReviews';
 import Product from '../Home/Product';
+import Loading from '../Shared/Loading';
 import './singleProduct.css'
 
 
-const SingleProductDeails = ({ products, reviews }) => {
+const SingleProductDeails = ({ products }) => {
+    //for load all product reviews
+    const { reviews, isLoading, refetch } = useLoadReviews();
+
     const [user] = useAuthState(auth);
     const date = new Date();
     const formatedDate = format(date, 'PP');
@@ -54,6 +59,10 @@ const SingleProductDeails = ({ products, reviews }) => {
         setShowReviews(true);
     };
 
+    if (isLoading) {
+        return <Loading></Loading>
+    }
+
     const handleReview = (event) => {
         event.preventDefault();
         const review = {
@@ -80,6 +89,7 @@ const SingleProductDeails = ({ products, reviews }) => {
                 if (data) {
                 }
                 toast(`your review for ${product.name} successfully'`);
+                refetch();
             })
     }
 
@@ -171,7 +181,13 @@ const SingleProductDeails = ({ products, reviews }) => {
                                             <p className="my-4 font-light">{pr.review}</p>
                                         </blockquote>
                                         <figcaption className="flex justify-center items-center space-x-3">
-                                            <img className="w-9 h-9 rounded-full" src={pr.userImg} alt="profile" />
+                                            {pr.userImg ?
+                                                <img className="w-9 h-9 rounded-full" src={pr.userImg} alt="profile" />
+                                                :
+                                                <div class="overflow-hidden relative w-10 h-10 bg-gray-100 rounded-full dark:bg-gray-600">
+                                                    <svg class="absolute -left-1 w-12 h-12 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
+                                                </div>
+                                            }
                                             <div className="space-y-0.5 font-medium dark:text-white text-left">
                                                 <div>{pr.user}</div>
                                                 <Rating name="half-rating" value={pr.rating} precision={0.5} readOnly />
