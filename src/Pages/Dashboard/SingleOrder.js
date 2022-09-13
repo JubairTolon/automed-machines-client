@@ -5,8 +5,8 @@ import auth from '../../firebase.init';
 import useUserOrders from '../../Hooks/useUserOrders';
 
 const SingleOrder = () => {
-    const [user] = useAuthState(auth);
     const { orderId } = useParams();
+    const [user] = useAuthState(auth);
     const { orders } = useUserOrders(user);
     const order = orders.find(order => order._id === orderId);
     const items = order.cart;

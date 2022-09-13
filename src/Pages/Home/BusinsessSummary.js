@@ -1,5 +1,4 @@
 import React from 'react';
-import background3 from '../../Assets/background3.jpg'
 import { BsFlag } from 'react-icons/bs';
 import { GiBattleship } from 'react-icons/gi';
 import { BiHappyBeaming } from 'react-icons/bi';

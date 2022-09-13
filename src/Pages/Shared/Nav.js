@@ -67,8 +67,8 @@ const Nav = ({ cart, subTotal }) => {
                                     {cart.length > 0 &&
 
                                         <div className='flex items-center justify-between mt-4 mb-4'>
-                                            <button className='btn btn-sm btn-primary bg-orange-500 border-none'><Link to='/cart'>View Cart</Link></button>
-                                            <button className='btn btn-sm btn-primary bg-orange-500 border-none'><Link to='/checkout'>Checkout</Link></button>
+                                            <Link to='/cart'><button className='btn btn-sm btn-primary bg-orange-500 border-none'>View Cart</button></Link>
+                                            <Link to='/checkout'><button className='btn btn-sm btn-primary bg-orange-500 border-none'>Checkout</button></Link>
                                         </div>
                                     }
 

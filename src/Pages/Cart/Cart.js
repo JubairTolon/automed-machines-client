@@ -69,7 +69,7 @@ const Cart = ({ subTotal, total, cart, handleRemoveCartItem }) => {
                         </div>
                         <div className='flex items-center gap-8'>
                             <h1 className='text-2xl text-gray-700 font-bold uppercase'>Total</h1>
-                            <h1 className='text-md text-gray-700 font-bold'>$ {(total).toFixed(2)}</h1>
+                            <h1 className='text-md text-gray-700 font-bold'>$ {(total)}</h1>
                         </div>
                         {cart?.length > 0 &&
 

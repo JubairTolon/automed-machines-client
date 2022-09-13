@@ -43,6 +43,7 @@ import AddAProduct from "./Pages/Dashboard/AddAProduct";
 import ManageProduct from "./Pages/Dashboard/ManageProduct";
 import useLoadReviews from "./Hooks/useLoadReviews";
 import useLoadProduct from "./Hooks/useLoadProduct";
+import Payment from "./Pages/Dashboard/Payment";
 
 export const AddItemContext = createContext('handleAddToCartButton')
 export const RemoveItemContext = createContext('handleRemoveCartItem')
@@ -142,6 +143,7 @@ function App() {
           <Route index element={<DashboardContent></DashboardContent>} />
 
           <Route path="myOrders" element={<MyOrders></MyOrders>} />
+          <Route path='payment/:id' element={<Payment></Payment>} />
 
           <Route path='/dashboard/myOrders/singleOrder/:orderId' element={<SingleOrder></SingleOrder>}></Route>
 

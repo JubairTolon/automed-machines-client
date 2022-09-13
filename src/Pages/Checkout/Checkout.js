@@ -192,22 +192,9 @@ const Checkout = ({ cart, total, quantity }) => {
                         </table>
                     </div>
                     <div>
-                        <Accordion className='my-8'>
-                            <AccordionSummary
-                                expandIcon={<MdOutlineExpandMore className='text-2xl text-base-100' />}
-                                sx={{ backgroundColor: '#5E5E5E', color: 'whitesmoke', borderRadius: '5px', borderTop: 6, borderColor: '#2FC2FE' }}
-                                aria-controls="panel1a-content"
-                                id="panel1a-header"
-                            >
-                                <Typography sx={{ fontWeight: 'bold' }}>Payment</Typography>
-                            </AccordionSummary>
-                            <AccordionDetails sx={{ borderRadius: '5px', backgroundColor: '#E8E8E8' }}>
-                                <Typography>
-                                    <div className='h-60'>Payment cart</div>
-                                    <input className='btn btn-goust w-full uppercase' type="submit" value='Place Order' />
-                                </Typography>
-                            </AccordionDetails>
-                        </Accordion>
+                        <input className='btn btn-goust w-full uppercase mb-4' type="submit" value='Place Order' />
+
+                        <h1><span className='font-semibold'>Note:</span>  To confirm your order you have to complete your payment from <span className='font-semibold'>Dashboard then My orders</span></h1>
                     </div>
                 </div>
             </form >

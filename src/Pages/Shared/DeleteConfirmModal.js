@@ -15,7 +15,7 @@ const DeleteConfirmModal = ({ deletingProduct, setDeletingProduct, refetch, api 
             .then(data => {
                 console.log(data);
                 if (data.deletedCount === 1) {
-                    toast.success(`Product: ${name} is deleted `)
+                    toast.success(`Item: ${name || _id} is deleted `)
                     setDeletingProduct(null);
                     refetch();
                 }
@@ -27,7 +27,7 @@ const DeleteConfirmModal = ({ deletingProduct, setDeletingProduct, refetch, api 
             <div class="modal modal-bottom sm:modal-middle">
                 <div class="modal-box">
                     <h3 class="font-bold text-lg text-red-500">Are you sure you want to delete <span className='text-gray-600'>{_id}</span> </h3>
-                    <p class="py-4">You've been selected for a chance to get one year of subscription to use Wikipedia for free!</p>
+                    <p class="py-4">If you deleted this data, you wll not get it return !</p>
                     <div class="modal-action">
                         <button onClick={() => handleDelete(_id)} className='hover:text-red-500 btn btn-sm' aria-label="delete">Delete</button>
 

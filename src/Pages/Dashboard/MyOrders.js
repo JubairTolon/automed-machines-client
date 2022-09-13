@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import useUserOrders from '../../Hooks/useUserOrders';
@@ -28,9 +28,6 @@ const MyOrders = () => {
                                     Date
                                 </th>
                                 <th scope="col" className="py-3 px-6">
-                                    User
-                                </th>
-                                <th scope="col" className="py-3 px-6">
                                     Items
                                 </th>
                                 <th scope="col" className="py-3 px-6">
@@ -41,6 +38,9 @@ const MyOrders = () => {
                                 </th>
                                 <th scope="col" className="py-3 px-6">
                                     Payment
+                                </th>
+                                <th scope="col" className="py-3 px-6">
+                                    Shipped Status
                                 </th>
                                 <th scope="col" className="py-3 px-6">
                                     Order List
@@ -60,9 +60,6 @@ const MyOrders = () => {
                                             {order.date}
                                         </td>
                                         <td className="py-4 px-6">
-                                            {order.user}
-                                        </td>
-                                        <td className="py-4 px-6">
                                             {order.cart?.length}
                                         </td>
                                         <td className="py-4 px-6">
@@ -72,10 +69,29 @@ const MyOrders = () => {
                                             {`$ ${order.total}`}
                                         </td>
                                         <td className="py-4 px-6">
-                                            paid
+                                            {!order.paid &&
+                                                <Link to={`/dashboard/payment/${order._id}`}><button className='btn btn-xs rounded-sm btn-info text-white'>Pay</button></Link>}
+                                            {order.paid &&
+                                                <div>
+                                                    <button disabled className='btn btn-xs rounded-sm btn-info'>Paid</button>
+                                                    <p className='text-success'><span className='text-gray-600'>TransactionId:</span>  <br /> {order?.transactionId}</p>
+                                                </div>
+                                            }
                                         </td>
                                         <td className="py-4 px-6">
-                                            <button onClick={() => navigateToSingleOrder(order._id)} className="btn btn-success font-medium text-white btn-xs dark:text-blue-500 py-1">View Items</button>
+                                            {!order.shipped &&
+                                                <div>
+                                                    <div className='rounded-sm px-1 bg-teal-400 py-1 text-center font-semibold text-xs text-white uppercase'>Processing</div>
+                                                </div>
+                                            }
+                                            {order.shipped &&
+                                                <div>
+                                                    <div disabled className='rounded-sm px-1 bg-teal-400 py-1 text-center font-semibold text-xs text-white uppercase'>Shipped</div>
+                                                </div>
+                                            }
+                                        </td>
+                                        <td className="py-4 px-6">
+                                            <button onClick={() => navigateToSingleOrder(order._id)} className="btn btn-success font-medium text-white btn-xs dark:text-blue-500 py-1 rounded-sm">View Items</button>
                                         </td>
                                     </tr>
                                 )
