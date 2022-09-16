@@ -3,13 +3,14 @@ import React from 'react';
 import Product from './Product';
 import { BsFillGrid3X3GapFill } from 'react-icons/bs';
 import { BiGridVertical } from 'react-icons/bi';
+import { useState } from 'react';
 
 
 function valuetext(value) {
     return `${value}`;
 }
 
-const minDistance = 5000;
+const minDistance = 1000;
 
 const Shop = ({ products }) => {
 
@@ -83,6 +84,57 @@ const Shop = ({ products }) => {
         }
     }
 
+    const [items, setItems] = useState(products)
+
+    const filterCategory = (category) => {
+        if (category === 'All items') {
+            setItems(products)
+        }
+        else {
+            const updatedItems = products.filter(product => {
+                return product.category === category;
+            });
+            setItems(updatedItems)
+        }
+
+    }
+    const filterBrand = (brand) => {
+        if (brand === 'All items') {
+            setItems(products)
+        }
+        else {
+            const updatedItems = products.filter(product => {
+                return product.brand === brand;
+            });
+            setItems(updatedItems)
+        }
+
+    }
+    const filterColor = (color) => {
+        if (color === 'All items') {
+            setItems(products)
+        }
+        else {
+            const updatedItems = products.filter(product => {
+                return product.color === color;
+            });
+            setItems(updatedItems)
+        }
+
+    }
+    const filterTag = (tag) => {
+        if (tag === 'All items') {
+            setItems(products)
+        }
+        else {
+            const updatedItems = products.filter(product => {
+                return product.tag === tag;
+            });
+            setItems(updatedItems)
+        }
+
+    }
+
 
     return (
         <div className='mt-52 lg:mt-32 flex'>
@@ -90,35 +142,35 @@ const Shop = ({ products }) => {
                 <div>
                     <h1 className='text-gray-500 font-bold uppercase text-2xl my-4'>Vehicle Category</h1>
                     <ul className=''>
-                        <li><button className=' text-gray-600 text-lg mb-1 font-semibold focus:text-orange-500 hover:text-gray-800'>All items</button></li>
-                        <li><button className=' text-gray-600 text-lg mb-1 font-semibold focus:text-orange-500 hover:text-gray-800'>Small</button></li>
-                        <li><button className=' text-gray-600 text-lg mb-1 font-semibold focus:text-orange-500 hover:text-gray-800'>Medium</button></li>
-                        <li><button className=' text-gray-600 text-lg mb-1 font-semibold focus:text-orange-500 hover:text-gray-800'>Large</button></li>
-                        <li><button className=' text-gray-600 text-lg mb-1 font-semibold focus:text-orange-500 hover:text-gray-800'>Extra-Large</button></li>
+                        <li><button onClick={() => filterCategory('All items')} className=' text-gray-600 text-lg mb-1 font-semibold focus:text-orange-500 hover:text-gray-800'>All items</button></li>
+                        <li><button onClick={() => filterCategory('Small')} className=' text-gray-600 text-lg mb-1 font-semibold focus:text-orange-500 hover:text-gray-800'>Small</button></li>
+                        <li><button onClick={() => filterCategory('Medium')} className=' text-gray-600 text-lg mb-1 font-semibold focus:text-orange-500 hover:text-gray-800'>Medium</button></li>
+                        <li><button onClick={() => filterCategory('Large')} className=' text-gray-600 text-lg mb-1 font-semibold focus:text-orange-500 hover:text-gray-800'>Large</button></li>
+                        <li><button onClick={() => filterCategory('Extra-Large')} className=' text-gray-600 text-lg mb-1 font-semibold focus:text-orange-500 hover:text-gray-800'>Extra-Large</button></li>
                     </ul>
                 </div>
                 <div>
                     <h1 className='text-gray-500 font-bold uppercase text-2xl my-4'>Brands</h1>
                     <ul className=''>
-                        <li><button className=' text-gray-600 text-lg mb-1 font-semibold focus:text-orange-500 hover:text-gray-800'>Audi</button></li>
-                        <li><button className=' text-gray-600 text-lg mb-1 font-semibold focus:text-orange-500 hover:text-gray-800'>BMW</button></li>
-                        <li><button className=' text-gray-600 text-lg mb-1 font-semibold focus:text-orange-500 hover:text-gray-800'>Bentley</button></li>
-                        <li><button className=' text-gray-600 text-lg mb-1 font-semibold focus:text-orange-500 hover:text-gray-800'>Ford</button></li>
-                        <li><button className=' text-gray-600 text-lg mb-1 font-semibold focus:text-orange-500 hover:text-gray-800'>Honda</button></li>
-                        <li><button className=' text-gray-600 text-lg mb-1 font-semibold focus:text-orange-500 hover:text-gray-800'>Hyundai</button></li>
-                        <li><button className=' text-gray-600 text-lg mb-1 font-semibold focus:text-orange-500 hover:text-gray-800'>Toyota</button></li>
+                        <li><button onClick={() => filterBrand('Audi')} className=' text-gray-600 text-lg mb-1 font-semibold focus:text-orange-500 hover:text-gray-800'>Audi</button></li>
+                        <li><button onClick={() => filterBrand('BMW')} className=' text-gray-600 text-lg mb-1 font-semibold focus:text-orange-500 hover:text-gray-800'>BMW</button></li>
+                        <li><button onClick={() => filterBrand('Bentley')} className=' text-gray-600 text-lg mb-1 font-semibold focus:text-orange-500 hover:text-gray-800'>Bentley</button></li>
+                        <li><button onClick={() => filterBrand('Ford')} className=' text-gray-600 text-lg mb-1 font-semibold focus:text-orange-500 hover:text-gray-800'>Ford</button></li>
+                        <li><button onClick={() => filterBrand('Honda')} className=' text-gray-600 text-lg mb-1 font-semibold focus:text-orange-500 hover:text-gray-800'>Honda</button></li>
+                        <li><button onClick={() => filterBrand('Hyundai')} className=' text-gray-600 text-lg mb-1 font-semibold focus:text-orange-500 hover:text-gray-800'>Hyundai</button></li>
+                        <li><button onClick={() => filterBrand('Toyota')} className=' text-gray-600 text-lg mb-1 font-semibold focus:text-orange-500 hover:text-gray-800'>Toyota</button></li>
                     </ul>
                 </div>
                 <div>
                     <h1 className='text-gray-500 font-bold uppercase text-2xl my-4'>Color</h1>
                     <ul className=''>
-                        <li><button className=' text-gray-600 text-lg mb-2 font-semibold focus:text-orange-500 hover:text-gray-800'>Black</button></li>
-                        <li><button className=' text-gray-600 text-lg mb-2 font-semibold focus:text-orange-500 hover:text-gray-800'>Blue</button></li>
-                        <li><button className=' text-gray-600 text-lg mb-2 font-semibold focus:text-orange-500 hover:text-gray-800'>Silver</button></li>
-                        <li><button className=' text-gray-600 text-lg mb-2 font-semibold focus:text-orange-500 hover:text-gray-800'>Yellow</button></li>
-                        <li><button className=' text-gray-600 text-lg mb-2 font-semibold focus:text-orange-500 hover:text-gray-800'>Red</button></li>
-                        <li><button className=' text-gray-600 text-lg mb-2 font-semibold focus:text-orange-500 hover:text-gray-800'>Mercury Black</button></li>
-                        <li><button className=' text-gray-600 text-lg mb-2 font-semibold focus:text-orange-500 hover:text-gray-800'>White</button></li>
+                        <li><button onClick={() => filterColor('Black')} className=' text-gray-600 text-lg mb-2 font-semibold focus:text-orange-500 hover:text-gray-800'>Black</button></li>
+                        <li><button onClick={() => filterColor('Blue')} className=' text-gray-600 text-lg mb-2 font-semibold focus:text-orange-500 hover:text-gray-800'>Blue</button></li>
+                        <li><button onClick={() => filterColor('Silver')} className=' text-gray-600 text-lg mb-2 font-semibold focus:text-orange-500 hover:text-gray-800'>Silver</button></li>
+                        <li><button onClick={() => filterColor('Yellow')} className=' text-gray-600 text-lg mb-2 font-semibold focus:text-orange-500 hover:text-gray-800'>Yellow</button></li>
+                        <li><button onClick={() => filterColor('Red')} className=' text-gray-600 text-lg mb-2 font-semibold focus:text-orange-500 hover:text-gray-800'>Red</button></li>
+                        <li><button onClick={() => filterColor('Mercury Black')} className=' text-gray-600 text-lg mb-2 font-semibold focus:text-orange-500 hover:text-gray-800'>Mercury Black</button></li>
+                        <li><button onClick={() => filterColor('White')} className=' text-gray-600 text-lg mb-2 font-semibold focus:text-orange-500 hover:text-gray-800'>White</button></li>
                     </ul>
                 </div>
                 <div>
@@ -141,10 +193,10 @@ const Shop = ({ products }) => {
                 <div>
                     <h1 className='text-gray-500 font-bold uppercase text-2xl my-4'>Tags</h1>
                     <div className='flex flex-wrap gap-2'>
-                        <button className='btn btn-sm btn-outline px-4 focus:text-white focus:bg-gray-800'>Car</button>
-                        <button className='btn btn-sm btn-outline px-4 focus:text-white focus:bg-gray-800'>Bus</button>
-                        <button className='btn btn-sm btn-outline px-4 focus:text-white focus:bg-gray-800'>Truck</button>
-                        <button className='btn btn-sm btn-outline px-4 focus:text-white focus:bg-gray-800'>Pckup</button>
+                        <button onClick={() => filterTag('Car')} className='btn btn-sm btn-outline px-4 focus:text-white focus:bg-gray-800'>Car</button>
+                        <button onClick={() => filterTag('Bus')} className='btn btn-sm btn-outline px-4 focus:text-white focus:bg-gray-800'>Bus</button>
+                        <button onClick={() => filterTag('Truck')} className='btn btn-sm btn-outline px-4 focus:text-white focus:bg-gray-800'>Truck</button>
+                        <button onClick={() => filterTag('Pickup')} className='btn btn-sm btn-outline px-4 focus:text-white focus:bg-gray-800'>Pickup</button>
                     </div>
 
                 </div>
@@ -212,7 +264,7 @@ const Shop = ({ products }) => {
                 </div>
                 <div className='w-full grid grid-flow-row grid-cols-2 lg:grid-cols-5 gap-2 lg:gap-2'>
                     {
-                        products?.map(product =>
+                        items?.map(product =>
                             <Product
                                 key={product._id}
                                 product={product}

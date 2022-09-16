@@ -44,6 +44,7 @@ import ManageProduct from "./Pages/Dashboard/ManageProduct";
 import useLoadReviews from "./Hooks/useLoadReviews";
 import useLoadProduct from "./Hooks/useLoadProduct";
 import Payment from "./Pages/Dashboard/Payment";
+import { useState } from "react";
 
 export const AddItemContext = createContext('handleAddToCartButton')
 export const RemoveItemContext = createContext('handleRemoveCartItem')
@@ -52,6 +53,24 @@ function App() {
 
   const { reviews } = useLoadReviews();
   const { products, isLoading, refetch } = useLoadProduct(reviews);
+  const [search, setSearch] = useState('');
+  const [searchResult, setSearchResult] = useState([]);
+
+  const searchHandler = (searchTerm) => {
+    setSearch(searchTerm);
+    if (search !== '') {
+      const newList = products?.filter(product => {
+        return Object.values(product)
+          .join(' ')
+          .toLowerCase()
+          .includes(search.toLowerCase());
+      })
+      setSearchResult(newList);
+    }
+    else {
+      setSearchResult(products);
+    }
+  }
 
   //for mainain cart 
   const [cart, setCart, subTotal, total, quantity] = useCart(products);
@@ -82,6 +101,7 @@ function App() {
       <AccessLink></AccessLink>
       <RemoveItemContext.Provider value={handleRemoveCartItem}>
         <Nav
+          products={products}
           subTotal={subTotal}
           cart={cart}
         >
@@ -152,7 +172,9 @@ function App() {
           <Route path='allProducts' element={
             <RequireAdmin>
               <AllProducts
-                products={products}
+                products={search < 1 ? products : searchResult}
+                search={search}
+                searchHandler={searchHandler}
                 refetch={refetch}
                 isLoading={isLoading}
               ></AllProducts>
@@ -176,7 +198,9 @@ function App() {
           <Route path='manageProduct' element={
             <RequireAdmin>
               <ManageProduct
-                products={products}
+                products={search < 1 ? products : searchResult}
+                search={search}
+                searchHandler={searchHandler}
                 refetch={refetch}>
               </ManageProduct>
             </RequireAdmin>} />

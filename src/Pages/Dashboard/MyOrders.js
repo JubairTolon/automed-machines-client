@@ -81,7 +81,7 @@ const MyOrders = () => {
                                         <td className="py-4 px-6">
                                             {!order.shipped &&
                                                 <div>
-                                                    <div className='rounded-sm px-1 bg-teal-400 py-1 text-center font-semibold text-xs text-white uppercase'>Processing</div>
+                                                    <div className='rounded-sm px-1 bg-teal-800 py-1 text-center font-semibold text-xs text-white uppercase'>Processing</div>
                                                 </div>
                                             }
                                             {order.shipped &&
