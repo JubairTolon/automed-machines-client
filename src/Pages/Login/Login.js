@@ -8,6 +8,9 @@ import useToken from '../../Hooks/useToken';
 import { useEffect } from 'react';
 
 const Login = () => {
+    const navigate = useNavigate();
+    const location = useLocation();
+
     const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
     const { register, formState: { errors }, handleSubmit, reset } = useForm();
     const [
@@ -16,12 +19,10 @@ const Login = () => {
         loading,
         error,
     ] = useSignInWithEmailAndPassword(auth);
-    const [token] = useToken(user || gUser)
+    const [token] = useToken(user || gUser);
 
     let signInErrorMessage;
 
-    const navigate = useNavigate();
-    const location = useLocation()
     let from = location.state?.from?.pathname || "/";
 
     useEffect(() => {
@@ -37,9 +38,9 @@ const Login = () => {
         signInErrorMessage = <p className='text-red-500'><small>{error?.message || gError?.message}</small></p>
     }
 
-    if (user || gUser) {
-        navigate(from, { replace: true });
-    }
+    // if (user || gUser) {
+    //     navigate(from, { replace: true });
+    // }
     const onSubmit = (data) => {
         signInWithEmailAndPassword(data.email, data.password);
         reset();

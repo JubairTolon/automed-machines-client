@@ -9,9 +9,25 @@ import auth from '../../firebase.init';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { signOut } from 'firebase/auth';
 import SearchBar from './SearchBar';
+import Loading from './Loading';
+import { useQuery } from 'react-query';
 
 const Nav = ({ cart, subTotal, products }) => {
     const [user] = useAuthState(auth);
+    const email = user?.email;
+    const { data: currentUser, isLoading, refetch } = useQuery(['user', user], () =>
+        fetch(`http://localhost:5000/profileInfo?user=${email}`, {
+            method: 'GET',
+            headers: {
+                'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+            }
+        }
+        )
+            .then(res => res.json())
+    )
+    if (isLoading) {
+        return <Loading></Loading>
+    }
     const logout = () => {
         signOut(auth);
         localStorage.removeItem('accessToken');
@@ -365,20 +381,20 @@ const Nav = ({ cart, subTotal, products }) => {
                                         <div className='w-60 mb-2'>
                                             <h2>Welcome to <Link className='font-medium hover:underline hover:decoration-2' to='/'>Automed Machines</Link></h2>
                                         </div>
-                                        {!user ?
+                                        {!currentUser || !user ?
                                             <Link to='/login'><button className='btn btn-primary btn-wide btn-sm p-2 my-2 bg-orange-500 border-none'>Login</button></Link>
                                             :
-                                            <div className='flex gap-2 items-center cursor-pointer rounded-md px-2 py-1 hover:bg-slate-200'>
+                                            <Link to='/profile' className='flex gap-2 items-center rounded-md px-2 py-1 hover:bg-slate-200'>
                                                 {
-                                                    user?.photoURL ? <img className="w-9 h-9 rounded-full" src={user.photoURL} alt="profile" />
+                                                    currentUser[0]?.img ? <img className="w-9 h-9 rounded-full" src={currentUser[0]?.img} alt="profile" />
                                                         :
                                                         <div class="overflow-hidden relative w-10 h-10 bg-gray-100 rounded-full dark:bg-gray-600">
                                                             <svg class="absolute -left-1 w-12 h-12 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
                                                         </div>
 
                                                 }
-                                                <h1 className='text-md text-purple-500 font-semibold'>{user.displayName}</h1>
-                                            </div>
+                                                <h1 className='text-md text-purple-500 font-semibold'>{user?.displayName}</h1>
+                                            </Link>
                                         }
 
                                     </div>

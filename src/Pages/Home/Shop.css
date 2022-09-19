@@ -1,0 +1,17 @@
+.pagination button {
+    background-color: lightgray;
+    border-radius: 25px;
+    margin-right: 5px;
+    padding: 8px 15px 8px 15px;
+    font-weight: 600;
+
+}
+
+.pagination button:hover {
+    background-color: lightslategrey;
+}
+
+.pagination .selected {
+    background-color: orange;
+    color: azure;
+}

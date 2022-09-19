@@ -9,9 +9,10 @@ import { toast } from 'react-toastify';
 import useToken from '../../Hooks/useToken';
 
 const SignUp = () => {
+    const navigate = useNavigate();
 
-    const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
     const { register, formState: { errors }, handleSubmit, reset } = useForm();
+    const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
     const [
         createUserWithEmailAndPassword,
         user,
@@ -21,9 +22,7 @@ const SignUp = () => {
     const [sendEmailVerification, sending, vError] = useSendEmailVerification(auth);
     const [updateProfile, updating, updateError] = useUpdateProfile(auth);
 
-    const [token] = useToken(user || gUser)
-
-    const navigate = useNavigate();
+    const [token] = useToken(user || gUser);
 
     let signInErrorMessage;
 
@@ -34,15 +33,18 @@ const SignUp = () => {
         signInErrorMessage = <p className='text-red-500'>{error?.message || gError?.message || updateError?.message || vError?.message}</p>
     }
     if (token) {
-        navigate('/checkout');
+        navigate('/');
     }
 
     const onSubmit = async (data) => {
         await createUserWithEmailAndPassword(data.email, data.password);
-        await sendEmailVerification(data.email);
         await updateProfile({ displayName: data.name });
-        toast('verification sent')
+        await sendEmailVerification(data.email);
+        if (gUser) {
+            toast('verification sent');
+        }
         reset();
+
     };
 
     return (
@@ -54,14 +56,14 @@ const SignUp = () => {
                         <input
                             type="text"
                             name="name"
+                            placeholder='your name'
                             {...register("name", {
                                 required: {
                                     value: true,
-                                    message: 'name is required'
+                                    message: 'name is required',
                                 }
                             })}
                             className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" />
-                        <label for="email" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Name</label>
                         {
 
                             <label htmlFor="email">
@@ -73,6 +75,7 @@ const SignUp = () => {
                         <input
                             type="email"
                             name="email"
+                            placeholder='email'
                             {...register("email", {
                                 required: {
                                     value: true,
@@ -84,7 +87,7 @@ const SignUp = () => {
                                 }
                             })}
                             className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" />
-                        <label for="email" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Email address</label>
+
                         {
 
                             <label htmlFor="email">
@@ -97,6 +100,7 @@ const SignUp = () => {
                         <input
                             type="password"
                             name="password"
+                            placeholder='password'
                             {...register("password", {
                                 required: {
                                     value: true,
@@ -108,7 +112,7 @@ const SignUp = () => {
                                 }
                             })}
                             className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" />
-                        <label for="password" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Password</label>
+
                         <label htmlFor="password">
                             {errors.password?.type === 'required' && <span className='text-red-500 text-sm'>{errors.password?.message}</span>}
                             {errors.password?.type === 'minLength' && <span className='text-red-500 text-sm'>{errors.password?.message}</span>}

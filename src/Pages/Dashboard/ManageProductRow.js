@@ -2,9 +2,16 @@ import { IconButton } from '@mui/material';
 import React from 'react';
 import { AiFillEdit } from 'react-icons/ai';
 import { MdDelete } from 'react-icons/md';
+import { useNavigate } from 'react-router-dom';
 
 const ManageProductRow = ({ product, setDeletingProduct }) => {
     const { _id, name, pictures, stock, color, avaiableQuentty, price } = product;
+
+    const navigate = useNavigate();
+
+    const navigateToUodateProduct = (id) => {
+        navigate(`updateProduct/${id}`)
+    }
     return (
         <tr
             key={_id}
@@ -32,7 +39,7 @@ const ManageProductRow = ({ product, setDeletingProduct }) => {
             </td>
             <td className="py-2 px-2">
                 <div className='flex gap-2'>
-                    <IconButton aria-label="delete">
+                    <IconButton onClick={() => navigateToUodateProduct(product._id)} aria-label="delete">
                         <AiFillEdit />
                     </IconButton>
 

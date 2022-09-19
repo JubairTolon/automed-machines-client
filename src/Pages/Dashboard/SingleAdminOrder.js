@@ -8,11 +8,11 @@ const SingleAdminOrder = () => {
     //for load all orders
     const { allOrders } = useLoadOrders();
 
-    const order = allOrders.find(order => order._id === orderId);
-    const items = order.cart;
+    const order = allOrders?.find(order => order._id === orderId);
+    const items = order?.cart;
 
     let total = 0;
-    items.map(item => total = total + ((item.minOrder + item.quantity) * item.price))
+    items?.map(item => total = total + ((item.minOrder + item.quantity) * item.price))
     return (
         <div>
             <div className="w-5/6 mx-auto overflow-x-auto relative shadow-md sm:rounded-lg">
@@ -38,7 +38,7 @@ const SingleAdminOrder = () => {
                     </thead>
                     <tbody>
                         {
-                            items.map(item =>
+                            items?.map(item =>
                                 <tr
                                     key={item._id}
                                     className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">

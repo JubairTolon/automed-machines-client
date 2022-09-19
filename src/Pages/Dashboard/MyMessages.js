@@ -7,7 +7,7 @@ import logo from '../../Assets/logo.png'
 
 const MyMessages = () => {
     const [user] = useAuthState(auth)
-    const { data: messages, isLoading, refetch } = useQuery('message', () =>
+    const { data: messages, isLoading } = useQuery('message', () =>
         fetch(`http://localhost:5000/userMessage?user=${user?.email}`, {
             method: 'GET',
             headers: {
@@ -17,7 +17,6 @@ const MyMessages = () => {
         )
             .then(res => res.json())
     )
-    refetch();
     if (isLoading) {
         return <Loading></Loading>
     }

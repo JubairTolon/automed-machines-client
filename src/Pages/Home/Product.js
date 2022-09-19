@@ -20,7 +20,7 @@ const Product = ({ product }) => {
         <div className="product-container z-0  bg-white rounded-lg shadow-md text-gray-500 dark:bg-gray-800 dark:border-gray-700 relative">
             <div className='hover:cursor-pointer' onClick={() => navigateToDetailsPage(_id)}>
                 {
-                    status && stock === 'available' &&
+                    status && stock &&
                     <span className='bg-red-600 px-3 py-1 rounded text-white text-xs font-semibold absolute top-4 left-4'>{status}</span>
                 }
                 <div className='flex justify-center h-32 mb-12 w-full'>

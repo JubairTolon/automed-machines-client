@@ -2,7 +2,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 
-const AddAProduct = () => {
+const AddAProduct = ({ refetch }) => {
     const { register, handleSubmit, reset } = useForm();
 
     const imgStorageKey = 'a0fa63c8363513eddd0ee77fe8fc6523';
@@ -57,6 +57,7 @@ const AddAProduct = () => {
                         .then(data => {
                             if (data) {
                                 toast.success('A new product is added successfully');
+                                refetch();
                                 reset();
                             }
                             else {
@@ -66,8 +67,6 @@ const AddAProduct = () => {
                         })
                 }
             })
-
-        console.group(data)
     };
 
     return (

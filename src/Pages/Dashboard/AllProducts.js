@@ -9,8 +9,6 @@ const AllProducts = ({ products, isLoading, search, searchHandler }) => {
         searchHandler(text);
     }
 
-
-
     if (isLoading) {
         return <Loading></Loading>
     }

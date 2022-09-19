@@ -83,6 +83,9 @@ const AntTab = styled((props) => <Tab disableRipple {...props} />)(({ theme }) =
 }));
 
 const Products = ({ products }) => {
+    const newP = products?.filter(p => p.status === 'New');
+    const popularP = products?.filter(p => p.rating >= 4);
+    const mostOrderedP = products?.filter(p => p.status === 'Hot');
 
     const [value, setValue] = React.useState(0);
 
@@ -104,7 +107,7 @@ const Products = ({ products }) => {
             </Box>
             <TabPanel value={value} index={0}>
                 {
-                    products?.map(product =>
+                    newP?.map(product =>
                         <Product
                             key={product._id}
                             product={product}
@@ -112,12 +115,9 @@ const Products = ({ products }) => {
                     )
                 }
             </TabPanel>
-            <TabPanel value={value} index={0}>
-
-            </TabPanel>
             <TabPanel value={value} index={1}>
                 {
-                    products?.map(product =>
+                    popularP?.map(product =>
                         <Product
                             key={product._id}
                             product={product}
@@ -127,7 +127,7 @@ const Products = ({ products }) => {
             </TabPanel>
             <TabPanel value={value} index={2}>
                 {
-                    products?.map(product =>
+                    mostOrderedP?.map(product =>
                         <Product
                             key={product._id}
                             product={product}

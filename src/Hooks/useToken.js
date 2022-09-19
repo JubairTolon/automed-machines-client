@@ -4,20 +4,24 @@ import { useState } from "react"
 
 const useToken = (user) => {
     const [token, setToken] = useState('');
+
     useEffect(() => {
         const email = user?.user?.email;
-        const currentUser = { email: email };
+        const photoURL = user?.user?.photoURL;
         const date = new Date();
-        const formatedDate = { date: format(date, 'PP') };
-
 
         if (email) {
+            const person = {
+                date: format(date, 'PP'),
+                img: photoURL
+
+            }
             fetch(`http://localhost:5000/user/${email}`, {
                 method: 'PUT',
                 headers: {
                     'content-type': 'application/json'
                 },
-                body: JSON.stringify(formatedDate, currentUser)
+                body: JSON.stringify(person)
             })
                 .then(res => res.json())
                 .then(data => {

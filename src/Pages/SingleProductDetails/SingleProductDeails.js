@@ -1,6 +1,7 @@
 import { IconButton, Rating } from '@mui/material';
 import { format } from 'date-fns';
 import React, { useContext, useState } from 'react';
+import { useEffect } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { AiFillInstagram, AiOutlineTwitter } from 'react-icons/ai';
 import { BiMinusCircle } from 'react-icons/bi';
@@ -18,6 +19,8 @@ import './singleProduct.css'
 
 
 const SingleProductDeails = ({ products }) => {
+    const { pId } = useParams();
+
     //for load all product reviews
     const { reviews, isLoading, refetch } = useLoadReviews();
 
@@ -25,11 +28,10 @@ const SingleProductDeails = ({ products }) => {
     const date = new Date();
     const formatedDate = format(date, 'PP');
     const handleAddToCartButton = useContext(AddItemContext);
-    const { pId } = useParams();
-
 
     //for single product information
     const product = products?.find(product => product._id === pId);
+
     //filter reviews for usePerams Id
     const pReviews = reviews?.filter(review => review.productId === pId);
 
@@ -39,10 +41,11 @@ const SingleProductDeails = ({ products }) => {
     const rating = Math.round(totalRating / pReviews?.length);
 
     //releted product
-    const reletedProduct = products.filter(p => p.tag === product.tag);
+    const reletedProduct = products?.filter(p => p.tag === product.tag);
 
     //for multiple image change
     const images = Object.values(product?.pictures);
+
     const [selectedImage, setSelectedImage] = useState(images[0]);
 
     // for description and review state change
@@ -116,7 +119,7 @@ const SingleProductDeails = ({ products }) => {
                     </div>
                 </div>
                 <div className=''>
-                    <h1 className='text-3xl font-semibold'>{product.name}</h1>
+                    <h1 className='text-3xl font-semibold'>{product?.name}</h1>
                     <div className='flex items-center my-4'><Rating className='mr-2' name="half-rating" value={rating} precision={0.5} readOnly /> {pReviews?.length} Rating <span>(S)</span></div>
                     <div className="flex gap-4 items-center my-4">
                         <span className="text-xl font-bold text-gray-900 dark:text-white">$ {product.price}</span>
@@ -176,7 +179,7 @@ const SingleProductDeails = ({ products }) => {
                         <div>
                             <div className='w-2/3 grid  gap-2'>
                                 {
-                                    pReviews.map(pr => <figure className="flex flex-col justify-center items-center p-1 text-center bg-white border-2 rounded dark:bg-gray-800 dark:border-gray-700">
+                                    pReviews.map(pr => <figure key={pr._id} className="flex flex-col justify-center items-center p-1 text-center bg-white border-2 rounded dark:bg-gray-800 dark:border-gray-700">
                                         <blockquote className="mx-auto mb-4 max-w-2xl text-gray-500 lg:mb-8 dark:text-gray-400">
                                             <p className="my-4 font-light">{pr.review}</p>
                                         </blockquote>

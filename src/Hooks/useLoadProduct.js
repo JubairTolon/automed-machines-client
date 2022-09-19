@@ -1,11 +1,12 @@
 import { useQuery } from 'react-query';
 
 
-const useLoadProduct = (reviews) => {
-    const { data: products, isLoading, refetch } = useQuery('product', () =>
-        fetch('http://localhost:5000/product')
+const useLoadProduct = (reviews, page, showingItem) => {
+    const { data: products, isLoading, refetch } = useQuery(['product', reviews, page, showingItem], () =>
+        fetch(`http://localhost:5000/product?page=${page}&showingItem=${showingItem}`)
             .then(res => res.json())
     )
+
     // for load all product reviews
     products?.map(p => {
         let totalRatings = 0;

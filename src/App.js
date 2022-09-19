@@ -45,6 +45,8 @@ import useLoadReviews from "./Hooks/useLoadReviews";
 import useLoadProduct from "./Hooks/useLoadProduct";
 import Payment from "./Pages/Dashboard/Payment";
 import { useState } from "react";
+import UpdateProduct from "./Pages/Dashboard/UpdateProduct";
+import Profile from "./Pages/Shared/Profile";
 
 export const AddItemContext = createContext('handleAddToCartButton')
 export const RemoveItemContext = createContext('handleRemoveCartItem')
@@ -53,6 +55,7 @@ function App() {
 
   const { reviews } = useLoadReviews();
   const { products, isLoading, refetch } = useLoadProduct(reviews);
+
   const [search, setSearch] = useState('');
   const [searchResult, setSearchResult] = useState([]);
 
@@ -116,6 +119,7 @@ function App() {
           </Home>}>
         </Route>
 
+        <Route path="/profile" element={<Profile></Profile>}></Route>
         <Route path="/aboutHome" element={<AboutHome></AboutHome>}></Route>
         <Route path="/aboutMore" element={<AboutMore></AboutMore>}></Route>
         <Route path="/reviewsHome" element={<ReviewsHome></ReviewsHome>}></Route>
@@ -124,7 +128,8 @@ function App() {
 
         <Route path="/shop" element={
           <Shop
-            products={products}>
+            products={products}
+            isLoading={isLoading}>
           </Shop>}>
         </Route>
 
@@ -192,7 +197,7 @@ function App() {
 
           <Route path='add' element={
             <RequireAdmin>
-              <AddAProduct></AddAProduct>
+              <AddAProduct refetch={refetch}></AddAProduct>
             </RequireAdmin>} />
 
           <Route path='manageProduct' element={
@@ -205,6 +210,7 @@ function App() {
               </ManageProduct>
             </RequireAdmin>} />
 
+          <Route path='/dashboard/manageProduct/updateProduct/:pId' element={<RequireAdmin><UpdateProduct></UpdateProduct></RequireAdmin>} />
           <Route path='users' element={<RequireAdmin><Users></Users></RequireAdmin>} />
 
           <Route path='orders' element={
