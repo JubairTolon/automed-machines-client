@@ -32,7 +32,7 @@ const Footer = () => {
             })
     }
     return (
-        <div className='bg-gray-200 mt-6'>
+        <div className='bg-gray-200'>
             <footer className='footer p-10'>
                 <div className='grid grid-flow-row grid-cols-2 items-center justify-between w-full'>
                     <div className='mx-auto'>

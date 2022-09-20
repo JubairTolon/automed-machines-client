@@ -1,57 +1,72 @@
 import { IconButton, Rating } from '@mui/material';
 import { format } from 'date-fns';
 import React, { useContext, useState } from 'react';
-import { useEffect } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { AiFillInstagram, AiOutlineTwitter } from 'react-icons/ai';
 import { BiMinusCircle } from 'react-icons/bi';
 import { BsPlusCircle, BsSuitHeart } from 'react-icons/bs';
 import { FaFacebookF, FaPinterestP } from 'react-icons/fa';
 import { MdEmail } from 'react-icons/md';
+import { useQuery } from 'react-query';
 import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { AddItemContext } from '../../App';
 import auth from '../../firebase.init';
-import useLoadReviews from '../../Hooks/useLoadReviews';
 import Product from '../Home/Product';
 import Loading from '../Shared/Loading';
 import './singleProduct.css'
 
 
 const SingleProductDeails = ({ products }) => {
-    const { pId } = useParams();
-
-    //for load all product reviews
-    const { reviews, isLoading, refetch } = useLoadReviews();
-
     const [user] = useAuthState(auth);
+    const { pId } = useParams();
+    const handleAddToCartButton = useContext(AddItemContext);
     const date = new Date();
     const formatedDate = format(date, 'PP');
-    const handleAddToCartButton = useContext(AddItemContext);
-
-    //for single product information
-    const product = products?.find(product => product._id === pId);
-
-    //filter reviews for usePerams Id
-    const pReviews = reviews?.filter(review => review.productId === pId);
-
-    //count rating
-    let totalRating = 0;
-    pReviews?.map(pr => totalRating = totalRating + pr.rating);
-    const rating = Math.round(totalRating / pReviews?.length);
-
-    //releted product
-    const reletedProduct = products?.filter(p => p.tag === product.tag);
-
-    //for multiple image change
-    const images = Object.values(product?.pictures);
-
-    const [selectedImage, setSelectedImage] = useState(images[0]);
 
     // for description and review state change
     const [description, setDescription] = useState(true);
     const [showReviews, setShowReviews] = useState(false);
-    const [takeRating, setTakeRating] = React.useState(null);
+    const [takeRating, setTakeRating] = useState(null);
+
+    const { data: product, isLoading } = useQuery(['product', pId], () =>
+        fetch(`http://localhost:5000/product/${pId}`, {
+            method: 'GET',
+            headers: {
+                'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+            }
+        }).then(res => res.json()));
+
+    const { data: reviews, refetch } = useQuery(['review', pId], () =>
+        fetch(`http://localhost:5000/review/${pId}`, {
+            method: 'GET',
+            headers: {
+                'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+            }
+        }).then(res => res.json()));
+
+    const [selectedImage, setSelectedImage] = useState(product?.pictures?.img1);
+    if (isLoading) {
+        return <Loading></Loading>
+    }
+    // for multiple image change
+    const images = [product?.pictures];
+    const imgs = images?.map(i => {
+        const img1 = i?.img1
+        const img2 = i?.img2
+        const img3 = i?.img3
+        const img4 = i?.img4
+        return [img1, img2, img3, img4]
+    })
+    const pictures = imgs[0];
+
+
+    //count rating
+    let totalRating = 0;
+    if (reviews) {
+        reviews?.map(pr => totalRating = totalRating + pr.rating);
+    }
+    const rating = Math.round(totalRating / reviews?.length);
 
     const descriptionHandler = () => {
         setDescription(true);
@@ -62,9 +77,9 @@ const SingleProductDeails = ({ products }) => {
         setShowReviews(true);
     };
 
-    if (isLoading) {
-        return <Loading></Loading>
-    }
+    // releted product
+    const reletedProduct = products?.filter(p => p.tag === product?.tag);
+
 
     const handleReview = (event) => {
         event.preventDefault();
@@ -90,9 +105,9 @@ const SingleProductDeails = ({ products }) => {
             .then(res => res.json())
             .then(data => {
                 if (data) {
+                    toast(`your review for ${product.name} successfully`);
+                    refetch();
                 }
-                toast(`your review for ${product.name} successfully'`);
-                refetch();
             })
     }
 
@@ -104,14 +119,15 @@ const SingleProductDeails = ({ products }) => {
             <div className='w-5/6 mx-auto grid grid-cols-1 lg:grid-cols-2 mt-40'>
                 <div className='flex flex-col items-center relative'>
                     <div className='single-product-image-container mb-28 lg:mb-0'>
-                        <img className='single-product-image' src={selectedImage} alt="" />
+                        <img className='single-product-image' src={!selectedImage ? product.pictures.img1 : selectedImage} alt="" />
                     </div>
-                    <div className='single-product-image-more bg-zinc-100 absolute bottom-0'>
+                    <div className='single-product-image-more rounded-lg bg-zinc-100 absolute bottom-0'>
                         {
-                            images.map((image, index) => {
+                            pictures?.map((image, index) => {
                                 return <img
                                     key={index}
                                     src={image}
+                                    className='rounded-lg'
                                     alt=""
                                     onClick={() => setSelectedImage(image)} />
                             })
@@ -119,20 +135,20 @@ const SingleProductDeails = ({ products }) => {
                     </div>
                 </div>
                 <div className=''>
-                    <h1 className='text-3xl font-semibold'>{product?.name}</h1>
-                    <div className='flex items-center my-4'><Rating className='mr-2' name="half-rating" value={rating} precision={0.5} readOnly /> {pReviews?.length} Rating <span>(S)</span></div>
+                    <h1 className='text-3xl font-semibold'>{product.name}</h1>
+                    <div className='flex items-center my-4'><Rating className='mr-2' name="half-rating" value={rating} precision={0.5} readOnly /> {reviews?.length} Rating <span>(S)</span></div>
                     <div className="flex gap-4 items-center my-4">
                         <span className="text-xl font-bold text-gray-900 dark:text-white">$ {product.price}</span>
                         {
-                            product?.offer &&
+                            product.offer &&
                             <span className='bg-red-600 px-2 rounded text-white font-semibold'>{product.offer} %</span>
                         }
                         {
-                            product?.offer &&
-                            <p className='line-through'>$ {product?.price * (parseInt(product?.offer) / 100)}</p>
+                            product.offer &&
+                            <p className='line-through'>$ {(product.price * (parseInt(product.offer) / 100)).toFixed(2)}</p>
                         }
                     </div>
-                    <p className='text-lg'>{product?.description}</p>
+                    <p className='text-lg'>{product.description}</p>
                     <div className='flex gap-8 my-6 items-center'>
                         <div className='flex gap-2 items-center border border-gray-400 rounded-md py-1'>
                             <IconButton aria-label="delete">
@@ -150,11 +166,11 @@ const SingleProductDeails = ({ products }) => {
                             <button className='btn btn-outline rounded border-gray-400 '><BsSuitHeart /></button>
                         </div>
                     </div>
-                    <p className='text-md font-semibold text-gray-700'>Minimur order: <span className='font-normal'>{product?.minOrder}</span></p>
+                    <p className='text-md font-semibold text-gray-700'>Minimur order: <span className='font-normal'>{product.minOrder}</span></p>
                     <p className='text-md font-semibold text-gray-700 my-2'>Available quentity: <span className='font-normal'>{product?.avaiableQuentty}</span></p>
-                    <p className='text-md font-semibold text-gray-700'>Color: <span className='font-normal'>{product?.color}</span></p>
-                    <p className='text-md font-semibold text-gray-700 my-2'>Category: <span className='font-normal'>{product?.category}</span></p>
-                    <p className='text-md font-semibold text-gray-700'>Tag: <span className='font-normal'>{product?.tag}</span></p>
+                    <p className='text-md font-semibold text-gray-700'>Color: <span className='font-normal'>{product.color}</span></p>
+                    <p className='text-md font-semibold text-gray-700 my-2'>Category: <span className='font-normal'>{product.category}</span></p>
+                    <p className='text-md font-semibold text-gray-700'>Tag: <span className='font-normal'>{product.tag}</span></p>
                     <div className='grid grid-cols-6 w-1/3 items-center mt-2'>
                         <p className='text-gray-600 font-semibold'>Share: </p>
                         <span className='text-2xl text-gray-500 hover:cursor-pointer hover:text-orange-500 ml-4'><FaFacebookF /></span>
@@ -170,7 +186,7 @@ const SingleProductDeails = ({ products }) => {
                 <div>
                     <div className='mb-8 pl-2'>
                         <button className={description ? 'text-gray-600 text-3xl font-semibold mr-16' : 'text-3xl text-gray-400 font-semibold mr-16'} onClick={descriptionHandler}>Descriptions</button>
-                        <button className={showReviews ? 'text-gray-600 text-3xl font-semibold mr-6' : 'text-3xl text-gray-400 font-semibold mr-6'} onClick={reviewsHandler}>Reviews {pReviews?.length}</button>
+                        <button className={showReviews ? 'text-gray-600 text-3xl font-semibold mr-6' : 'text-3xl text-gray-400 font-semibold mr-6'} onClick={reviewsHandler}>Reviews {reviews?.length}</button>
                     </div>
                     {description && (
                         <p className='text-md text-gray-700 pl-2 pr-10'>{product.description}</p>
@@ -179,7 +195,7 @@ const SingleProductDeails = ({ products }) => {
                         <div>
                             <div className='w-2/3 grid  gap-2'>
                                 {
-                                    pReviews.map(pr => <figure key={pr._id} className="flex flex-col justify-center items-center p-1 text-center bg-white border-2 rounded dark:bg-gray-800 dark:border-gray-700">
+                                    reviews?.map(pr => <figure key={pr._id} className="flex flex-col justify-center items-center p-1 text-center bg-white border-2 rounded dark:bg-gray-800 dark:border-gray-700">
                                         <blockquote className="mx-auto mb-4 max-w-2xl text-gray-500 lg:mb-8 dark:text-gray-400">
                                             <p className="my-4 font-light">{pr.review}</p>
                                         </blockquote>

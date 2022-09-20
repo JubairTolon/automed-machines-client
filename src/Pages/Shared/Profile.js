@@ -68,7 +68,7 @@ const Profile = () => {
     };
 
     return (
-        <div className=' bg-zinc-200 rounded-md mt-48 lg:mt-36 w-2/3 px-16 py-6 mx-auto'>
+        <div className=' bg-zinc-200 rounded-md mt-48 lg:mt-36 w-2/3 px-16 py-6 mx-auto mb-6'>
             <div className='w-full mb-10'>
                 {
                     currentUser[0]?.img ? <img className="w-60 h-60 rounded-full" src={currentUser[0]?.img} alt="profile" />

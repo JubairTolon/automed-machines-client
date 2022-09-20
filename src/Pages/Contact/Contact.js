@@ -10,24 +10,44 @@ import { format } from 'date-fns';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import { toast } from 'react-toastify';
+import { useForm } from 'react-hook-form';
+import { useQuery } from 'react-query';
+import Loading from '../Shared/Loading';
 
 
 const Contact = () => {
     const [user] = useAuthState(auth);
+    const email = user?.email;
     const date = new Date();
     const formatedDate = format(date, 'PP');
+    const { register, formState: { errors }, handleSubmit, reset } = useForm();
 
-    const handleMessage = event => {
-        event.preventDefault();
+    const { data: currentUser, isLoading } = useQuery(['user', user], () =>
+        fetch(`http://localhost:5000/profileInfo?user=${email}`, {
+            method: 'GET',
+            headers: {
+                'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+            }
+        }
+        )
+            .then(res => res.json())
+    )
+    if (isLoading) {
+        return <Loading></Loading>
+    }
+
+    const onSubmit = async (data) => {
         const message = {
             name: user.displayName,
-            user: user.email,
-            photo: user.photoURL,
+            user: currentUser[0]?.email,
+            gPhoto: user.photoURL,
+            photo: currentUser[0]?.img,
             date: formatedDate,
-            phone: event.target.phone.value,
-            email: event.target.email.value,
-            message: event.target.message.value,
+            phone: data.phone,
+            email: data.email,
+            message: data.description,
         }
+        console.log(message)
         fetch('http://localhost:5000/message', {
             method: 'POST',
             headers: {
@@ -41,7 +61,35 @@ const Contact = () => {
                 }
                 toast('your message is send successfully');
             })
-    }
+
+        reset();
+    };
+
+    // const handleMessage = event => {
+    //     event.preventDefault();
+    //     const message = {
+    //         name: user.displayName,
+    //         user: user.email,
+    //         photo: user.photoURL,
+    //         date: formatedDate,
+    //         phone: event.target.phone.value,
+    //         email: event.target.email.value,
+    //         message: event.target.message.value,
+    //     }
+    //     fetch('http://localhost:5000/message', {
+    //         method: 'POST',
+    //         headers: {
+    //             'content-type': 'application/json'
+    //         },
+    //         body: JSON.stringify(message)
+    //     })
+    //         .then(res => res.json())
+    //         .then(data => {
+    //             if (data) {
+    //             }
+    //             toast('your message is send successfully');
+    //         })
+    // }
 
     return (
         <div className='mt-32 grid grid-cols-1 lg:grid-cols-2'>
@@ -97,24 +145,81 @@ const Contact = () => {
                 <Bounce>
                     <h1 className='uppercase text-gray-600 text-4xl my-16'>send us a message</h1>
                 </Bounce>
-                <form onSubmit={handleMessage}>
+                <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="relative z-0 mb-6 w-full group">
-                        <input type="text" name="name" id="floating_first_name" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required="" />
-                        <label for="floating_first_name" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">First name</label>
+                        <input
+                            type="text"
+                            name="name"
+                            placeholder='your name'
+                            {...register("name", {
+                                required: {
+                                    value: true,
+                                    message: 'name is required',
+                                }
+                            })}
+                            className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" />
+                        {
+
+                            <label htmlFor="email">
+                                {errors.name?.type === 'required' && <span className='text-red-500 text-sm'>{errors.name.message}</span>}
+                            </label>
+                        }
                     </div>
                     <div className="relative z-0 mb-6 w-full group">
-                        <input type="email" name="email" id="floating_email" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required="" />
-                        <label for="floating_email" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Email address</label>
+                        <input
+                            type="email"
+                            name="email"
+                            placeholder='email'
+                            {...register("email", {
+                                required: {
+                                    value: true,
+                                    message: 'email is required'
+                                },
+                                pattern: {
+                                    value: /^\w+([.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+                                    message: 'provide a valid email'
+                                }
+                            })}
+                            className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" />
+
+                        {
+
+                            <label htmlFor="email">
+                                {errors.email?.type === 'required' && <span className='text-red-500 text-sm'>{errors.email?.message}</span>}
+                                {errors.email?.type === 'pattern' && <span className='text-red-500 text-sm'>{errors.email?.message}</span>}
+                            </label>
+                        }
                     </div>
                     <div className="relative z-0 mb-6 w-full group">
-                        <input name='phone' type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" id="floating_phone" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required="" />
-                        <label for="floating_phone" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Phone number (123-456-7890)</label>
+                        <input
+                            type="text"
+                            placeholder='your phone number'
+                            {...register("phone", {
+                                required: {
+                                    value: true,
+                                    message: 'phone is required',
+                                }
+                            })}
+                            className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" />
+                        {
+
+                            <label htmlFor="email">
+                                {errors.phone?.type === 'required' && <span className='text-red-500 text-sm'>{errors.phone.message}</span>}
+                            </label>
+                        }
                     </div>
-                    <div className='relative z-0 mb-6 w-full group'>
-                        <label for="message" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Your message</label>
-                        <textarea name='message' id="message" rows="4" className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Leave a comment..."></textarea>
+                    <div className="relative z-0 mb-6 w-full group">
+                        <textarea
+                            {...register("description")}
+                            name='description'
+                            rows="4"
+                            class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white" placeholder="produc description..." required></textarea>
                     </div>
-                    <button type="submit" className="text-white bg-orange-500 hover:bg-orange-400 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Send</button>
+
+                    {/* error message */}
+                    {/* {signInErrorMessage} */}
+
+                    <button type="submit" value="Login" className="text-white bg-orange-500 hover:bg-orange-400 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Send</button>
                 </form>
             </div>
         </div >
