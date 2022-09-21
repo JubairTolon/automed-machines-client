@@ -2,6 +2,7 @@ import { IconButton, Rating } from '@mui/material';
 import { format } from 'date-fns';
 import React, { useContext, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { useForm } from 'react-hook-form';
 import { AiFillInstagram, AiOutlineTwitter } from 'react-icons/ai';
 import { BiMinusCircle } from 'react-icons/bi';
 import { BsPlusCircle, BsSuitHeart } from 'react-icons/bs';
@@ -19,15 +20,28 @@ import './singleProduct.css'
 
 const SingleProductDeails = ({ products }) => {
     const [user] = useAuthState(auth);
+    const email = user?.email;
     const { pId } = useParams();
     const handleAddToCartButton = useContext(AddItemContext);
     const date = new Date();
     const formatedDate = format(date, 'PP');
+    const { register, handleSubmit, reset } = useForm();
 
     // for description and review state change
     const [description, setDescription] = useState(true);
     const [showReviews, setShowReviews] = useState(false);
     const [takeRating, setTakeRating] = useState(null);
+
+    const { data: currentUser } = useQuery('user', () =>
+        fetch(`http://localhost:5000/profileInfo?user=${email}`, {
+            method: 'GET',
+            headers: {
+                'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+            }
+        }
+        )
+            .then(res => res.json())
+    )
 
     const { data: product, isLoading } = useQuery(['product', pId], () =>
         fetch(`http://localhost:5000/product/${pId}`, {
@@ -49,6 +63,7 @@ const SingleProductDeails = ({ products }) => {
     if (isLoading) {
         return <Loading></Loading>
     }
+    console.log(currentUser)
     // for multiple image change
     const images = [product?.pictures];
     const imgs = images?.map(i => {
@@ -80,20 +95,17 @@ const SingleProductDeails = ({ products }) => {
     // releted product
     const reletedProduct = products?.filter(p => p.tag === product?.tag);
 
-
-    const handleReview = (event) => {
-        event.preventDefault();
+    const onSubmit = async (data) => {
         const review = {
             date: formatedDate,
             user: user.email,
-            userImg: user.photoURL,
-            photo: user.photoURL,
+            userImg: currentUser[0].img,
             productId: product._id,
             available: product.avaiableQuentty,
             productImg: product.pictures?.img1,
             rating: takeRating,
-            title: event.target.title.value,
-            review: event.target.review.value
+            title: data.title,
+            review: data.review,
         }
         fetch('http://localhost:5000/productReview', {
             method: 'POST',
@@ -106,14 +118,13 @@ const SingleProductDeails = ({ products }) => {
             .then(data => {
                 if (data) {
                     toast(`your review for ${product.name} successfully`);
+                    reset();
                     refetch();
                 }
             })
-    }
 
+    };
 
-
-    //for releted product
     return (
         <div className='mt-52 lg:mt-32'>
             <div className='w-5/6 mx-auto grid grid-cols-1 lg:grid-cols-2 mt-40'>
@@ -134,7 +145,7 @@ const SingleProductDeails = ({ products }) => {
                         }
                     </div>
                 </div>
-                <div className=''>
+                <div className='mt-10 lg:mt-0'>
                     <h1 className='text-3xl font-semibold'>{product.name}</h1>
                     <div className='flex items-center my-4'><Rating className='mr-2' name="half-rating" value={rating} precision={0.5} readOnly /> {reviews?.length} Rating <span>(S)</span></div>
                     <div className="flex gap-4 items-center my-4">
@@ -182,7 +193,7 @@ const SingleProductDeails = ({ products }) => {
 
                 </div>
             </div>
-            <div className='w-2/3 grid grid-cols-1 lg:grid-cols-2 mx-auto mt-16'>
+            <div className='lg:w-2/3 w-5/6 grid grid-cols-1 lg:grid-cols-2 mx-16 lg:mx-auto mt-16'>
                 <div>
                     <div className='mb-8 pl-2'>
                         <button className={description ? 'text-gray-600 text-3xl font-semibold mr-16' : 'text-3xl text-gray-400 font-semibold mr-16'} onClick={descriptionHandler}>Descriptions</button>
@@ -229,20 +240,24 @@ const SingleProductDeails = ({ products }) => {
                             setTakeRating(newValue);
                         }}
                     />
-                    <form onSubmit={handleReview}>
-                        <div className="relative z-0 mb-6 w-full group">
-                            <input type="text" name="title" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder='title of review' required />
-
+                    <form className='my-6 px-4 bg-zinc-200 py-6 rounded-lg' onSubmit={handleSubmit(onSubmit)}>
+                        <div className='mb-4'>
+                            <input
+                                type="text"
+                                {...register("title")}
+                                class="block p-2 w-full text-gray-700 bg-gray-50 rounded-md border border-gray-300 text-sm dark:bg-gray-700 dark:border-gray-600" placeholder='title of review' required />
                         </div>
-                        <div className='relative z-0 mb-6 w-full group'>
-                            <label for="message" className="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">Your message</label>
-                            <textarea name='review' id="message" rows="4" className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Leave a comment..." required="enter your review"></textarea>
+                        <div>
+                            <textarea
+                                {...register("review")}
+                                rows="4"
+                                class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white" placeholder="produc description..." required></textarea>
                         </div>
-                        <button type="submit" className="text-white bg-orange-500 hover:bg-orange-400 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+                        <button type="submit" className="text-white bg-orange-500 hover:bg-orange-400 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mt-4">Submit</button>
                     </form>
                 </div>
             </div>
-            <div className='w-2/3 mx-auto my-12 bg-zinc-100 p-10 rounded'>
+            <div className='w-2/3 mx-16 lg:mx-0 my-12 bg-zinc-100 p-10 rounded'>
                 <h1 className='text-3xl text-gray-600 mb-10 font-semibold'>Releted Product</h1>
                 <div className='grid grid-cols-2 lg:grid-cols-4 gap-3'>
                     {

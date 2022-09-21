@@ -75,7 +75,6 @@ const AddAProduct = ({ refetch }) => {
                 <div className='mb-4'>
                     <input
                         type="text"
-                        // name="name"
                         {...register("name")}
                         class="block p-2 w-full text-gray-700 bg-gray-50 rounded-md border border-gray-300 text-sm dark:bg-gray-700 dark:border-gray-600" placeholder='product name' required />
                 </div>

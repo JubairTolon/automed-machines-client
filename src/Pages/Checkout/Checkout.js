@@ -7,9 +7,11 @@ import auth from '../../firebase.init';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { toast } from 'react-toastify';
 import { deleteShoppingCart } from '../../Utlities/SetToLocalStorage'
+import { useForm } from 'react-hook-form';
 
 const Checkout = ({ cart, total, quantity }) => {
     const [user] = useAuthState(auth);
+    const { register, handleSubmit, reset } = useForm();
     const date = new Date();
     const formatedDate = format(date, 'PP');
 
@@ -20,18 +22,16 @@ const Checkout = ({ cart, total, quantity }) => {
     // if (isLoading) {
     //     return <Loading></Loading>
     // }
-
-    const handleOrder = event => {
-        event.preventDefault();
-        const country = event.target.country.value;
-        const customer_name = event.target.name.value;
-        const customer_phone = event.target.phone.value;
-        const company = event.target.company.value;
-        const customer_address = event.target.address.value;
-        const city = event.target.city.value;
-        const state = event.target.state.value;
-        const postcode = event.target.postcode.value;
-        const customer_email = event.target.email.value;
+    const onSubmit = async (data) => {
+        const country = data.country;
+        const customer_name = data.name;
+        const customer_phone = data.phone;
+        const company = data.company;
+        const customer_address = data.address;
+        const city = data.city;
+        const state = data.state;
+        const postcode = data.postcode;
+        const customer_email = data.email;
         const order = {
             cart,
             date: formatedDate,
@@ -59,11 +59,14 @@ const Checkout = ({ cart, total, quantity }) => {
                 toast('your order is placed successfully');
                 deleteShoppingCart();
             })
-    }
+        reset();
+
+    };
+
     let no = 1;
 
     return (
-        <div className='mt-32 w-5/6 mx-auto'>
+        <div className='mt-48 lg:mt-32 w-5/6 mx-auto mb-6'>
             <div className='mt-16'>
                 <Accordion>
                     <AccordionSummary
@@ -88,67 +91,83 @@ const Checkout = ({ cart, total, quantity }) => {
                     </AccordionDetails>
                 </Accordion>
             </div>
-            <form onSubmit={handleOrder} className='grid grid-cols-2 gap-6  bg-zinc-200 pt-8'>
-                <div className='px-6'>
-
+            <form onSubmit={handleSubmit(onSubmit)} className='grid grid-cols-1 lg:grid-cols-2 gap-6  bg-zinc-200 pt-8'>
+                <div className='px-6 order-2 lg:order-1'>
                     <h1 className='text-2xl text-gray-700 font-semibold uppercase'>Billing Information</h1>
                     <div className='divider my-4'></div>
                     <div className="grid gap-6 mb-6 md:grid-cols-2">
                         <div>
-                            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Country</label>
-                            <select defaultValue="default" name='country' className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full max-w-xs'>
-                                {/* {
+                            <select defaultValue="default"
+                                {...register("category")}
+                                className='bg-gray-50 border border-gray-300 text-gray-600 text-sm w-full p-2.5 dark:bg-gray-700 rounded-md dark:text-white' required>
+                                <option value='default' disabled>select country</option>
+                                <option>Bangladesh</option>
+                                <option>China</option>
+                                <option>Usa</option>
+                                <option>Holand</option>
+                            </select>
+                            {/* {
                                     countrys?.map((country, index) => <option
                                         key={index}
                                         value={country.name?.common}
                                     >{country.name.common}
                                     </option>)
                                 } */}
-                                <option value='default'>Bangladesh</option>
-                                <option>China</option>
-                                <option>Usa</option>
-                                <option>Kuria</option>
-                            </select>
                         </div>
                         <div>
-                            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Your name</label>
-                            <input name='name' type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Name" required />
+                            <input
+                                type="text"
+                                {...register("name")}
+                                class="block p-2 w-full text-gray-700 bg-gray-50 rounded-md border border-gray-300 text-sm dark:bg-gray-700 dark:border-gray-600" placeholder='your name' required />
                         </div>
                         <div>
-                            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Company Name</label>
-                            <input name='company' type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" required />
+                            <input
+                                type="text"
+                                {...register("company")}
+                                class="block p-2 w-full text-gray-700 bg-gray-50 rounded-md border border-gray-300 text-sm dark:bg-gray-700 dark:border-gray-600" placeholder='company' required />
                         </div>
                         <div>
-                            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Phone number</label>
-                            <input name='phone' type="tel" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="123-45-678" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" required />
+                            <input
+                                type="tel"
+                                {...register("phone")}
+                                class="block p-2 w-full text-gray-700 bg-gray-50 rounded-md border border-gray-300 text-sm dark:bg-gray-700 dark:border-gray-600" placeholder='phone' required />
                         </div>
                         <div>
-                            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Address</label>
-                            <input name='address' type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" required />
+                            <input
+                                type="text"
+                                {...register("address")}
+                                class="block p-2 w-full text-gray-700 bg-gray-50 rounded-md border border-gray-300 text-sm dark:bg-gray-700 dark:border-gray-600" placeholder='address' required />
                         </div>
                         <div>
-                            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">City/Town</label>
-                            <input name='city' type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" required />
+                            <input
+                                type="text"
+                                {...register("city")}
+                                class="block p-2 w-full text-gray-700 bg-gray-50 rounded-md border border-gray-300 text-sm dark:bg-gray-700 dark:border-gray-600" placeholder='city' required />
                         </div>
                     </div>
                     <div className="mb-6">
-                        <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">State/Country</label>
-                        <input name='state' type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" required />
+                        <input
+                            type="text"
+                            {...register("state")}
+                            class="block p-2 w-full text-gray-700 bg-gray-50 rounded-md border border-gray-300 text-sm dark:bg-gray-700 dark:border-gray-600" placeholder='state' required />
                     </div>
                     <div className="mb-6">
-                        <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Postcode/Zip</label>
-                        <input name='postcode' type="number" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" required />
+                        <input
+                            type="number"
+                            {...register("postcode")}
+                            class="block p-2 w-full text-gray-700 bg-gray-50 rounded-md border border-gray-300 text-sm dark:bg-gray-700 dark:border-gray-600" placeholder='post code' required />
                     </div>
                     <div className="mb-6">
-                        <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Email address</label>
-                        <input name='email' type="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="abc@company.com" required />
+                        <input
+                            type="email"
+                            {...register("email")}
+                            class="block p-2 w-full text-gray-700 bg-gray-50 rounded-md border border-gray-300 text-sm dark:bg-gray-700 dark:border-gray-600" placeholder='your email' required />
                     </div>
 
                 </div>
-                <div className='pr-6 relative pb-10'>
+                <div className='pr-6 relative pb-10 order-1 lg:order-2 px-6 lg:px-0'>
                     <h1 className='text-2xl text-gray-700 font-semibold uppercase'>Your order</h1>
                     <div className='divider my-4'></div>
-
 
                     <div className="overflow-x-auto relative mt-10">
                         <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -191,11 +210,10 @@ const Checkout = ({ cart, total, quantity }) => {
                             </tfoot>
                         </table>
                     </div>
-                    <div>
-                        <input className='btn btn-goust w-full uppercase mb-4' type="submit" value='Place Order' />
-
-                        <h1><span className='font-semibold'>Note:</span>  To confirm your order you have to complete your payment from <span className='font-semibold'>Dashboard then My orders</span></h1>
-                    </div>
+                </div>
+                <div className='order-3 px-6 lg:px-0'>
+                    <input className='btn btn-goust w-full uppercase mb-4' type="submit" value='Place Order' />
+                    <h1><span className='font-semibold'>Note:</span>  To confirm your order you have to complete your payment from <span className='font-semibold'>Dashboard then My orders</span></h1>
                 </div>
             </form >
         </div >
