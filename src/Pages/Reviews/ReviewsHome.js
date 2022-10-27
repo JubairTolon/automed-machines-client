@@ -15,9 +15,9 @@ const ReviewsHome = () => {
 
 
     return (
-        <div className='flex flex-col items-center w-3/4 mx-auto bg-zinc-900 px-8'>
+        <div className='flex flex-col items-center w-3/4 mx-auto bg-zinc-100 px-8 mt-56'>
             <Flip left>
-                <h1 className='text-5xl font-semibold my-12 text-white'>Our Happy Client</h1>
+                <h1 className='text-5xl font-semibold my-12 text-gray-700'>Our Happy Client</h1>
             </Flip>
             <div className='grid grid-flow-col justify-between grid-cols-2 lg:grid-cols-3 grid-rows-3 lg:grid-rows-2 gap-6'>
                 {
@@ -33,7 +33,7 @@ const ReviewsHome = () => {
             </div>
             <div>
                 <Link to='/reviewsMain'>
-                    <button className='my-6 btn btn-outline border-white text-white'>See all reviews</button>
+                    <button className='btn bg-orange-500 mt-9 border-none'>See all reviews</button>
                 </Link>
             </div>
         </div >
