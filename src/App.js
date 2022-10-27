@@ -47,6 +47,8 @@ import Payment from "./Pages/Dashboard/Payment";
 import { useState } from "react";
 import UpdateProduct from "./Pages/Dashboard/UpdateProduct";
 import Profile from "./Pages/Shared/Profile";
+import Features from "./Features/Features";
+import Blogs from "./Blogs/Blogs";
 
 export const AddItemContext = createContext('handleAddToCartButton')
 export const RemoveItemContext = createContext('handleRemoveCartItem')
@@ -128,9 +130,15 @@ function App() {
 
         <Route path="/shop" element={
           <Shop
-            products={products}
             isLoading={isLoading}>
           </Shop>}>
+        </Route>
+
+        <Route path="/blogs" element={
+          <Blogs></Blogs>}>
+        </Route>
+        <Route path="/features" element={
+          <Features></Features>}>
         </Route>
 
         <Route path="/productDetails/:pId" element={

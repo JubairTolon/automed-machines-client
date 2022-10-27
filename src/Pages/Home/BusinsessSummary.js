@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 
 const BusinsessSummary = () => {
     return (
-        <div className='mx-auto w-9/12 bg-gray-100 py-10'>
+        <div className='mx-auto w-5/6 lg:w-9/12 bg-gray-100 py-10 mt-8'>
             <div className='text-center mx-auto w-5/6'>
                 <Bounce bottom>
                     <h1 className='text-orange-500 font-bold text-3xl lg:text-4xl uppercase my-8'>Millions of Customers Trust Us</h1>

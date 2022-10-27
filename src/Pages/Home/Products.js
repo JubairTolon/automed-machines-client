@@ -94,7 +94,7 @@ const Products = ({ products }) => {
     };
 
     return (
-        <Box sx={{ marginLeft: 'auto', marginRight: 'auto', py: 4, marginTop: 36, width: '75%', backgroundColor: '#f2f2f2' }}>
+        <Box sx={{ marginLeft: 'auto', marginRight: 'auto', py: 4, marginTop: { sm: 8, lg: 36 }, width: '75%', backgroundColor: '#f2f2f2' }}>
             <Box sx={{ textAlign: 'center' }}>
                 <Typography variant='h3' component="div">Our Products Collections</Typography>
             </Box>

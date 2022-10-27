@@ -43,7 +43,7 @@ const ManageProductRow = ({ product, setDeletingProduct }) => {
                         <AiFillEdit />
                     </IconButton>
 
-                    <label className=' hover:bg-gray-200 text-gray-500 rounded-3xl flex items-center px-2 hover:cursor-pointer hover:text-red-500' onClick={() => setDeletingProduct(product)} for="delete-confirm-modal">
+                    <label className=' hover:bg-gray-200 text-gray-500 rounded-3xl flex items-center px-2 hover:cursor-pointer hover:text-red-500' onClick={() => setDeletingProduct(product)} htmlFor="delete-confirm-modal">
                         <span className='text-2xl'><MdDelete /></span>
                     </label>
                 </div>

@@ -72,7 +72,7 @@ const SingleOrderRow = ({ order, setDeletingProduct, refetch }) => {
                 }
             </td>
             <td className="py-4 px-6">
-                <label className='w-2/3 hover:bg-gray-200 text-gray-500 rounded-3xl flex justify-center items-center hover:cursor-pointer hover:text-red-500 py-1' onClick={() => setDeletingProduct(order)} for="delete-confirm-modal">
+                <label className='w-2/3 hover:bg-gray-200 text-gray-500 rounded-3xl flex justify-center items-center hover:cursor-pointer hover:text-red-500 py-1' onClick={() => setDeletingProduct(order)} htmlFor="delete-confirm-modal">
                     <span className='text-2xl'><MdDelete /></span>
                 </label>
             </td>

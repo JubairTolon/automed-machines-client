@@ -76,9 +76,9 @@ const AddAProduct = ({ refetch }) => {
                     <input
                         type="text"
                         {...register("name")}
-                        class="block p-2 w-full text-gray-700 bg-gray-50 rounded-md border border-gray-300 text-sm dark:bg-gray-700 dark:border-gray-600" placeholder='product name' required />
+                        className="block p-2 w-full text-gray-700 bg-gray-50 rounded-md border border-gray-300 text-sm dark:bg-gray-700 dark:border-gray-600" placeholder='product name' required />
                 </div>
-                <div class="mb-4 flex gap-2">
+                <div className="mb-4 flex gap-2">
                     <select defaultValue="default"
                         {...register("category")}
                         className='bg-gray-50 border border-gray-300 text-gray-600 text-sm w-1/2 p-2.5 dark:bg-gray-700 rounded-md dark:text-white' required>
@@ -101,7 +101,7 @@ const AddAProduct = ({ refetch }) => {
                         <option>Mercury Black</option>
                     </select>
                 </div>
-                <div class="mb-4 flex gap-2">
+                <div className="mb-4 flex gap-2">
                     <select defaultValue="default"
                         {...register("brand")}
                         className='bg-gray-50 border border-gray-300 text-gray-600 text-sm w-1/2 p-2.5 dark:bg-gray-700 rounded-md dark:text-white' required>
@@ -123,19 +123,19 @@ const AddAProduct = ({ refetch }) => {
                     <input
                         type="number"
                         {...register("avaiableQuentty")}
-                        class="block p-2 w-1/2 text-gray-700 bg-gray-50 rounded-md border border-gray-300 text-sm dark:bg-gray-700 dark:border-gray-600" placeholder='available quantity' required />
+                        className="block p-2 w-1/2 text-gray-700 bg-gray-50 rounded-md border border-gray-300 text-sm dark:bg-gray-700 dark:border-gray-600" placeholder='available quantity' required />
                 </div>
-                <div class="mb-4 flex gap-2">
+                <div className="mb-4 flex gap-2">
                     <input
                         type="number"
                         {...register("minOrder")}
-                        class="block p-2 w-1/2 text-gray-700 bg-gray-50 rounded-md border border-gray-300 text-sm dark:bg-gray-700 dark:border-gray-600" placeholder='miminum order' required />
+                        className="block p-2 w-1/2 text-gray-700 bg-gray-50 rounded-md border border-gray-300 text-sm dark:bg-gray-700 dark:border-gray-600" placeholder='miminum order' required />
                     <input
                         type="number"
                         {...register("price")}
-                        class="block p-2 w-1/2 text-gray-700 bg-gray-50 rounded-md border border-gray-300 text-sm dark:bg-gray-700 dark:border-gray-600" placeholder='price' required />
+                        className="block p-2 w-1/2 text-gray-700 bg-gray-50 rounded-md border border-gray-300 text-sm dark:bg-gray-700 dark:border-gray-600" placeholder='price' required />
                 </div>
-                <div class="mb-4 flex gap-2">
+                <div className="mb-4 flex gap-2">
                     <select defaultValue="default"
                         {...register("status")}
                         className='bg-gray-50 border border-gray-300 text-gray-600 text-sm w-1/2 p-2.5 dark:bg-gray-700 rounded-md dark:text-white' required>
@@ -146,10 +146,10 @@ const AddAProduct = ({ refetch }) => {
                     <input
                         type="number"
                         {...register("offer")}
-                        class="block p-2 w-1/2 text-gray-700 bg-gray-50 rounded-md border border-gray-300 text-sm dark:bg-gray-700 dark:border-gray-600" placeholder='offer' required />
+                        className="block p-2 w-1/2 text-gray-700 bg-gray-50 rounded-md border border-gray-300 text-sm dark:bg-gray-700 dark:border-gray-600" placeholder='offer' required />
                 </div>
 
-                <div class="mb-4 flex gap-2">
+                <div className="mb-4 flex gap-2">
                     <select defaultValue="default"
                         {...register("tag")}
                         className='bg-gray-50 border border-gray-300 text-gray-600 text-sm w-1/2 p-2.5 dark:bg-gray-700 rounded-md dark:text-white' required>
@@ -169,22 +169,22 @@ const AddAProduct = ({ refetch }) => {
                     <input
                         type="number"
                         {...register("shipping")}
-                        class="block p-2 w-1/2 text-gray-700 bg-gray-50 rounded-md border border-gray-300 text-sm dark:bg-gray-700 dark:border-gray-600" placeholder='shipping cost' required />
+                        className="block p-2 w-1/2 text-gray-700 bg-gray-50 rounded-md border border-gray-300 text-sm dark:bg-gray-700 dark:border-gray-600" placeholder='shipping cost' required />
                 </div>
-                <div class="mb-4 flex gap-2">
+                <div className="mb-4 flex gap-2">
                     <textarea
                         {...register("description")}
                         name='description'
                         rows="4"
-                        class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white" placeholder="produc description..." required></textarea>
+                        className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white" placeholder="produc description..." required></textarea>
                 </div>
-                <div class="mb-4 flex justify-between">
+                <div className="mb-4 flex justify-between">
                     <div>
                         <input
                             {...register("picture")}
                             type="file"
-                            class="text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" accept="image/*" />
-                        <div class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="user_avatar_help">This picture will show as product photo.</div>
+                            className="text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" accept="image/*" />
+                        <div className="mt-1 text-sm text-gray-500 dark:text-gray-300" id="user_avatar_help">This picture will show as product photo.</div>
                     </div>
                     <input className='btn btn-primary w-1/6' type="submit" value="Add product" />
                 </div>

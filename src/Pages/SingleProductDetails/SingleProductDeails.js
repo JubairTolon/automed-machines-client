@@ -75,7 +75,6 @@ const SingleProductDeails = ({ products }) => {
     })
     const pictures = imgs[0];
 
-
     //count rating
     let totalRating = 0;
     if (reviews) {
@@ -214,8 +213,8 @@ const SingleProductDeails = ({ products }) => {
                                             {pr.userImg ?
                                                 <img className="w-9 h-9 rounded-full" src={pr.userImg} alt="profile" />
                                                 :
-                                                <div class="overflow-hidden relative w-10 h-10 bg-gray-100 rounded-full dark:bg-gray-600">
-                                                    <svg class="absolute -left-1 w-12 h-12 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
+                                                <div className="overflow-hidden relative w-10 h-10 bg-gray-100 rounded-full dark:bg-gray-600">
+                                                    <svg className="absolute -left-1 w-12 h-12 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd"></path></svg>
                                                 </div>
                                             }
                                             <div className="space-y-0.5 font-medium dark:text-white text-left">
@@ -245,19 +244,19 @@ const SingleProductDeails = ({ products }) => {
                             <input
                                 type="text"
                                 {...register("title")}
-                                class="block p-2 w-full text-gray-700 bg-gray-50 rounded-md border border-gray-300 text-sm dark:bg-gray-700 dark:border-gray-600" placeholder='title of review' required />
+                                className="block p-2 w-full text-gray-700 bg-gray-50 rounded-md border border-gray-300 text-sm dark:bg-gray-700 dark:border-gray-600" placeholder='title of review' required />
                         </div>
                         <div>
                             <textarea
                                 {...register("review")}
                                 rows="4"
-                                class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white" placeholder="produc description..." required></textarea>
+                                className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white" placeholder="produc description..." required></textarea>
                         </div>
                         <button type="submit" className="text-white bg-orange-500 hover:bg-orange-400 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mt-4">Submit</button>
                     </form>
                 </div>
             </div>
-            <div className='w-2/3 mx-16 lg:mx-0 my-12 bg-zinc-100 p-10 rounded'>
+            <div className='lg:w-2/3 w-5/6 mx-16 lg:mx-auto my-12 bg-zinc-100 p-10 rounded'>
                 <h1 className='text-3xl text-gray-600 mb-10 font-semibold'>Releted Product</h1>
                 <div className='grid grid-cols-2 lg:grid-cols-4 gap-3'>
                     {

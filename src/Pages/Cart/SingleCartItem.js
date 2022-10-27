@@ -6,12 +6,12 @@ import './Item.css'
 
 const SingleCartItem = ({ product, handleRemoveCartItem }) => {
 
-    const quantity = product.quantity + product.minOrder;
+    const quantity = product.minOrder;
 
     return (
         <tr className="bg-white border-b text-center dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
             <td>
-                <img className='mx-auto' width='40%' src={product.pictures.img1} alt="" />
+                <img className='mx-auto' width='40%' src={product.pictures?.img1} alt="" />
             </td>
             <th className="font-md text-gray-700 whitespace-nowrap dark:text-white">
                 {product?.name}

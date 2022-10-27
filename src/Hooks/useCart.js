@@ -23,7 +23,7 @@ const useCart = (products) => {
     let quantity = 0;
 
     cart?.map(product => {
-        quantity = quantity + product.minOrder;
+        quantity = product.minOrder;
         subTotal = subTotal + (product.price * product.minOrder);
         total = subTotal.toFixed(2);
         return [subTotal, total, quantity];

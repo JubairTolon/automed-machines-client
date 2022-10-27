@@ -65,7 +65,7 @@ const UpdateProduct = () => {
         <div>
             <div className='m-10 bg-zinc-200 rounded-md flex'>
                 <div className='w-1/3'>
-                    <img src={product.pictures?.img1} alt="" />
+                    <img src={product?.pictures?.img1} alt="" />
                 </div>
                 <div className='my-6 mx-6 w-full'>
                     <form className='w-full' onSubmit={handleSubmit(onSubmit)}>
@@ -73,15 +73,15 @@ const UpdateProduct = () => {
                             <input
                                 type="text"
                                 {...register("name")}
-                                class="block p-2 w-full text-gray-700 bg-gray-50 rounded-md border border-gray-300 text-sm dark:bg-gray-700 dark:border-gray-600" placeholder='product name' required />
+                                className="block p-2 w-full text-gray-700 bg-gray-50 rounded-md border border-gray-300 text-sm dark:bg-gray-700 dark:border-gray-600" placeholder='product name' required />
                         </div>
-                        <div class="mb-4 flex justify-between">
+                        <div className="mb-4 flex justify-between">
                             <div>
                                 <input
                                     {...register("picture")}
                                     type="file"
-                                    class="text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" accept="image/*" />
-                                <div class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="user_avatar_help">This picture will show as product photo.</div>
+                                    className="text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" accept="image/*" />
+                                <div className="mt-1 text-sm text-gray-500 dark:text-gray-300" id="user_avatar_help">This picture will show as product photo.</div>
                             </div>
                             <input className='btn btn-primary w-1/6' type="submit" value="Update product" />
                         </div>

@@ -6,7 +6,7 @@ import { RemoveItemContext } from '../../App';
 
 const NavCartSingleItem = ({ item }) => {
     const handleRemoveCartItem = useContext(RemoveItemContext)
-    const quantity = item?.minOrder + item?.quantity
+    const quantity = item.minOrder
     return (
         <div className='flex gap-2 items-center text-center px-2 my-0.5  bg-base-100 rounded py-2 h-20 justify-between'>
             <div className='rounded w-24 '><img className='rounded-lg p-4' src={item?.pictures.img1} alt="" /></div>

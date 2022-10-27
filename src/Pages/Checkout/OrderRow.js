@@ -1,7 +1,7 @@
 import React from 'react';
 
 const OrderRow = ({ item, no }) => {
-    const quantity = item.minOrder + item.quantity;
+    const quantity = item.minOrder;
     const price = quantity * item.price;
 
     return (

@@ -8,12 +8,15 @@ import './Nav.css'
 import auth from '../../firebase.init';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { signOut } from 'firebase/auth';
-import SearchBar from './SearchBar';
 import Loading from './Loading';
 import { useQuery } from 'react-query';
+import { useState } from "react";
 
 const Nav = ({ cart, subTotal, products }) => {
     const [user] = useAuthState(auth);
+    const [filteredData, setFilteredData] = useState([]);
+    const [wordEntered, setWordEntered] = useState("");
+
     const email = user?.email;
     const { data: currentUser, isLoading, refetch } = useQuery(['user', user], () =>
         fetch(`http://localhost:5000/profileInfo?user=${email}`, {
@@ -33,6 +36,20 @@ const Nav = ({ cart, subTotal, products }) => {
         localStorage.removeItem('accessToken');
     }
 
+    const handleFilter = (event) => {
+        const searchWord = event.target.value;
+        setWordEntered(searchWord);
+        const newFilter = products.filter((value) => {
+            return value.name.toLowerCase().includes(searchWord.toLowerCase());
+        });
+
+        if (searchWord === "") {
+            setFilteredData([]);
+        } else {
+            setFilteredData(newFilter);
+        }
+    };
+
     return (
         <div className=' bg-white fixed mx-auto left-0 right-0 z-20 top-0 md:top-1'>
             <nav className="bg-white border-gray-200 dark:bg-gray-900 mt-8">
@@ -42,10 +59,34 @@ const Nav = ({ cart, subTotal, products }) => {
                     </Link>
 
                     {/* search........... */}
-                    <SearchBar
-                        products={products}
-                        placeholder={'Search your product...'}
-                    ></SearchBar>
+                    <form className="items-center w-1/3">
+                        <label htmlFor="simple-search" className="sr-only">Search</label>
+                        <div className="relative w-full">
+                            <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                <svg aria-hidden="true" className="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clipRule="evenodd"></path></svg>
+                            </div>
+                            <input value={wordEntered}
+                                onChange={handleFilter} type="text" id="simple-search" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search" required="" />
+                        </div>
+                        {/* <button type="submit" className="p-2.5 ml-2 text-sm font-medium text-white bg-orange-500 rounded-lg border border-orange-500 hover:bg-orange-400 focus:ring-4 focus:outline-none focus:ring-orange-300 dark:bg-orange-500 dark:hover:bg-orange-400 dark:focus:ring-orange-300">
+                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                            <span className="sr-only">Search</span>
+                        </button> */}
+                        {filteredData.length !== 0 &&
+                            <div className="searchResult absolute z-30 rounded-md p-4 bg-white w-96 h-60 overflow-y-auto overflow-hidden mt-1">
+                                {
+                                    filteredData.map((value, key) => {
+                                        return <Link to={`/productDetails/${value._id}`} >
+                                            <div className='p-2 rounded-md hover:bg-slate-50'>
+                                                {value.name}
+                                            </div>
+                                        </Link>
+                                    })
+                                }
+                            </div>
+                        }
+                    </form>
+
                     <div className="flex items-center mt-6 lg:mt-0">
                         <Link to='/' className="flex flex-nowrap items-center mr-6 text-sm font-medium text-gray-500 dark:text-white hover:underline hover:text-red-600">Wishlist<span className='mx-1'><BsFillHeartFill /></span>({0})
                         </Link>
@@ -101,24 +142,6 @@ const Nav = ({ cart, subTotal, products }) => {
                                         <div className='my-2 hover:text-red-600 transition duration-0 hover:duration-100'>
                                             <Link to='/shop'>Shop</Link>
                                         </div>
-                                        <div className='my-2 hover:text-red-600 transition duration-0 hover:duration-100'>
-                                            <Link to='/shop'>Shop list</Link>
-                                        </div>
-                                        <div className='my-2 hover:text-red-600 transition duration-0 hover:duration-100'>
-                                            <Link to='/productDetails'>Product details</Link>
-                                        </div>
-                                        <div className='my-2 hover:text-red-600 transition duration-0 hover:duration-100'>
-                                            <Link to='/checkout'>Checkout</Link>
-                                        </div>
-                                        <div className='my-2 hover:text-red-600 transition duration-0 hover:duration-100'>
-                                            <Link to='/cart'>Cart</Link>
-                                        </div>
-                                        <div className='my-2 hover:text-red-600 transition duration-0 hover:duration-100'>
-                                            <Link to='/wishlist'>Wishlist</Link>
-                                        </div>
-                                        <div className='my-2 hover:text-red-600 transition duration-0 hover:duration-100'>
-                                            <Link to='/account'>My account</Link>
-                                        </div>
                                     </ul>
                                 </li>
                                 <li tabIndex="0">
@@ -128,10 +151,10 @@ const Nav = ({ cart, subTotal, products }) => {
                                     </Link>
                                     <ul className="p-2 bg-gray-50 w-40">
                                         <div className='my-2 hover:text-red-600 transition duration-0 hover:duration-100'>
-                                            <Link to='/shop'>Blog</Link>
+                                            <Link to='/blogs'>Blog</Link>
                                         </div>
                                         <div className='my-2 hover:text-red-600 transition duration-0 hover:duration-100'>
-                                            <Link to='/shop'>Blog details</Link>
+                                            <Link to='/blogs'>Blog details</Link>
                                         </div>
                                     </ul>
                                 </li>
@@ -206,22 +229,7 @@ const Nav = ({ cart, subTotal, products }) => {
                                     <li tabIndex="0">
                                         <Link to='/dashboard' className="justify-between">
                                             Dashboard
-                                            <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
                                         </Link>
-                                        <ul className="p-2 bg-gray-50 w-40">
-                                            <div className='my-2 hover:text-red-600 transition duration-0 hover:duration-100'>
-                                                <Link to='/addProduct'>Products</Link>
-                                            </div>
-                                            <div className='my-2 hover:text-red-600 transition duration-0 hover:duration-100'>
-                                                <Link to='/addProduct'>Add a product</Link>
-                                            </div>
-                                            <div className='my-2 hover:text-red-600 transition duration-0 hover:duration-100'>
-                                                <Link to='/addProduct'>Users</Link>
-                                            </div>
-                                            <div className='my-2 hover:text-red-600 transition duration-0 hover:duration-100'>
-                                                <Link to='/addProduct'>Orders</Link>
-                                            </div>
-                                        </ul>
                                     </li>
                                 }
                             </ul>
@@ -240,24 +248,6 @@ const Nav = ({ cart, subTotal, products }) => {
                                     <div className='my-2 hover:text-red-600 transition duration-0 hover:duration-100 font-medium'>
                                         <Link to='/shop'>Shop</Link>
                                     </div>
-                                    <div className='my-2 hover:text-red-600 transition duration-0 hover:duration-100 font-medium'>
-                                        <Link to='/shop'>Shop list</Link>
-                                    </div>
-                                    <div className='my-2 hover:text-red-600 transition duration-0 hover:duration-100 font-medium'>
-                                        <Link to='/productDetails'>Product details</Link>
-                                    </div>
-                                    <div className='my-2 hover:text-red-600 transition duration-0 hover:duration-100 font-medium'>
-                                        <Link to='/checkout'>Checkout</Link>
-                                    </div>
-                                    <div className='my-2 hover:text-red-600 transition duration-0 hover:duration-100 font-medium'>
-                                        <Link to='/cart'>Cart</Link>
-                                    </div>
-                                    <div className='my-2 hover:text-red-600 transition duration-0 hover:duration-100 font-medium'>
-                                        <Link to='/wishlist'>Wishlist</Link>
-                                    </div>
-                                    <div className='my-2 hover:text-red-600 transition duration-0 hover:duration-100 font-medium'>
-                                        <Link to='/account'>My account</Link>
-                                    </div>
                                 </ul>
                             </li>
                             <li tabIndex="0">
@@ -267,10 +257,10 @@ const Nav = ({ cart, subTotal, products }) => {
                                 </Link>
                                 <ul className="p-2 bg-gray-50 rounded w-40 shadow-md">
                                     <div className='my-2 hover:text-red-600 transition duration-0 hover:duration-100 font-medium'>
-                                        <Link to='/blog'>Blog</Link>
+                                        <Link to='/blogs'>Blog</Link>
                                     </div>
                                     <div className='my-2 hover:text-red-600 transition duration-0 hover:duration-100 font-medium'>
-                                        <Link to='/blog'>Blog details</Link>
+                                        <Link to='/blogs'>Blog details</Link>
                                     </div>
                                 </ul>
                             </li>
@@ -344,22 +334,7 @@ const Nav = ({ cart, subTotal, products }) => {
                                 <li tabIndex="0">
                                     <Link to='/dashboard' className="justify-between">
                                         Dashboard
-                                        <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" /></svg>
                                     </Link>
-                                    <ul className="p-2 bg-gray-50 w-40">
-                                        <div className='my-2 hover:text-red-600 transition duration-0 hover:duration-100'>
-                                            <Link to='/addProduct'>Products</Link>
-                                        </div>
-                                        <div className='my-2 hover:text-red-600 transition duration-0 hover:duration-100'>
-                                            <Link to='/addProduct'>Add a product</Link>
-                                        </div>
-                                        <div className='my-2 hover:text-red-600 transition duration-0 hover:duration-100'>
-                                            <Link to='/addProduct'>Users</Link>
-                                        </div>
-                                        <div className='my-2 hover:text-red-600 transition duration-0 hover:duration-100'>
-                                            <Link to='/addProduct'>Orders</Link>
-                                        </div>
-                                    </ul>
                                 </li>
                             }
                         </ul>
@@ -367,8 +342,8 @@ const Nav = ({ cart, subTotal, products }) => {
 
                     {/* address */}
                     <div className="navbar-end">
-                        <select className="select select-ghost border-none active:bg-none focus:outline-none max-w-xs">
-                            <option disabled selected>Language</option>
+                        <select defaultValue={'default'} className="select select-ghost border-none active:bg-none focus:outline-none max-w-xs">
+                            <option value='default' disabled>Language</option>
                             <option>English</option>
                             <option>Francis</option>
                             <option>Germany</option>
@@ -388,8 +363,8 @@ const Nav = ({ cart, subTotal, products }) => {
                                                 {
                                                     currentUser[0]?.img ? <img className="w-9 h-9 rounded-full" src={currentUser[0]?.img} alt="profile" />
                                                         :
-                                                        <div class="overflow-hidden relative w-10 h-10 bg-gray-100 rounded-full dark:bg-gray-600">
-                                                            <svg class="absolute -left-1 w-12 h-12 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
+                                                        <div className="overflow-hidden relative w-10 h-10 bg-gray-100 rounded-full dark:bg-gray-600">
+                                                            <svg className="absolute -left-1 w-12 h-12 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd"></path></svg>
                                                         </div>
                                                 }
                                                 <h1 className='text-md text-purple-500 font-semibold'>{user?.displayName}</h1>

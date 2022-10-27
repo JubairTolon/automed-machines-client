@@ -78,16 +78,16 @@ const Checkout = ({ cart, total, quantity }) => {
                         <Typography sx={{ fontSize: '12px', borderBottom: 2 }}>Do you have any cupon ?</Typography>
                     </AccordionSummary>
                     <AccordionDetails className=''>
-                        <Typography>
-                            <form className="flex items-center w-2/4 justify-center my-2">
-                                <label for="simple-cupon" className="sr-only">cupon</label>
-                                <div className="relative w-full flex justify-center">
-                                    <input type="text" id="simple-cupon" className="bg-gray-50 mr-4 text-gray-900 text-sm rounded-lg block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="cupon" required />
 
-                                    <button type="button" className="text-white bg-purple-500 rounded-3xl text-md px-5 py-2.5 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">Apply</button>
-                                </div>
-                            </form>
-                        </Typography>
+                        <form className="flex items-center w-2/4 justify-center my-2">
+                            <label htmlFor="simple-cupon" className="sr-only">cupon</label>
+                            <div className="relative w-full flex justify-center">
+                                <input type="text" id="simple-cupon" className="bg-gray-50 mr-4 text-gray-900 text-sm rounded-lg block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="cupon" required />
+
+                                <button type="button" className="text-white bg-purple-500 rounded-3xl text-md px-5 py-2.5 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">Apply</button>
+                            </div>
+                        </form>
+
                     </AccordionDetails>
                 </Accordion>
             </div>
@@ -118,50 +118,50 @@ const Checkout = ({ cart, total, quantity }) => {
                             <input
                                 type="text"
                                 {...register("name")}
-                                class="block p-2 w-full text-gray-700 bg-gray-50 rounded-md border border-gray-300 text-sm dark:bg-gray-700 dark:border-gray-600" placeholder='your name' required />
+                                className="block p-2 w-full text-gray-700 bg-gray-50 rounded-md border border-gray-300 text-sm dark:bg-gray-700 dark:border-gray-600" placeholder='your name' required />
                         </div>
                         <div>
                             <input
                                 type="text"
                                 {...register("company")}
-                                class="block p-2 w-full text-gray-700 bg-gray-50 rounded-md border border-gray-300 text-sm dark:bg-gray-700 dark:border-gray-600" placeholder='company' required />
+                                className="block p-2 w-full text-gray-700 bg-gray-50 rounded-md border border-gray-300 text-sm dark:bg-gray-700 dark:border-gray-600" placeholder='company' required />
                         </div>
                         <div>
                             <input
                                 type="tel"
                                 {...register("phone")}
-                                class="block p-2 w-full text-gray-700 bg-gray-50 rounded-md border border-gray-300 text-sm dark:bg-gray-700 dark:border-gray-600" placeholder='phone' required />
+                                className="block p-2 w-full text-gray-700 bg-gray-50 rounded-md border border-gray-300 text-sm dark:bg-gray-700 dark:border-gray-600" placeholder='phone' required />
                         </div>
                         <div>
                             <input
                                 type="text"
                                 {...register("address")}
-                                class="block p-2 w-full text-gray-700 bg-gray-50 rounded-md border border-gray-300 text-sm dark:bg-gray-700 dark:border-gray-600" placeholder='address' required />
+                                className="block p-2 w-full text-gray-700 bg-gray-50 rounded-md border border-gray-300 text-sm dark:bg-gray-700 dark:border-gray-600" placeholder='address' required />
                         </div>
                         <div>
                             <input
                                 type="text"
                                 {...register("city")}
-                                class="block p-2 w-full text-gray-700 bg-gray-50 rounded-md border border-gray-300 text-sm dark:bg-gray-700 dark:border-gray-600" placeholder='city' required />
+                                className="block p-2 w-full text-gray-700 bg-gray-50 rounded-md border border-gray-300 text-sm dark:bg-gray-700 dark:border-gray-600" placeholder='city' required />
                         </div>
                     </div>
                     <div className="mb-6">
                         <input
                             type="text"
                             {...register("state")}
-                            class="block p-2 w-full text-gray-700 bg-gray-50 rounded-md border border-gray-300 text-sm dark:bg-gray-700 dark:border-gray-600" placeholder='state' required />
+                            className="block p-2 w-full text-gray-700 bg-gray-50 rounded-md border border-gray-300 text-sm dark:bg-gray-700 dark:border-gray-600" placeholder='state' required />
                     </div>
                     <div className="mb-6">
                         <input
                             type="number"
                             {...register("postcode")}
-                            class="block p-2 w-full text-gray-700 bg-gray-50 rounded-md border border-gray-300 text-sm dark:bg-gray-700 dark:border-gray-600" placeholder='post code' required />
+                            className="block p-2 w-full text-gray-700 bg-gray-50 rounded-md border border-gray-300 text-sm dark:bg-gray-700 dark:border-gray-600" placeholder='post code' required />
                     </div>
                     <div className="mb-6">
                         <input
                             type="email"
                             {...register("email")}
-                            class="block p-2 w-full text-gray-700 bg-gray-50 rounded-md border border-gray-300 text-sm dark:bg-gray-700 dark:border-gray-600" placeholder='your email' required />
+                            className="block p-2 w-full text-gray-700 bg-gray-50 rounded-md border border-gray-300 text-sm dark:bg-gray-700 dark:border-gray-600" placeholder='your email' required />
                     </div>
 
                 </div>

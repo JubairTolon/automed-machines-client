@@ -3,3 +3,7 @@
     max-height: 400px;
     overflow-y: scroll;
 }
+
+.searchResult::-webkit-scrollbar {
+    display: none;
+}

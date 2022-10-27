@@ -72,7 +72,7 @@ const Subscriptions = () => {
                                     <IconButton aria-label="delete">
                                         <span className='text-purple-500'><BsGift /></span>
                                     </IconButton>
-                                    <label className=' hover:bg-gray-200 rounded-3xl flex items-center px-2 hover:cursor-pointer text-gray-500 hover:text-red-500' onClick={() => setDeletingProduct(subscriber)} for="delete-confirm-modal">
+                                    <label className=' hover:bg-gray-200 rounded-3xl flex items-center px-2 hover:cursor-pointer text-gray-500 hover:text-red-500' onClick={() => setDeletingProduct(subscriber)} htmlFor="delete-confirm-modal">
                                         <span className='text-2xl'><MdDelete /></span>
                                     </label>
                                 </td>

@@ -4,7 +4,7 @@ import BusinsessSummary from '../Home/BusinsessSummary';
 
 const AboutMore = () => {
     return (
-        <div className='mt-32'>
+        <div className='mt-48 lg:mt-32'>
             <AboutHome></AboutHome>
             <BusinsessSummary></BusinsessSummary>
         </div>

@@ -41,7 +41,7 @@ const UserRow = ({ user, refetch, setDeletingProduct }) => {
                 {user.date}
             </td>
             <td className="py-4 px-6 gap-2 flex">
-                <label className=' hover:bg-gray-200 text-gray-500 rounded-3xl flex items-center px-2 hover:cursor-pointer hover:text-red-500' onClick={() => setDeletingProduct(user)} for="delete-confirm-modal">
+                <label className=' hover:bg-gray-200 text-gray-500 rounded-3xl flex items-center px-2 hover:cursor-pointer hover:text-red-500' onClick={() => setDeletingProduct(user)} htmlFor="delete-confirm-modal">
                     <span className='text-2xl'><MdDelete /></span>
                 </label>
                 {role !== 'admin' ?
