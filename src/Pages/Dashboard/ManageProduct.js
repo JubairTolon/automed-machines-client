@@ -7,7 +7,7 @@ import ManageProductRow from './ManageProductRow';
 
 const ManageProduct = ({ products, isLoading, refetch, search, searchHandler }) => {
     const [deletingProduct, setDeletingProduct] = useState(null);
-    const api = 'http://localhost:5000/product';
+    const api = 'https://gentle-peak-82604.herokuapp.com/product';
 
     const getSearachTerm = (event) => {
         const text = event.target.value;
@@ -17,7 +17,7 @@ const ManageProduct = ({ products, isLoading, refetch, search, searchHandler }) 
         return <Loading></Loading>
     }
     return (
-        <div className='relative'>
+        <div className='relative lg:mt-0 mt-10'>
             <div className='my-4 mb-4 sticky z-10'>
                 <h1 className='my-2 text-xl font-semibold text-purple-500'>Total Product: {products?.length}</h1>
                 <div className='flex mx-1'>

@@ -21,7 +21,7 @@ const Shop = () => {
 
     const [items, setItems] = useState(products);
     useEffect(() => {
-        fetch('http://localhost:5000/productCount')
+        fetch('https://gentle-peak-82604.herokuapp.com/productCount')
             .then(res => res.json())
             .then(data => {
                 const count = data.count;

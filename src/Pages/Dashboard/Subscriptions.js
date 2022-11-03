@@ -11,10 +11,10 @@ import Loading from '../Shared/Loading';
 
 const Subscriptions = () => {
     const [deletingProduct, setDeletingProduct] = useState(null);
-    const api = 'http://localhost:5000/subscription';
+    const api = 'https://gentle-peak-82604.herokuapp.com/subscription';
 
     const { data: subscribers, isLoading, refetch } = useQuery('subscriber', () =>
-        fetch('http://localhost:5000/subscription', {
+        fetch('https://gentle-peak-82604.herokuapp.com/subscription', {
             method: 'GET',
             headers: {
                 'authorization': `Bearer ${localStorage.getItem('accessToken')}`

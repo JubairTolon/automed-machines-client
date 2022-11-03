@@ -4,7 +4,7 @@ import wheel from '../../Assets/wheel.png'
 
 const AboutHome = () => {
     return (
-        <div className="mx-auto w-10/12 lg:w-9/12 bg-base-200 px-4 py-8 lg:py-12">
+        <div className="mx-auto w-10/12 bg-base-200 px-4 py-8 lg:py-12">
             <div className="hero-content flex-col lg:flex-row-reverse gap-12">
                 <div className="lg:text-left">
                     <h1 className='pb-12 font-bold text-lg text-orange-500'>About Us</h1>

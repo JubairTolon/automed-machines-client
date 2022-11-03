@@ -6,8 +6,8 @@ import SingleCartItem from './SingleCartItem';
 const Cart = ({ subTotal, total, cart, handleRemoveCartItem }) => {
 
     return (
-        <div className='mt-32'>
-            <div className=" w-3/5 mx-auto overflow-x-auto relative shadow-md sm:rounded-lg">
+        <div className='lg:mt-32 mt-48 my-6'>
+            <div className=" lg:w-3/5 w-5/6 mx-auto overflow-x-auto relative shadow-md sm:rounded-lg">
                 <table className="text-sm text-left text-gray-500 dark:text-gray-400">
                     <thead className="text-xs text-gray-700 text-center uppercase bg-gray-200 dark:bg-gray-700 dark:text-gray-400">
                         <tr>

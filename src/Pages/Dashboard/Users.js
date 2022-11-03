@@ -7,10 +7,10 @@ import UserRow from './UserRow';
 
 const Users = () => {
     const [deletingProduct, setDeletingProduct] = useState(null);
-    const api = 'http://localhost:5000/user';
+    const api = 'https://gentle-peak-82604.herokuapp.com/user';
 
     const { data: users, isLoading, refetch } = useQuery('user', () =>
-        fetch('http://localhost:5000/user', {
+        fetch('https://gentle-peak-82604.herokuapp.com/user', {
             method: 'GET',
             headers: {
                 'authorization': `Bearer ${localStorage.getItem('accessToken')}`

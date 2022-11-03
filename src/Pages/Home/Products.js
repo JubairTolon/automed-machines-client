@@ -94,57 +94,59 @@ const Products = ({ products }) => {
     };
 
     return (
-        <Box sx={{ marginLeft: 'auto', marginRight: 'auto', py: 4, width: '75%', backgroundColor: '#f2f2f2' }}>
-            <Box sx={{ textAlign: 'center' }}>
-                <Typography variant='h3' component="div">Our Products Collections</Typography>
+        <div className='w-10/12 mx-auto'>
+            <Box sx={{ marginLeft: 'auto', marginRight: 'auto', py: 4, width: '100%', backgroundColor: '#f2f2f2' }}>
+                <Box sx={{ textAlign: 'center' }}>
+                    <Typography variant='h3' component="div">Our Products Collections</Typography>
+                </Box>
+                <Box sx={{ marginTop: 6, borderBottom: 1, borderColor: 'divider' }}>
+                    <AntTabs value={value} onChange={handleChange} aria-label="basic tabs example">
+                        <AntTab label="New Collections" {...a11yProps(0)} />
+                        <AntTab label="Populer Collection" {...a11yProps(1)} />
+                        <AntTab label="Most Ordered" {...a11yProps(2)} />
+                    </AntTabs>
+                </Box>
+                <TabPanel value={value} index={0}>
+                    {
+                        newP?.map(product =>
+                            <Product
+                                key={product._id}
+                                product={product}
+                            ></Product>
+                        )
+                    }
+                </TabPanel>
+                <TabPanel value={value} index={1}>
+                    {
+                        popularP?.map(product =>
+                            <Product
+                                key={product._id}
+                                product={product}
+                            ></Product>
+                        )
+                    }
+                </TabPanel>
+                <TabPanel value={value} index={2}>
+                    {
+                        mostOrderedP?.map(product =>
+                            <Product
+                                key={product._id}
+                                product={product}
+                            ></Product>
+                        )
+                    }
+                </TabPanel>
+                <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                    <Link to='/shop'>
+                        <Button sx={{
+                            borderColor: '#F53005', color: '#F53005', '&:hover': {
+                                borderColor: "#F53005",
+                            },
+                        }} variant="outlined">See All Products</Button>
+                    </Link>
+                </Box>
             </Box>
-            <Box sx={{ marginTop: 6, borderBottom: 1, borderColor: 'divider' }}>
-                <AntTabs value={value} onChange={handleChange} aria-label="basic tabs example">
-                    <AntTab label="New Collections" {...a11yProps(0)} />
-                    <AntTab label="Populer Collection" {...a11yProps(1)} />
-                    <AntTab label="Most Ordered" {...a11yProps(2)} />
-                </AntTabs>
-            </Box>
-            <TabPanel value={value} index={0}>
-                {
-                    newP?.map(product =>
-                        <Product
-                            key={product._id}
-                            product={product}
-                        ></Product>
-                    )
-                }
-            </TabPanel>
-            <TabPanel value={value} index={1}>
-                {
-                    popularP?.map(product =>
-                        <Product
-                            key={product._id}
-                            product={product}
-                        ></Product>
-                    )
-                }
-            </TabPanel>
-            <TabPanel value={value} index={2}>
-                {
-                    mostOrderedP?.map(product =>
-                        <Product
-                            key={product._id}
-                            product={product}
-                        ></Product>
-                    )
-                }
-            </TabPanel>
-            <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-                <Link to='/shop'>
-                    <Button sx={{
-                        borderColor: '#F53005', color: '#F53005', '&:hover': {
-                            borderColor: "#F53005",
-                        },
-                    }} variant="outlined">See All Products</Button>
-                </Link>
-            </Box>
-        </Box>
+        </div>
     );
 }
 

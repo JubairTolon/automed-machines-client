@@ -17,7 +17,7 @@ const DashBoard = () => {
     return (
         <div className="drawer drawer-mobile mt-48 lg:mt-32">
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-            <div className="drawer-content mt-2 mx-8">
+            <div className="drawer-content mt-2 lg:mb-0 mb-10 mx-8">
                 <label htmlFor="my-drawer-2" className="btn btn-outline text-gray-500 lg:hidden ml-2 float-right text-2xl">
                     <AiOutlineMenuFold />
                 </label>
@@ -26,7 +26,7 @@ const DashBoard = () => {
             </div>
             <div className="drawer-side">
                 <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-                <ul className="menu p-4 w-40 lg:w-72 bg-orange-500 font-semibold text-white gap-3">
+                <ul className="menu p-4 w-60 lg:w-72 bg-orange-500 font-semibold text-white gap-3">
                     {/* <!-- Sidebar content here --> */}
                     <h1 className='text-2xl font-semibold bg-zinc-200 text-gray-800 rounded-md text-center py-4'>Dashboard</h1>
 

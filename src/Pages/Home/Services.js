@@ -24,7 +24,7 @@ const Services = () => {
         //         <motion.p>New Car Warranty service and repairs are also be carried out by the mechanics at Eltham Motors - be assured that your new car warranty is protected at our workshop we use genuine.</motion.p>
         //     </motion.div>
 
-        <div className='mx-auto bg-cover w-9/12 bg-no-repeat relative' style={{ height: '600px', backgroundImage: `url(${background2})` }}>
+        <div className='mx-auto bg-cover w-10/12 bg-no-repeat relative' style={{ height: '600px', backgroundImage: `url(${background2})` }}>
             <div className='opacity-80 bg-black absolute top-0 left-0 h-full w-full'></div>
             <div className='text-center mx-auto absolute w-1/2 left-0 right-0 z-10'>
                 <h1 className='text-lg font-bold text-orange-500 my-16'>Our service</h1>

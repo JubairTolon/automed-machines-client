@@ -14,7 +14,7 @@ const AllProducts = ({ products, isLoading, search, searchHandler }) => {
     }
 
     return (
-        <div className='relative'>
+        <div className='relative lg:mt-0 mt-10'>
             <div className='my-4 mb-4 sticky z-10'>
                 <h1 className='my-2 text-xl font-semibold text-purple-500'>Total Product: {products?.length}</h1>
                 <div className='flex mx-1'>

@@ -10,7 +10,7 @@ const Blogs = () => {
         <div className='mt-48 lg:mt-36'>
             <h1 className='text-4xl font-bold text-center text-purple-500'>Blogs</h1>
             <h1 className='text-md font-semibold text-center text-purple-500'>Blogs about modern web and technologies</h1>
-            <div className='flex flex-wrap justify-between gap-3 mx-10 my-10'>
+            <div className='grid lg:grid-cols-4 grid-cols-2 mx-10 gap-2 my-10'>
                 <div class="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
                     <Link to='/'>
                         <img class="rounded-t-lg" src={js} alt="" />

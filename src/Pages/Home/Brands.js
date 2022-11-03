@@ -4,7 +4,7 @@ import { SiHyundai, SiToyota, SiAudi, SiMazda, SiLamborghini, SiFord, SiBmw, SiB
 
 const Brands = () => {
     return (
-        <div className="marquee mx-auto w-10/12 lg:w-9/12">
+        <div className="marquee mx-auto w-10/12">
             <ul className="marquee-content text-7xl">
                 <li><SiHyundai /></li>
                 <li><SiAudi /></li>

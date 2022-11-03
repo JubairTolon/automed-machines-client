@@ -4,7 +4,7 @@ import auth from '../firebase.init';
 
 const useLoadReviews = () => {
     const { data: reviews, isLoading, refetch } = useQuery('review', () =>
-        fetch('http://localhost:5000/productReview', {
+        fetch('https://gentle-peak-82604.herokuapp.com/productReview', {
             method: 'GET',
             headers: {
                 'authorization': `Bearer ${localStorage.getItem('accessToken')}`

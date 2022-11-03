@@ -45,7 +45,7 @@ const AddAProduct = ({ refetch }) => {
                         review: "",
                     }
                     //send to my database
-                    fetch('http://localhost:5000/addProduct', {
+                    fetch('https://gentle-peak-82604.herokuapp.com/addProduct', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json',
@@ -70,7 +70,7 @@ const AddAProduct = ({ refetch }) => {
     };
 
     return (
-        <div>
+        <div className='lg:mt-0 mt-16'>
             <form className='my-6 px-4 bg-zinc-200 py-6 rounded-lg' onSubmit={handleSubmit(onSubmit)}>
                 <div className='mb-4'>
                     <input

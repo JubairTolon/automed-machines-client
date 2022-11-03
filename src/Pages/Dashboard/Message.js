@@ -11,10 +11,10 @@ import Loading from '../Shared/Loading';
 
 const Message = () => {
     const [deletingProduct, setDeletingProduct] = useState(null);
-    const api = 'http://localhost:5000/message';
+    const api = 'https://gentle-peak-82604.herokuapp.com/message';
 
     const { data: messages, isLoading, refetch } = useQuery('message', () =>
-        fetch('http://localhost:5000/message', {
+        fetch('https://gentle-peak-82604.herokuapp.com/message', {
             method: 'GET',
             headers: {
                 'authorization': `Bearer ${localStorage.getItem('accessToken')}`
@@ -33,7 +33,7 @@ const Message = () => {
     }
 
     return (
-        <div className='grid grid-cols-5 gap-2'>
+        <div className='grid lg:grid-cols-5 grid-cols-2 gap-2'>
             {
                 messages?.map(message => <figure
                     key={message._id}

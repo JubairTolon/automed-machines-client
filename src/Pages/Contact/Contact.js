@@ -23,7 +23,7 @@ const Contact = () => {
     const { register, formState: { errors }, handleSubmit, reset } = useForm();
 
     const { data: currentUser, isLoading } = useQuery(['user', user], () =>
-        fetch(`http://localhost:5000/profileInfo?user=${email}`, {
+        fetch(`https://gentle-peak-82604.herokuapp.com/profileInfo?user=${email}`, {
             method: 'GET',
             headers: {
                 'authorization': `Bearer ${localStorage.getItem('accessToken')}`
@@ -48,7 +48,7 @@ const Contact = () => {
             message: data.description,
         }
         console.log(message)
-        fetch('http://localhost:5000/message', {
+        fetch('https://gentle-peak-82604.herokuapp.com/message', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -76,7 +76,7 @@ const Contact = () => {
     //         email: event.target.email.value,
     //         message: event.target.message.value,
     //     }
-    //     fetch('http://localhost:5000/message', {
+    //     fetch('https://gentle-peak-82604.herokuapp.com/message', {
     //         method: 'POST',
     //         headers: {
     //             'content-type': 'application/json'

@@ -7,7 +7,7 @@ import { MdLocalPhone } from 'react-icons/md';
 
 const Banner = () => {
     return (
-        <div className="max-w-screen-xl mx-auto mt-32" style={{ backgroundImage: `url(${bannerBack})` }}>
+        <div className="w-10/12 mx-auto mt-32" style={{ backgroundImage: `url(${bannerBack})` }}>
             <div className="grid grid-flow-row lg:grid-flow-col grid-cols-1 lg:grid-cols-2 text-black items-center">
                 <div className="order-2 lg:order-1 lg:px-0 px-16 lg:my-8 my-4">
                     <div className='mb-5 text-6xl font-bold'>

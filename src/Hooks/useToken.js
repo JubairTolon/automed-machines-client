@@ -16,7 +16,7 @@ const useToken = (user) => {
                 img: photoURL
 
             }
-            fetch(`http://localhost:5000/user/${email}`, {
+            fetch(`https://gentle-peak-82604.herokuapp.com/user/${email}`, {
                 method: 'PUT',
                 headers: {
                     'content-type': 'application/json'

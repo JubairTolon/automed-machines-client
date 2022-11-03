@@ -17,7 +17,7 @@ const Footer = () => {
             date: formatedDate,
             user: event.target.email.value
         }
-        fetch('http://localhost:5000/subscription', {
+        fetch('https://gentle-peak-82604.herokuapp.com/subscription', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

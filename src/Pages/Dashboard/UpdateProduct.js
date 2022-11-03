@@ -37,7 +37,7 @@ const UpdateProduct = () => {
                     }
 
                     //send to my database
-                    fetch(`http://localhost:5000/updateProduct/${pId}`, {
+                    fetch(`https://gentle-peak-82604.herokuapp.com/updateProduct/${pId}`, {
                         method: 'PATCH',
                         headers: {
                             'content-type': 'application/json',
@@ -63,17 +63,17 @@ const UpdateProduct = () => {
 
     return (
         <div>
-            <div className='m-10 bg-zinc-200 rounded-md flex'>
+            <div className='lg:flex block'>
                 <div className='w-1/3'>
                     <img src={product?.pictures?.img1} alt="" />
                 </div>
-                <div className='my-6 mx-6 w-full'>
-                    <form className='w-full' onSubmit={handleSubmit(onSubmit)}>
+                <div className='w-full py-5 bg-zinc-200 rounded-md'>
+                    <form className='w-5/6 mt-6 ml-6' onSubmit={handleSubmit(onSubmit)}>
                         <div className='mb-4'>
                             <input
                                 type="text"
                                 {...register("name")}
-                                className="block p-2 w-full text-gray-700 bg-gray-50 rounded-md border border-gray-300 text-sm dark:bg-gray-700 dark:border-gray-600" placeholder='product name' required />
+                                className="block p-2 lg:w-full w-2/3 text-gray-700 bg-gray-50 rounded-md border border-gray-300 text-sm dark:bg-gray-700 dark:border-gray-600" placeholder='product name' required />
                         </div>
                         <div className="mb-4 flex justify-between">
                             <div>
@@ -83,7 +83,7 @@ const UpdateProduct = () => {
                                     className="text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" accept="image/*" />
                                 <div className="mt-1 text-sm text-gray-500 dark:text-gray-300" id="user_avatar_help">This picture will show as product photo.</div>
                             </div>
-                            <input className='btn btn-primary w-1/6' type="submit" value="Update product" />
+                            <input className='btn btn-primary lg:w-1/6 w-2/6' type="submit" value="Update product" />
                         </div>
                     </form>
                 </div>

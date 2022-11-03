@@ -16,7 +16,7 @@ const SingleOrderRow = ({ order, setDeletingProduct, refetch }) => {
             toast.error('Orderis not paid');
         }
         else {
-            fetch(`http://localhost:5000/orderShip/${id}`, {
+            fetch(`https://gentle-peak-82604.herokuapp.com/orderShip/${id}`, {
                 method: 'PATCH',
                 headers: {
                     'content-type': 'application/json',

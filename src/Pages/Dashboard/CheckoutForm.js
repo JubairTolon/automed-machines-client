@@ -16,7 +16,7 @@ const CheckoutForm = ({ sOrder }) => {
     const [clientSecret, setClientSecret] = useState('');
 
     useEffect(() => {
-        fetch('http://localhost:5000/create-payment-intent', {
+        fetch('https://gentle-peak-82604.herokuapp.com/create-payment-intent', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -94,7 +94,7 @@ const CheckoutForm = ({ sOrder }) => {
                 transactionId: paymentIntent.id,
             }
 
-            fetch(`http://localhost:5000/order/${_id}`, {
+            fetch(`https://gentle-peak-82604.herokuapp.com/order/${_id}`, {
                 method: 'PATCH',
                 headers: {
                     'content-type': 'application/json',
