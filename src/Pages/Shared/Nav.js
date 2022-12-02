@@ -19,7 +19,7 @@ const Nav = ({ cart, subTotal, products }) => {
 
     const email = user?.email;
     const { data: currentUser, isLoading, refetch } = useQuery(['user', user], () =>
-        fetch(`https://gentle-peak-82604.herokuapp.com/profileInfo?user=${email}`, {
+        fetch(`https://automed-machines-server.vercel.app/profileInfo?user=${email}`, {
             method: 'GET',
             headers: {
                 'authorization': `Bearer ${localStorage.getItem('accessToken')}`

@@ -11,10 +11,10 @@ import Loading from '../Shared/Loading';
 
 const Subscriptions = () => {
     const [deletingProduct, setDeletingProduct] = useState(null);
-    const api = 'https://gentle-peak-82604.herokuapp.com/subscription';
+    const api = 'https://automed-machines-server.vercel.app/subscription';
 
     const { data: subscribers, isLoading, refetch } = useQuery('subscriber', () =>
-        fetch('https://gentle-peak-82604.herokuapp.com/subscription', {
+        fetch('https://automed-machines-server.vercel.app/subscription', {
             method: 'GET',
             headers: {
                 'authorization': `Bearer ${localStorage.getItem('accessToken')}`

@@ -37,7 +37,7 @@ const UpdateProduct = () => {
                     }
 
                     //send to my database
-                    fetch(`https://gentle-peak-82604.herokuapp.com/updateProduct/${pId}`, {
+                    fetch(`https://automed-machines-server.vercel.app/updateProduct/${pId}`, {
                         method: 'PATCH',
                         headers: {
                             'content-type': 'application/json',

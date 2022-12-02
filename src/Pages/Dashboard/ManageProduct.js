@@ -7,7 +7,7 @@ import ManageProductRow from './ManageProductRow';
 
 const ManageProduct = ({ products, isLoading, refetch, search, searchHandler }) => {
     const [deletingProduct, setDeletingProduct] = useState(null);
-    const api = 'https://gentle-peak-82604.herokuapp.com/product';
+    const api = 'https://automed-machines-server.vercel.app/product';
 
     const getSearachTerm = (event) => {
         const text = event.target.value;

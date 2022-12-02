@@ -16,7 +16,7 @@ const useToken = (user) => {
                 img: photoURL
 
             }
-            fetch(`https://gentle-peak-82604.herokuapp.com/user/${email}`, {
+            fetch(`https://automed-machines-server.vercel.app/user/${email}`, {
                 method: 'PUT',
                 headers: {
                     'content-type': 'application/json'

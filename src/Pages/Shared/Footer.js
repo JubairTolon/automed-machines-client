@@ -17,7 +17,7 @@ const Footer = () => {
             date: formatedDate,
             user: event.target.email.value
         }
-        fetch('https://gentle-peak-82604.herokuapp.com/subscription', {
+        fetch('https://automed-machines-server.vercel.app/subscription', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

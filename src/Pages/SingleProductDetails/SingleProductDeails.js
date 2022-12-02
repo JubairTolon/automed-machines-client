@@ -33,7 +33,7 @@ const SingleProductDeails = ({ products }) => {
     const [takeRating, setTakeRating] = useState(null);
 
     const { data: currentUser } = useQuery('user', () =>
-        fetch(`https://gentle-peak-82604.herokuapp.com/profileInfo?user=${email}`, {
+        fetch(`https://automed-machines-server.vercel.app/profileInfo?user=${email}`, {
             method: 'GET',
             headers: {
                 'authorization': `Bearer ${localStorage.getItem('accessToken')}`
@@ -44,7 +44,7 @@ const SingleProductDeails = ({ products }) => {
     )
 
     const { data: product, isLoading } = useQuery(['product', pId], () =>
-        fetch(`https://gentle-peak-82604.herokuapp.com/product/${pId}`, {
+        fetch(`https://automed-machines-server.vercel.app/product/${pId}`, {
             method: 'GET',
             headers: {
                 'authorization': `Bearer ${localStorage.getItem('accessToken')}`
@@ -52,7 +52,7 @@ const SingleProductDeails = ({ products }) => {
         }).then(res => res.json()));
 
     const { data: reviews, refetch } = useQuery(['review', pId], () =>
-        fetch(`https://gentle-peak-82604.herokuapp.com/review/${pId}`, {
+        fetch(`https://automed-machines-server.vercel.app/review/${pId}`, {
             method: 'GET',
             headers: {
                 'authorization': `Bearer ${localStorage.getItem('accessToken')}`
@@ -106,7 +106,7 @@ const SingleProductDeails = ({ products }) => {
             title: data.title,
             review: data.review,
         }
-        fetch('https://gentle-peak-82604.herokuapp.com/productReview', {
+        fetch('https://automed-machines-server.vercel.app/productReview', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

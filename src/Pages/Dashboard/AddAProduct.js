@@ -45,7 +45,7 @@ const AddAProduct = ({ refetch }) => {
                         review: "",
                     }
                     //send to my database
-                    fetch('https://gentle-peak-82604.herokuapp.com/addProduct', {
+                    fetch('https://automed-machines-server.vercel.app/addProduct', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json',

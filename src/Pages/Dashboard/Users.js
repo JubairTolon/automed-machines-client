@@ -7,10 +7,10 @@ import UserRow from './UserRow';
 
 const Users = () => {
     const [deletingProduct, setDeletingProduct] = useState(null);
-    const api = 'https://gentle-peak-82604.herokuapp.com/user';
+    const api = 'https://automed-machines-server.vercel.app/user';
 
     const { data: users, isLoading, refetch } = useQuery('user', () =>
-        fetch('https://gentle-peak-82604.herokuapp.com/user', {
+        fetch('https://automed-machines-server.vercel.app/user', {
             method: 'GET',
             headers: {
                 'authorization': `Bearer ${localStorage.getItem('accessToken')}`

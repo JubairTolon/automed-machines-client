@@ -21,7 +21,7 @@ const Shop = () => {
 
     const [items, setItems] = useState(products);
     useEffect(() => {
-        fetch('https://gentle-peak-82604.herokuapp.com/productCount')
+        fetch('https://automed-machines-server.vercel.app/productCount')
             .then(res => res.json())
             .then(data => {
                 const count = data.count;

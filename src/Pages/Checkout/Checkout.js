@@ -45,7 +45,7 @@ const Checkout = ({ cart, total, quantity }) => {
                 company, customer_address, city, state, postcode, country
             }
         }
-        fetch('https://gentle-peak-82604.herokuapp.com/order', {
+        fetch('https://automed-machines-server.vercel.app/order', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

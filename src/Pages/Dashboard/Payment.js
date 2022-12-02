@@ -11,7 +11,7 @@ const Payment = () => {
     const { id } = useParams();
 
     const { data: sOrder, isLoading } = useQuery(['order', id], () =>
-        fetch(`https://gentle-peak-82604.herokuapp.com/order/${id}`, {
+        fetch(`https://automed-machines-server.vercel.app/order/${id}`, {
             method: 'GET',
             headers: {
                 'authorization': `Bearer ${localStorage.getItem('accessToken')}`

@@ -6,7 +6,7 @@ import SingleOrderRow from './SingleOrderRow';
 
 const Orders = () => {
     const [deletingProduct, setDeletingProduct] = useState(null);
-    const api = 'https://gentle-peak-82604.herokuapp.com/order';
+    const api = 'https://automed-machines-server.vercel.app/order';
 
 
     //for load all orders
