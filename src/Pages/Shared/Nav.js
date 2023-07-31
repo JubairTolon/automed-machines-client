@@ -11,6 +11,7 @@ import { signOut } from 'firebase/auth';
 import Loading from './Loading';
 import { useQuery } from 'react-query';
 import { useState } from "react";
+import AccessLink from './AccessLink';
 
 const Nav = ({ cart, subTotal, products }) => {
     const [user] = useAuthState(auth);
@@ -51,15 +52,16 @@ const Nav = ({ cart, subTotal, products }) => {
     };
 
     return (
-        <div className=' bg-white fixed mx-auto left-0 right-0 z-20 top-0 md:top-1'>
-            <nav className="bg-white border-gray-200 dark:bg-gray-900 mt-8">
-                <div className="flex flex-wrap justify-between items-center px-4 md:px-10 py-2.5 mx-auto">
-                    <Link to='/' className="flex items-center">
-                        <img src={logo} className="h-8 md:h-12 " alt="Automet logo" />
+        <div className='bg-white sticky top-0 z-20'>
+            {/* <div><AccessLink /></div> */}
+            <nav className="">
+                <div className="flex justify-between items-center px-8 py-3 mx-auto">
+                    <Link to='/'>
+                        <img src={logo} className="h-8" alt="Automet logo" />
                     </Link>
 
                     {/* search........... */}
-                    <form className="items-center w-1/3">
+                    <form className="items-center w-1/3 md:w-2/5">
                         <label htmlFor="simple-search" className="sr-only">Search</label>
                         <div className="relative w-full">
                             <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
@@ -87,13 +89,13 @@ const Nav = ({ cart, subTotal, products }) => {
                         }
                     </form>
 
-                    <div className="flex items-center mt-6 lg:mt-0">
-                        <Link to='/' className="flex flex-nowrap items-center mr-6 text-sm font-medium text-gray-500 dark:text-white hover:underline hover:text-red-600">Wishlist<span className='mx-1'><BsFillHeartFill /></span>({0})
+                    <div className="flex items-center">
+                        <Link to='/' className="flex flex-nowrap items-center mr-6 text-sm font-medium text-gray-800 hover:underline hover:text-red-600">Wishlist<span className='mx-1'><BsFillHeartFill /></span>({0})
                         </Link>
-                        <div className="indicator ">
-                            <span className="indicator-item badge badge-primary bg-orange-500 border-none">{cart.length}</span>
+                        <div className="indicator">
+                            <span className="indicator-item top-1 right-1 badge badge-primary bg-orange-500 border-none">{cart.length}</span>
                             <div className="dropdown dropdown-end">
-                                <label tabIndex="0" className="btn btn-outline btn-circle text-2xl text-gray-600">< BsCartPlusFill /></label>
+                                <label tabIndex="0" className="btn btn-md btn-outline btn-circle text-2xl md:text-xl text-gray-800">< BsCartPlusFill /></label>
                                 <ul tabIndex="0" className="dropdown-content cart-dropdown menu py-4 px-4 shadow bg-zinc-200 rounded">
                                     {
                                         cart.length === 0 ? <h1 className='text-center text-xl font-semibold  w-full mx-auto text-gray-600 my-6 '>Your cart is empty</h1> : cart?.map(item => <NavCartSingleItem
@@ -110,27 +112,25 @@ const Nav = ({ cart, subTotal, products }) => {
                                         </div>
                                     </div>
                                     {cart.length > 0 &&
-
                                         <div className='flex items-center justify-between mt-4 mb-4'>
                                             <Link to='/cart'><button className='btn btn-sm btn-primary bg-orange-500 border-none'>View Cart</button></Link>
                                             <Link to='/checkout'><button className='btn btn-sm btn-primary bg-orange-500 border-none'>Checkout</button></Link>
                                         </div>
                                     }
-
                                 </ul>
                             </div>
                         </div>
                     </div>
                 </div >
             </nav >
-            <nav className=" dark:bg-gray-700">
-                <div className="bg-gray-50 navbar pl-6 pr-8 mx-auto">
+            <nav className="">
+                <div className="bg-gray-50 navbar px-6 mx-auto">
                     <div className="navbar-start lg:hidden">
-                        <div className="dropdown">
-                            <label tabIndex="0" className="btn btn-outline text-gray-500 lg:hidden ml-2">
+                        <div className="dropdown text-white">
+                            <label tabIndex="0" className="btn bg-gray-600 btn-outline lg:hidden">
                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                             </label>
-                            <ul tabIndex="0" className="menu menu-compact dropdown-content mt-3 p-2 shadow rounded w-52 bg-gray-50">
+                            <ul tabIndex="0" className="menu menu-compact dropdown-content mt-2 p-2 shadow rounded w-52 bg-gray-600">
                                 <li><Link to='/'>Home</Link></li>
                                 <li><Link to='/aboutMore'>About</Link></li>
                                 <li tabIndex="0">
@@ -138,10 +138,8 @@ const Nav = ({ cart, subTotal, products }) => {
                                         Shop
                                         <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
                                     </Link>
-                                    <ul className="p-2 bg-gray-50 w-40">
-                                        <div className='my-2 hover:text-red-600 transition duration-0 hover:duration-100'>
-                                            <Link to='/shop'>Shop</Link>
-                                        </div>
+                                    <ul className="p-2 bg-gray-600 w-40">
+                                        <li><Link className='' to='/shop'>Shop</Link></li>
                                     </ul>
                                 </li>
                                 <li tabIndex="0">
@@ -149,13 +147,9 @@ const Nav = ({ cart, subTotal, products }) => {
                                         Blogs
                                         <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
                                     </Link>
-                                    <ul className="p-2 bg-gray-50 w-40">
-                                        <div className='my-2 hover:text-red-600 transition duration-0 hover:duration-100'>
-                                            <Link to='/blogs'>Blog</Link>
-                                        </div>
-                                        <div className='my-2 hover:text-red-600 transition duration-0 hover:duration-100'>
-                                            <Link to='/blogs'>Blog details</Link>
-                                        </div>
+                                    <ul className="p-2 bg-gray-600 w-40">
+                                        <li><Link to='/blogs'>Blog</Link></li>
+                                        <li><Link to='/blogs'>Blog details</Link></li>
                                     </ul>
                                 </li>
                                 <li><Link to='/contact'>Contact</Link></li>
@@ -166,61 +160,31 @@ const Nav = ({ cart, subTotal, products }) => {
                                         Features
                                         <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
                                     </Link>
-                                    <ul className="p-2 bg-gray-50">
+                                    <ul className="p-2 bg-gray-600">
                                         <div className='grid grid-flow-col lg:grid-flow-row gap-2 mb-4'>
-                                            <div className='w-40'>
+                                            <div className='w-28'>
                                                 <h2 className='mb-8 mt-4 text-xl'>Column-1</h2>
-                                                <div className='my-2 hover:text-red-600 transition duration-0 hover:duration-100'>
-                                                    <Link to='/shop'>Shop</Link>
-                                                </div>
-                                                <div className='my-2 hover:text-red-600 transition duration-0 hover:duration-100'>
-                                                    <Link to='/checkout'>Checkout</Link>
-                                                </div>
-                                                <div className='my-2 hover:text-red-600 transition duration-0 hover:duration-100'>
-                                                    <Link to='/cart'>Cart</Link>
-                                                </div>
-                                                <div className='my-2 hover:text-red-600 transition duration-0 hover:duration-100'>
-                                                    <Link to='/wishlist'>Wishlist</Link>
-                                                </div>
-                                                <div className='my-2 hover:text-red-600 transition duration-0 hover:duration-100'>
-                                                    <Link to='/account'>My account</Link>
-                                                </div>
+                                                <li><Link to='/shop'>Shop</Link></li>
+                                                <li><Link to='/checkout'>Checkout</Link></li>
+                                                <li><Link to='/cart'>Cart</Link></li>
+                                                <li><Link to='/wishlist'>Wishlist</Link></li>
+                                                <li><Link to='/account'>My account</Link></li>
                                             </div>
-                                            <div className='w-40'>
-                                                <h2 className='mb-8 mt-4 text-xl'>Column-2</h2>
-                                                <div className='my-2 hover:text-red-600 transition duration-0 hover:duration-100'>
-                                                    <Link to='/shop'>Shop</Link>
-                                                </div>
-                                                <div className='my-2 hover:text-red-600 transition duration-0 hover:duration-100'>
-                                                    <Link to='/checkout'>Checkout</Link>
-                                                </div>
-                                                <div className='my-2 hover:text-red-600 transition duration-0 hover:duration-100'>
-                                                    <Link to='/cart'>Cart</Link>
-                                                </div>
-                                                <div className='my-2 hover:text-red-600 transition duration-0 hover:duration-100'>
-                                                    <Link to='/wishlist'>Wishlist</Link>
-                                                </div>
-                                                <div className='my-2 hover:text-red-600 transition duration-0 hover:duration-100'>
-                                                    <Link to='/account'>My account</Link>
-                                                </div>
+                                            <div className='w-28'>
+                                                <h2 className='mb-8 mt-4 text-xl'>Column-1</h2>
+                                                <li><Link to='/shop'>Shop</Link></li>
+                                                <li><Link to='/checkout'>Checkout</Link></li>
+                                                <li><Link to='/cart'>Cart</Link></li>
+                                                <li><Link to='/wishlist'>Wishlist</Link></li>
+                                                <li><Link to='/account'>My account</Link></li>
                                             </div>
-                                            <div className='w-40'>
-                                                <h2 className='mb-8 mt-4 text-xl '>Column-3</h2>
-                                                <div className='my-2 hover:text-red-600 transition duration-0 hover:duration-100'>
-                                                    <Link to='/shop'>Shop</Link>
-                                                </div>
-                                                <div className='my-2 hover:text-red-600 transition duration-0 hover:duration-100'>
-                                                    <Link to='/checkout'>Checkout</Link>
-                                                </div>
-                                                <div className='my-2 hover:text-red-600 transition duration-0 hover:duration-100'>
-                                                    <Link to='/cart'>Cart</Link>
-                                                </div>
-                                                <div className='my-2 hover:text-red-600 transition duration-0 hover:duration-100'>
-                                                    <Link to='/wishlist'>Wishlist</Link>
-                                                </div>
-                                                <div className='my-2 hover:text-red-600 transition duration-0 hover:duration-100'>
-                                                    <Link to='/account'>My account</Link>
-                                                </div>
+                                            <div className='w-28'>
+                                                <h2 className='mb-8 mt-4 text-xl'>Column-1</h2>
+                                                <li><Link to='/shop'>Shop</Link></li>
+                                                <li><Link to='/checkout'>Checkout</Link></li>
+                                                <li><Link to='/cart'>Cart</Link></li>
+                                                <li><Link to='/wishlist'>Wishlist</Link></li>
+                                                <li><Link to='/account'>My account</Link></li>
                                             </div>
                                         </div>
                                     </ul>
@@ -245,8 +209,8 @@ const Nav = ({ cart, subTotal, products }) => {
                                     <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" /></svg>
                                 </Link>
                                 <ul className="p-2 bg-gray-50 rounded w-40 shadow-md">
-                                    <div className='my-2 hover:text-red-600 transition duration-0 hover:duration-100 font-medium'>
-                                        <Link to='/shop'>Shop</Link>
+                                    <div className='my-2 font-medium'>
+                                        <Link className='hover:text-red-600 transition duration-0 hover:duration-100' to='/shop'>Shop</Link>
                                     </div>
                                 </ul>
                             </li>
@@ -256,11 +220,11 @@ const Nav = ({ cart, subTotal, products }) => {
                                     <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" /></svg>
                                 </Link>
                                 <ul className="p-2 bg-gray-50 rounded w-40 shadow-md">
-                                    <div className='my-2 hover:text-red-600 transition duration-0 hover:duration-100 font-medium'>
-                                        <Link to='/blogs'>Blog</Link>
+                                    <div className='my-2 font-medium'>
+                                        <Link className='hover:text-red-600 transition duration-0 hover:duration-100' to='/blogs'>Blog</Link>
                                     </div>
-                                    <div className='my-2 hover:text-red-600 transition duration-0 hover:duration-100 font-medium'>
-                                        <Link to='/blogs'>Blog details</Link>
+                                    <div className='my-2 font-medium'>
+                                        <Link className='hover:text-red-600 transition duration-0 hover:duration-100' to='/blogs'>Blog details</Link>
                                     </div>
                                 </ul>
                             </li>
@@ -272,59 +236,59 @@ const Nav = ({ cart, subTotal, products }) => {
                                     <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" /></svg>
                                 </Link>
                                 <ul className="p-2 bg-gray-50 rounded shadow-md z-10 ">
-                                    <div className='grid grid-flow-col gap-8 mb-4'>
+                                    <div className='grid grid-flow-col gap-2 px-8 mb-4'>
                                         <div className='w-40'>
-                                            <h2 className='mb-8 mt-4 text-xl'>Shops</h2>
-                                            <div className='my-2 hover:text-red-600 transition duration-0 hover:duration-100 font-medium'>
-                                                <Link to='/shop'>Shop</Link>
+                                            <h2 className='mb-8 mt-4 text-xl'>Cart</h2>
+                                            <div className='my-2 font-medium'>
+                                                <Link className='hover:text-red-600 transition duration-0 hover:duration-100' to='/shop'>Shop</Link>
                                             </div>
-                                            <div className='my-2 hover:text-red-600 transition duration-0 hover:duration-100 font-medium'>
-                                                <Link to='/checkout'>Checkout</Link>
+                                            <div className='my-2 font-medium'>
+                                                <Link className='hover:text-red-600 transition duration-0 hover:duration-100' to='/checkout'>Checkout</Link>
                                             </div>
-                                            <div className='my-2 hover:text-red-600 transition duration-0 hover:duration-100 font-medium'>
-                                                <Link to='/cart'>Cart</Link>
+                                            <div className='my-2 font-medium'>
+                                                <Link className='hover:text-red-600 transition duration-0 hover:duration-100' to='/cart'>Cart</Link>
                                             </div>
-                                            <div className='my-2 hover:text-red-600 transition duration-0 hover:duration-100 font-medium'>
-                                                <Link to='/wishlist'>Wishlist</Link>
+                                            <div className='my-2 font-medium'>
+                                                <Link className='hover:text-red-600 transition duration-0 hover:duration-100' to='/wishlist'>Wishlist</Link>
                                             </div>
-                                            <div className='my-2 hover:text-red-600 transition duration-0 hover:duration-100 font-medium'>
-                                                <Link to='/account'>My account</Link>
+                                            <div className='my-2 font-medium'>
+                                                <Link className='hover:text-red-600 transition duration-0 hover:duration-100' to='/account'>My account</Link>
                                             </div>
                                         </div>
                                         <div className='w-40'>
                                             <h2 className='mb-8 mt-4 text-xl'>Cart</h2>
-                                            <div className='my-2 hover:text-red-600 transition duration-0 hover:duration-100 font-medium'>
-                                                <Link to='/shop'>Shop</Link>
+                                            <div className='my-2 font-medium'>
+                                                <Link className='hover:text-red-600 transition duration-0 hover:duration-100' to='/shop'>Shop</Link>
                                             </div>
-                                            <div className='my-2 hover:text-red-600 transition duration-0 hover:duration-100 font-medium'>
-                                                <Link to='/checkout'>Checkout</Link>
+                                            <div className='my-2 font-medium'>
+                                                <Link className='hover:text-red-600 transition duration-0 hover:duration-100' to='/checkout'>Checkout</Link>
                                             </div>
-                                            <div className='my-2 hover:text-red-600 transition duration-0 hover:duration-100 font-medium'>
-                                                <Link to='/cart'>Cart</Link>
+                                            <div className='my-2 font-medium'>
+                                                <Link className='hover:text-red-600 transition duration-0 hover:duration-100' to='/cart'>Cart</Link>
                                             </div>
-                                            <div className='my-2 hover:text-red-600 transition duration-0 hover:duration-100 font-medium'>
-                                                <Link to='/wishlist'>Wishlist</Link>
+                                            <div className='my-2 font-medium'>
+                                                <Link className='hover:text-red-600 transition duration-0 hover:duration-100' to='/wishlist'>Wishlist</Link>
                                             </div>
-                                            <div className='my-2 hover:text-red-600 transition duration-0 hover:duration-100 font-medium'>
-                                                <Link to='/account'>My account</Link>
+                                            <div className='my-2 font-medium'>
+                                                <Link className='hover:text-red-600 transition duration-0 hover:duration-100' to='/account'>My account</Link>
                                             </div>
                                         </div>
                                         <div className='w-40'>
-                                            <h2 className='mb-8 mt-4 text-xl '>About</h2>
-                                            <div className='my-2 hover:text-red-600 transition duration-0 hover:duration-100 font-medium'>
-                                                <Link to='/shop'>Shop</Link>
+                                            <h2 className='mb-8 mt-4 text-xl'>Cart</h2>
+                                            <div className='my-2 font-medium'>
+                                                <Link className='hover:text-red-600 transition duration-0 hover:duration-100' to='/shop'>Shop</Link>
                                             </div>
-                                            <div className='my-2 hover:text-red-600 transition duration-0 hover:duration-100 font-medium'>
-                                                <Link to='/checkout'>Checkout</Link>
+                                            <div className='my-2 font-medium'>
+                                                <Link className='hover:text-red-600 transition duration-0 hover:duration-100' to='/checkout'>Checkout</Link>
                                             </div>
-                                            <div className='my-2 hover:text-red-600 transition duration-0 hover:duration-100 font-medium'>
-                                                <Link to='/cart'>Cart</Link>
+                                            <div className='my-2 font-medium'>
+                                                <Link className='hover:text-red-600 transition duration-0 hover:duration-100' to='/cart'>Cart</Link>
                                             </div>
-                                            <div className='my-2 hover:text-red-600 transition duration-0 hover:duration-100 font-medium'>
-                                                <Link to='/wishlist'>Wishlist</Link>
+                                            <div className='my-2 font-medium'>
+                                                <Link className='hover:text-red-600 transition duration-0 hover:duration-100' to='/wishlist'>Wishlist</Link>
                                             </div>
-                                            <div className='my-2 hover:text-red-600 transition duration-0 hover:duration-100 font-medium'>
-                                                <Link to='/account'>My account</Link>
+                                            <div className='my-2 font-medium'>
+                                                <Link className='hover:text-red-600 transition duration-0 hover:duration-100' to='/account'>My account</Link>
                                             </div>
                                         </div>
                                     </div>
@@ -341,17 +305,17 @@ const Nav = ({ cart, subTotal, products }) => {
                     </div>
 
                     {/* address */}
-                    <div className="navbar-end">
-                        <select defaultValue={'default'} className="select select-ghost border-none active:bg-none focus:outline-none max-w-xs">
+                    <div className="navbar-end flex gap-5">
+                        {/* <select defaultValue={'default'} className="select border-none active:bg-none focus:outline-none ">
                             <option value='default' disabled>Language</option>
                             <option>English</option>
                             <option>Francis</option>
                             <option>Germany</option>
-                        </select>
+                        </select> */}
                         <div className="dropdown dropdown-end">
-                            <label tabIndex="0" className="btn btn-sm rounded text-xs m-1 flex-nowrap">Account<span className='text-md ml-2'> <AiOutlineDown /></span></label>
+                            <label tabIndex="0" className="btn btn-sm btn-primary rounded text-xs m-1 flex-nowrap text-white">Account<span className='text-md ml-2 text-white'> <AiOutlineDown /></span></label>
                             <ul tabIndex="0" className="dropdown-content menu shadow bg-base-100 rounded">
-                                <div className='grid items-center py-2 bg-gray-50'>
+                                <div className='grid items-center py-2 text-gray-800 bg-gray-50'>
                                     <div className='px-4'>
                                         <div className='w-60 mb-2'>
                                             <h2>Welcome to <Link className='font-medium hover:underline hover:decoration-2' to='/'>Automed Machines</Link></h2>
@@ -359,7 +323,7 @@ const Nav = ({ cart, subTotal, products }) => {
                                         {!currentUser || !user ?
                                             <Link to='/login'><button className='btn btn-primary btn-wide btn-sm p-2 my-2 bg-orange-500 border-none'>Login</button></Link>
                                             :
-                                            <Link to='/profile' className='flex gap-2 items-center rounded-md px-2 py-1 hover:bg-slate-200'>
+                                            <Link to='/profile' className='flex gap-2 items-center rounded-md py-1 hover:bg-slate-200'>
                                                 {
                                                     currentUser[0]?.img ? <img className="w-9 h-9 rounded-full" src={currentUser[0]?.img} alt="profile" />
                                                         :
@@ -374,12 +338,12 @@ const Nav = ({ cart, subTotal, products }) => {
                                     </div>
                                     <div className="divider m-1"></div>
                                     <div className=''>
-                                        <div className='hover:bg-gray-200 px-4 py-1'><Link to='/'>My Orders</Link></div>
-                                        <div className='hover:bg-gray-200 px-4 py-1'><Link to='/'>Message Center</Link></div>
-                                        <div className='hover:bg-gray-200 px-4 py-1'><Link to='/'>Payment</Link></div>
-                                        <div className='hover:bg-gray-200 px-4 py-1'><Link to='/'>Wishlist</Link></div>
-                                        <div className='hover:bg-gray-200 px-4 py-1'><Link to='/'>My Favourite Stories</Link></div>
-                                        <div className='hover:bg-gray-200 px-4 py-1'><Link to='/'>My Cupons</Link></div>
+                                        <div className='px-4 py-1'><Link className='hover:text-orange-500' to='/'>My orders</Link></div>
+                                        <div className='px-4 py-1'><Link className='hover:text-orange-500' to='/'>Message center</Link></div>
+                                        <div className='px-4 py-1'><Link className='hover:text-orange-500' to='/'>Payment</Link></div>
+                                        <div className='px-4 py-1'><Link className='hover:text-orange-500' to='/'>Wishlist</Link></div>
+                                        <div className='px-4 py-1'><Link className='hover:text-orange-500' to='/'>My favourite stories</Link></div>
+                                        <div className='px-4 py-1'><Link className='hover:text-orange-500' to='/'>My cupons</Link></div>
                                     </div>
                                     {user && <Link onClick={logout} to='/login'>
                                         <button className='btn btn-primary btn-wide btn-sm p-2 my-2 mx-4 bg-orange-500 border-none'>Log out</button>

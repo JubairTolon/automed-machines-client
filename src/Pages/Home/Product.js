@@ -17,20 +17,20 @@ const Product = ({ product }) => {
         navigate(`/productDetails/${id}`)
     }
     return (
-        <div className="product-container z-0  bg-white rounded-lg shadow-md text-gray-500 dark:bg-gray-800 dark:border-gray-700 relative">
+        <div className="product-container z-0 bg-white rounded-lg shadow-md text-gray-800 relative">
             <div className='hover:cursor-pointer' onClick={() => navigateToDetailsPage(_id)}>
                 {
                     status && stock &&
                     <span className='bg-red-600 px-3 py-1 rounded text-white text-xs font-semibold absolute top-4 left-4'>{status}</span>
                 }
-                <div className='flex justify-center h-32 mb-12 w-full'>
-                    <img className="px-4 rounded-t-lg pt-1" width='60%' alt='' src={pictures.img1} />
+                <div className='flex justify-center mb-12 w-full'>
+                    <img className="px-4 bg-none rounded-t-lg pt-1" width='60%' alt='' src={pictures.img1} />
                 </div>
                 <div className="px-4 pb-3 absolute bottom-0 w-full">
                     <div>
                         <h5 className="text-lg font-semibold tracking-tight text-gray-700 dark:text-white">{name} {color}</h5>
-                        <p>Available Quantity: {avaiableQuentty}</p>
-                        <p>Minimum Order: {minOrder}</p>
+                        <p className='text-sm text-gray-600'>Available Quantity: {avaiableQuentty}</p>
+                        <p className='text-sm text-gray-600'>Minimum Order: {minOrder}</p>
                     </div>
                     <Rating name="read-only" value={rating} readOnly />
                     <div className="flex gap-4 items-center">

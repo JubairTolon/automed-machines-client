@@ -103,7 +103,7 @@ function App() {
 
   return (
     <AddItemContext.Provider value={handleAddToCartButton}>
-      <AccessLink></AccessLink>
+      {/* <AccessLink></AccessLink> */}
       <RemoveItemContext.Provider value={handleRemoveCartItem}>
         <Nav
           products={products}
@@ -112,7 +112,7 @@ function App() {
         >
         </Nav>
       </RemoveItemContext.Provider>
-      <Breadcrumb></Breadcrumb>
+      {/* <Breadcrumb></Breadcrumb> */}
 
       <Routes>
         <Route path="/" element={

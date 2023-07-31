@@ -162,45 +162,44 @@ const Shop = () => {
 
     return (
         <div>
-
-            <div className='mt-52 lg:mt-32 flex'>
-                <div className='w-1/3 lg:w-1/5 px-5 bg-zinc-100'>
+            <div className='flex'>
+                <div className='w-1/3 lg:w-1/5 px-5 text-gray-800 bg-zinc-100'>
                     <div>
-                        <h1 className='text-gray-500 font-bold uppercase text-2xl my-4'>Vehicle Category</h1>
+                        <h1 className='font-bold uppercase text-2xl my-4'>Vehicle Category</h1>
                         <ul className=''>
-                            <li><button onClick={() => filterAllItems('All items')} className=' text-gray-600 text-lg mb-1 font-semibold focus:text-orange-500 hover:text-gray-800'>All items</button></li>
-                            <li><button onClick={() => filterCategory('Small')} className=' text-gray-600 text-lg mb-1 font-semibold focus:text-orange-500 hover:text-gray-800'>Small</button></li>
-                            <li><button onClick={() => filterCategory('Medium')} className=' text-gray-600 text-lg mb-1 font-semibold focus:text-orange-500 hover:text-gray-800'>Medium</button></li>
-                            <li><button onClick={() => filterCategory('Large')} className=' text-gray-600 text-lg mb-1 font-semibold focus:text-orange-500 hover:text-gray-800'>Large</button></li>
-                            <li><button onClick={() => filterCategory('Extra-Large')} className=' text-gray-600 text-lg mb-1 font-semibold focus:text-orange-500 hover:text-gray-800'>Extra-Large</button></li>
+                            <li><button onClick={() => filterAllItems('All items')} className=' text-gray-600 text-md mb-1 font-semibold focus:text-orange-500 hover:text-gray-800'>All items</button></li>
+                            <li><button onClick={() => filterCategory('Small')} className=' text-gray-600 text-md mb-1 font-semibold focus:text-orange-500 hover:text-gray-800'>Small</button></li>
+                            <li><button onClick={() => filterCategory('Medium')} className=' text-gray-600 text-md mb-1 font-semibold focus:text-orange-500 hover:text-gray-800'>Medium</button></li>
+                            <li><button onClick={() => filterCategory('Large')} className=' text-gray-600 text-md mb-1 font-semibold focus:text-orange-500 hover:text-gray-800'>Large</button></li>
+                            <li><button onClick={() => filterCategory('Extra-Large')} className=' text-gray-600 text-md mb-1 font-semibold focus:text-orange-500 hover:text-gray-800'>Extra-Large</button></li>
                         </ul>
                     </div>
                     <div>
-                        <h1 className='text-gray-500 font-bold uppercase text-2xl my-4'>Brands</h1>
+                        <h1 className='font-bold uppercase text-2xl my-4'>Brands</h1>
                         <ul className=''>
-                            <li><button onClick={() => filterBrand('Audi')} className=' text-gray-600 text-lg mb-1 font-semibold focus:text-orange-500 hover:text-gray-800'>Audi</button></li>
-                            <li><button onClick={() => filterBrand('BMW')} className=' text-gray-600 text-lg mb-1 font-semibold focus:text-orange-500 hover:text-gray-800'>BMW</button></li>
-                            <li><button onClick={() => filterBrand('Bentley')} className=' text-gray-600 text-lg mb-1 font-semibold focus:text-orange-500 hover:text-gray-800'>Bentley</button></li>
-                            <li><button onClick={() => filterBrand('Ford')} className=' text-gray-600 text-lg mb-1 font-semibold focus:text-orange-500 hover:text-gray-800'>Ford</button></li>
-                            <li><button onClick={() => filterBrand('Honda')} className=' text-gray-600 text-lg mb-1 font-semibold focus:text-orange-500 hover:text-gray-800'>Honda</button></li>
-                            <li><button onClick={() => filterBrand('Hyundai')} className=' text-gray-600 text-lg mb-1 font-semibold focus:text-orange-500 hover:text-gray-800'>Hyundai</button></li>
-                            <li><button onClick={() => filterBrand('Toyota')} className=' text-gray-600 text-lg mb-1 font-semibold focus:text-orange-500 hover:text-gray-800'>Toyota</button></li>
+                            <li><button onClick={() => filterBrand('Audi')} className=' text-gray-600 text-md mb-1 font-semibold focus:text-orange-500 hover:text-gray-800'>Audi</button></li>
+                            <li><button onClick={() => filterBrand('BMW')} className=' text-gray-600 text-md mb-1 font-semibold focus:text-orange-500 hover:text-gray-800'>BMW</button></li>
+                            <li><button onClick={() => filterBrand('Bentley')} className=' text-gray-600 text-md mb-1 font-semibold focus:text-orange-500 hover:text-gray-800'>Bentley</button></li>
+                            <li><button onClick={() => filterBrand('Ford')} className=' text-gray-600 text-md mb-1 font-semibold focus:text-orange-500 hover:text-gray-800'>Ford</button></li>
+                            <li><button onClick={() => filterBrand('Honda')} className=' text-gray-600 text-md mb-1 font-semibold focus:text-orange-500 hover:text-gray-800'>Honda</button></li>
+                            <li><button onClick={() => filterBrand('Hyundai')} className=' text-gray-600 text-md mb-1 font-semibold focus:text-orange-500 hover:text-gray-800'>Hyundai</button></li>
+                            <li><button onClick={() => filterBrand('Toyota')} className=' text-gray-600 text-md mb-1 font-semibold focus:text-orange-500 hover:text-gray-800'>Toyota</button></li>
                         </ul>
                     </div>
                     <div>
-                        <h1 className='text-gray-500 font-bold uppercase text-2xl my-4'>Color</h1>
+                        <h1 className='font-bold uppercase text-2xl my-4'>Color</h1>
                         <ul className=''>
-                            <li><button onClick={() => filterColor('Black')} className=' text-gray-600 text-lg mb-2 font-semibold focus:text-orange-500 hover:text-gray-800'>Black</button></li>
-                            <li><button onClick={() => filterColor('Blue')} className=' text-gray-600 text-lg mb-2 font-semibold focus:text-orange-500 hover:text-gray-800'>Blue</button></li>
-                            <li><button onClick={() => filterColor('Silver')} className=' text-gray-600 text-lg mb-2 font-semibold focus:text-orange-500 hover:text-gray-800'>Silver</button></li>
-                            <li><button onClick={() => filterColor('Yellow')} className=' text-gray-600 text-lg mb-2 font-semibold focus:text-orange-500 hover:text-gray-800'>Yellow</button></li>
-                            <li><button onClick={() => filterColor('Red')} className=' text-gray-600 text-lg mb-2 font-semibold focus:text-orange-500 hover:text-gray-800'>Red</button></li>
-                            <li><button onClick={() => filterColor('Mercury Black')} className=' text-gray-600 text-lg mb-2 font-semibold focus:text-orange-500 hover:text-gray-800'>Mercury Black</button></li>
-                            <li><button onClick={() => filterColor('White')} className=' text-gray-600 text-lg mb-2 font-semibold focus:text-orange-500 hover:text-gray-800'>White</button></li>
+                            <li><button onClick={() => filterColor('Black')} className=' text-gray-600 text-md mb-2 font-semibold focus:text-orange-500 hover:text-gray-800'>Black</button></li>
+                            <li><button onClick={() => filterColor('Blue')} className=' text-gray-600 text-md mb-2 font-semibold focus:text-orange-500 hover:text-gray-800'>Blue</button></li>
+                            <li><button onClick={() => filterColor('Silver')} className=' text-gray-600 text-md mb-2 font-semibold focus:text-orange-500 hover:text-gray-800'>Silver</button></li>
+                            <li><button onClick={() => filterColor('Yellow')} className=' text-gray-600 text-md mb-2 font-semibold focus:text-orange-500 hover:text-gray-800'>Yellow</button></li>
+                            <li><button onClick={() => filterColor('Red')} className=' text-gray-600 text-md mb-2 font-semibold focus:text-orange-500 hover:text-gray-800'>Red</button></li>
+                            <li><button onClick={() => filterColor('Mercury Black')} className=' text-gray-600 text-md mb-2 font-semibold focus:text-orange-500 hover:text-gray-800'>Mercury Black</button></li>
+                            <li><button onClick={() => filterColor('White')} className=' text-gray-600 text-md mb-2 font-semibold focus:text-orange-500 hover:text-gray-800'>White</button></li>
                         </ul>
                     </div>
                     <div>
-                        <h1 className='text-gray-500 font-bold uppercase text-2xl mt-4'>Price</h1>
+                        <h1 className='font-bold uppercase text-2xl mt-4'>Price</h1>
                         <Slider
                             sx={{ my: 5, color: '#FF5733' }}
                             getAriaLabel={() => 'Minimum distance shift'}
@@ -216,26 +215,25 @@ const Shop = () => {
 
                     </div>
                     <div>
-                        <h1 className='text-gray-500 font-bold uppercase text-2xl my-4'>Tags</h1>
-                        <div className='flex flex-wrap gap-2'>
-                            <button onClick={() => filterTag('Car')} className='btn btn-sm btn-outline px-4 focus:text-white focus:bg-gray-800'>Car</button>
-                            <button onClick={() => filterTag('Bus')} className='btn btn-sm btn-outline px-4 focus:text-white focus:bg-gray-800'>Bus</button>
-                            <button onClick={() => filterTag('Truck')} className='btn btn-sm btn-outline px-4 focus:text-white focus:bg-gray-800'>Truck</button>
-                            <button onClick={() => filterTag('Pickup')} className='btn btn-sm btn-outline px-4 focus:text-white focus:bg-gray-800'>Pickup</button>
+                        <h1 className='font-bold uppercase text-2xl my-4'>Tags</h1>
+                        <div className='flex flex-wrap gap-2 mb-10'>
+                            <button onClick={() => filterTag('Car')} className='btn btn-sm btn-outline px-4 text-gray-800 focus:text-white focus:bg-gray-800'>Car</button>
+                            <button onClick={() => filterTag('Bus')} className='btn btn-sm btn-outline px-4 text-gray-800 focus:text-white focus:bg-gray-800'>Bus</button>
+                            <button onClick={() => filterTag('Truck')} className='btn btn-sm btn-outline px-4 text-gray-800 focus:text-white focus:bg-gray-800'>Truck</button>
+                            <button onClick={() => filterTag('Pickup')} className='btn btn-sm btn-outline px-4 text-gray-800 focus:text-white focus:bg-gray-800'>Pickup</button>
                         </div>
-
                     </div>
                 </div>
-                <div className='w-2/3 lg:w-5/6 px-2 lg:px-2'>
+                <div className='w-2/3 bg-white lg:w-5/6 px-2 lg:px-2'>
                     <div className='bg-orange-100 px-4 py-2 my-4 flex justify-between items-center'>
                         <div className='flex gap-5'>
-                            <div className='flex items-center'>
+                            <div className='flex items-center md:hidden'>
                                 <ToggleButtonGroup
                                     value={alignment}
                                     exclusive
                                     onChange={handleAlignment}
                                     aria-label="text alignment"
-                                    sx={{ color: '#494747' }}
+                                    sx={{ color: 'black' }}
                                 >
                                     <ToggleButton sx={{ fontSize: 24 }} value="items-5" aria-label="items 5">
                                         <BsFillGrid3X3GapFill />
@@ -245,7 +243,7 @@ const Shop = () => {
                                     </ToggleButton>
                                 </ToggleButtonGroup>
                             </div>
-                            <div className='flex items-center'>
+                            <div className='flex items-center text-gray-800'>
                                 <h1>Showing</h1>
                                 <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
                                     <InputLabel>Items</InputLabel>
@@ -262,7 +260,7 @@ const Shop = () => {
                                     </Select>
                                 </FormControl>
                             </div>
-                            <div className='flex items-center'>
+                            <div className='flex items-center text-gray-800'>
                                 <h1>Sort by</h1>
                                 <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
                                     <InputLabel>Sort</InputLabel>
@@ -294,37 +292,37 @@ const Shop = () => {
                     </div>
                 </div>
             </div>
-            <div className='pagination w-full flex justify-center mt-10'>
+            <div className='pagination bg-white py-5 w-full flex justify-end'>
                 {page > 0 ?
-                    <IconButton onClick={() => handleBackword(page)} aria-label="delete">
+                    <button className='btn text-gray-800 btn-sm btn-circle border-none' onClick={() => handleBackword(page)} aria-label="delete">
                         <span>
                             <IoIosArrowBack />
                         </span>
-                    </IconButton> : <IconButton disabled onClick={() => handleBackword(page)} aria-label="delete">
+                    </button> : <button className='btn text-gray-800 btn-sm btn-circle border-none hidden' onClick={() => handleBackword(page)} aria-label="delete">
                         <span>
                             <IoIosArrowBack />
                         </span>
-                    </IconButton>
+                    </button>
                 }
                 {
                     [...Array(pageCount).keys()].map((number, index) =>
                         <button
                             key={index}
-                            className={page === number ? 'selected' : ''}
+                            className={page === number ? 'selected btn text-gray-800 btn-sm btn-circle border-none' : 'btn text-gray-800 btn-sm btn-circle border-none'}
                             onClick={() => setPage(number)}>
                             {number}
                         </button>)
                 }
                 {page + 1 !== pageCount ?
-                    <IconButton onClick={() => handleForword(page)} aria-label="delete">
+                    <button className='btn text-gray-800 btn-sm btn-circle border-none' onClick={() => handleForword(page)} aria-label="delete">
                         <span>
                             <IoIosArrowForward />
                         </span>
-                    </IconButton> : <IconButton disabled aria-label="delete">
+                    </button> : <button className='btn text-gray-800 btn-sm btn-circle border-none hidden' aria-label="delete">
                         <span>
                             <IoIosArrowForward />
                         </span>
-                    </IconButton>
+                    </button>
                 }
             </div>
         </div >

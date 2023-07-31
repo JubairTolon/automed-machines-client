@@ -1,5 +1,5 @@
 .marquee {
-    height: 12vh;
+    height: 15vh;
     background-color: rgb(0, 0, 0);
     color: rgb(196, 204, 212);
     overflow: hidden;
@@ -53,3 +53,11 @@
     justify-content: center;
     align-items: center;
 }
+
+@media screen and (max-width: 780px) {
+    .marquee {
+        height: 10vh;
+    }
+}
+
+@media (min-width: 575px) {}

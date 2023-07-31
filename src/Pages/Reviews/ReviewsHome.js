@@ -15,7 +15,7 @@ const ReviewsHome = () => {
 
 
     return (
-        <div className='flex flex-col items-center w-10/12 mx-auto bg-zinc-100 px-8 lg:mt-56'>
+        <div className='flex flex-col items-center w-full mx-auto bg-zinc-100 px-8'>
             <Flip left>
                 <h1 className='text-5xl font-semibold my-12 text-gray-700'>Our Happy Client</h1>
             </Flip>
@@ -33,7 +33,7 @@ const ReviewsHome = () => {
             </div>
             <div>
                 <Link to='/reviewsMain'>
-                    <button className='btn bg-orange-500 mt-9 border-none'>See all reviews</button>
+                    <button className='btn text-white bg-orange-500 mt-9 border-none'>See all reviews</button>
                 </Link>
             </div>
         </div >

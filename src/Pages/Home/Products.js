@@ -94,10 +94,10 @@ const Products = ({ products }) => {
     };
 
     return (
-        <div className='w-10/12 mx-auto'>
-            <Box sx={{ marginLeft: 'auto', marginRight: 'auto', py: 4, width: '100%', backgroundColor: '#f2f2f2' }}>
+        <div className='w-full mx-auto'>
+            <Box sx={{ marginLeft: 'auto', marginRight: 'auto', py: 4, width: '100%', backgroundColor: 'white' }}>
                 <Box sx={{ textAlign: 'center' }}>
-                    <Typography variant='h3' component="div">Our Products Collections</Typography>
+                    <Typography variant='h3' color={'orangeRed'} component="div">Our Products Collections</Typography>
                 </Box>
                 <Box sx={{ marginTop: 6, borderBottom: 1, borderColor: 'divider' }}>
                     <AntTabs value={value} onChange={handleChange} aria-label="basic tabs example">
@@ -139,10 +139,9 @@ const Products = ({ products }) => {
                 <Box sx={{ display: 'flex', justifyContent: 'center' }}>
                     <Link to='/shop'>
                         <Button sx={{
-                            borderColor: '#F53005', color: '#F53005', '&:hover': {
-                                borderColor: "#F53005",
-                            },
-                        }} variant="outlined">See All Products</Button>
+                            borderColor: '#F53005', color: '#F53005', '&:hover': { borderColor: "#F53005", backgroundColor: "orangeRed", color: "white" }
+                        }}
+                            variant="outlined">See All Products</Button>
                     </Link>
                 </Box>
             </Box>
