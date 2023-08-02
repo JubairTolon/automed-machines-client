@@ -43,7 +43,7 @@ const Users = () => {
 
     return (
         <div>
-            <h1 className='my-2 text-xl font-semibold text-purple-500'>Total Orders: {users?.length}</h1>
+            <h1 className='my-2 text-xl font-semibold text-purple-500'>Total Users: {users?.length}</h1>
             <form className="flex items-center mr-4 w-1/3 ml-1 mb-3">
                 <label htmlFor="simple-search" className="sr-only">Search</label>
                 <div className="relative w-full">

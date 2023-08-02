@@ -48,8 +48,8 @@ const SignUp = () => {
     };
 
     return (
-        <div className='mt-48 lg:mt-32'>
-            <div className='w-2/3 lg:w-1/3 grid grid-rows-1 Justify-center items-center mx-auto border border-gray-400 rounded mt-36 p-16'>
+        <div className='bg-gray-100 text-gray-800 py-8'>
+            <div className='w-2/3 lg:w-1/3 grid grid-rows-1 Justify-center items-center mx-auto border border-gray-400 rounded p-16'>
                 <h2 className='text-3xl font-semibold mb-8 text-center'>Sign up</h2>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="relative z-0 mb-6 w-full group">

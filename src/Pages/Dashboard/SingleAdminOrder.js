@@ -15,7 +15,7 @@ const SingleAdminOrder = () => {
     items?.map(item => total = total + ((item.minOrder + item.quantity) * item.price))
     return (
         <div>
-            <div className="w-5/6 mx-auto overflow-x-auto relative shadow-md sm:rounded-lg">
+            <div className="w-5/6 mx-auto overflow-x-auto relative shadow-md sm:rounded-lg bg-gray-100">
                 <table className="text-sm text-center text-gray-500 dark:text-gray-400">
                     <thead className="text-xs text-gray-700 text-center uppercase bg-gray-200 dark:bg-gray-700 dark:text-gray-400">
                         <tr>

@@ -108,7 +108,7 @@ const AnualAnalysis = () => {
     ];
     return (
         <div>
-            <h1 className='text-4xl font-semibold text-center text-gray-500'>Annual Business Review</h1>
+            <h1 className='text-4xl font-semibold text-center text-purple-500'>Annual Business Review</h1>
             <div className='block lg:flex items-center mt-10 mb-16'>
                 <PieChart width={400} height={400}>
                     <Pie

@@ -66,8 +66,8 @@ const Checkout = ({ cart, total, quantity }) => {
     let no = 1;
 
     return (
-        <div className='w-5/6 mx-auto'>
-            <div className='mt-16'>
+        <div className='w-full px-16 mx-auto py-10 bg-gray-100'>
+            <div className=''>
                 <Accordion>
                     <AccordionSummary
                         expandIcon={<MdOutlineExpandMore className='text-2xl text-base-100' />}

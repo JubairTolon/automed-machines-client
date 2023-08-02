@@ -15,7 +15,7 @@ const DashBoard = () => {
     const [user] = useAuthState(auth);
     const [admin] = useAdmin(user);
     return (
-        <div className="drawer drawer-mobile mt-48 lg:mt-32">
+        <div className="drawer drawer-mobile">
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
             <div className="drawer-content mt-2 lg:mb-0 mb-10 mx-8">
                 <label htmlFor="my-drawer-2" className="btn btn-outline text-gray-500 lg:hidden ml-2 float-right text-2xl">

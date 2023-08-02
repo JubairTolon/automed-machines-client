@@ -103,7 +103,7 @@ const Nav = ({ cart, subTotal, products }) => {
                                             item={item}
                                         ></NavCartSingleItem>)
                                     }
-                                    <div className='flex gap-8 items-center px-2 justify-between mt-8 mb-4'>
+                                    <div className='flex gap-8 items-center text-gray-700 px-2 justify-between mt-8 mb-4'>
                                         <div className='font-bold'>
                                             <h2>Subtotal</h2>
                                         </div>
