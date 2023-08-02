@@ -13,8 +13,8 @@ const ReviewsMain = () => {
             .then(data => setReviews(data))
     }, [setReviews]);
     return (
-        <div className='lg:flex flex-col lg:flex-row mx-auto bg-zinc-100 px-4 mt-48 lg:mt-32 items-center lg:items-start'>
-            <div className='flex flex-col w-full lg:w-1/3 items-center mt-24'>
+        <div className='lg:flex flex-col lg:flex-row mx-auto bg-zinc-100 px-4 items-center lg:items-start'>
+            <div className='flex flex-col w-full lg:w-1/3 items-center mt-24 text-gray-800'>
                 <Bounce>
                     <h1 className='text-5xl'><span className='font-bold'>Here,</span><br />the <br /><span className='font-bold'>Magical</span> box <br />with<br /> <span className='font-bold'>Magical</span> words<br />of<br />our <span className='font-bold'>Successes</span></h1>
                 </Bounce>

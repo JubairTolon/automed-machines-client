@@ -66,7 +66,7 @@ const Checkout = ({ cart, total, quantity }) => {
     let no = 1;
 
     return (
-        <div className='mt-48 lg:mt-32 w-5/6 mx-auto mb-6'>
+        <div className='w-5/6 mx-auto'>
             <div className='mt-16'>
                 <Accordion>
                     <AccordionSummary
@@ -82,7 +82,7 @@ const Checkout = ({ cart, total, quantity }) => {
                         <form className="flex items-center w-2/4 justify-center my-2">
                             <label htmlFor="simple-cupon" className="sr-only">cupon</label>
                             <div className="relative w-full flex justify-center">
-                                <input type="text" id="simple-cupon" className="bg-gray-50 mr-4 text-gray-900 text-sm rounded-lg block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="cupon" required />
+                                <input type="text" id="simple-cupon" className="bg-gray-50 mr-4 text-gray-900 text-sm rounded-lg block w-full p-2.5" placeholder="cupon" required />
 
                                 <button type="button" className="text-white bg-purple-500 rounded-3xl text-md px-5 py-2.5 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">Apply</button>
                             </div>
@@ -91,7 +91,7 @@ const Checkout = ({ cart, total, quantity }) => {
                     </AccordionDetails>
                 </Accordion>
             </div>
-            <form onSubmit={handleSubmit(onSubmit)} className='grid grid-cols-1 lg:grid-cols-2 gap-6  bg-zinc-200 pt-8'>
+            <form onSubmit={handleSubmit(onSubmit)} className='grid grid-cols-1 lg:grid-cols-2 gap-6  bg-zinc-200 pt-8 px-2 mb-10 rounded-md'>
                 <div className='px-6 order-2 lg:order-1'>
                     <h1 className='text-2xl text-gray-700 font-semibold uppercase'>Billing Information</h1>
                     <div className='divider my-4'></div>
@@ -205,7 +205,7 @@ const Checkout = ({ cart, total, quantity }) => {
                                     <td className="py-3 px-6"></td>
                                     <td className="py-3 px-6"></td>
                                     <td className="py-3 px-6">{quantity}</td>
-                                    <td className="py-3 px-6">$ {total}</td>
+                                    <td className="py-3 px-6">${total}</td>
                                 </tr>
                             </tfoot>
                         </table>
@@ -213,7 +213,7 @@ const Checkout = ({ cart, total, quantity }) => {
                 </div>
                 <div className='order-3 px-6 lg:px-0'>
                     <input className='btn btn-goust w-full uppercase mb-4' type="submit" value='Place Order' />
-                    <h1><span className='font-semibold'>Note:</span>  To confirm your order you have to complete your payment from <span className='font-semibold'>Dashboard then My orders</span></h1>
+                    <h1 className='mb-4 text-purple-800'><span className='font-semibold'>Note:</span>  To confirm your order you have to complete your payment from <span className='font-semibold'>Dashboard then My orders</span></h1>
                 </div>
             </form >
         </div >

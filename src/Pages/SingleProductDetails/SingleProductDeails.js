@@ -125,8 +125,8 @@ const SingleProductDeails = ({ products }) => {
     };
 
     return (
-        <div className='mt-52 lg:mt-32'>
-            <div className='w-5/6 mx-auto grid grid-cols-1 lg:grid-cols-2 mt-40'>
+        <div className='bg-white'>
+            <div className='w-5/6 mx-auto grid grid-cols-1 lg:grid-cols-2 pt-10'>
                 <div className='flex flex-col items-center relative'>
                     <div className='single-product-image-container mb-28 lg:mb-0'>
                         <img className='single-product-image' src={!selectedImage ? product.pictures.img1 : selectedImage} alt="" />
@@ -144,7 +144,7 @@ const SingleProductDeails = ({ products }) => {
                         }
                     </div>
                 </div>
-                <div className='mt-10 lg:mt-0'>
+                <div className='mt-10 lg:mt-0 text-gray-800'>
                     <h1 className='text-3xl font-semibold'>{product.name}</h1>
                     <div className='flex items-center my-4'><Rating className='mr-2' name="half-rating" value={rating} precision={0.5} readOnly /> {reviews?.length} Rating <span>(S)</span></div>
                     <div className="flex gap-4 items-center my-4">

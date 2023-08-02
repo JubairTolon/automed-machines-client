@@ -92,8 +92,8 @@ const Contact = () => {
     // }
 
     return (
-        <div className='mt-32 grid grid-cols-1 lg:grid-cols-2'>
-            <div className='my-16 px-14'>
+        <div className='grid grid-cols-1 lg:grid-cols-2 bg-slate-100'>
+            <div className='my-8 px-14'>
                 <div>
                     <div>
                         <Bounce>
@@ -110,13 +110,13 @@ const Contact = () => {
                             <Link to='/'><span className='text-3xl text-gray-500 hover:text-orange-500 hover:cursor-pointer'><MdEmail /></span></Link>
                         </div>
                     </Bounce>
-                    <div>
+                    <div className='text-gray-800'>
                         <Bounce>
-                            <h1 className='uppercase text-gray-600 text-3xl my-8'>Address</h1>
+                            <h1 className='uppercase text-gray-700 text-3xl my-8'>Address</h1>
                         </Bounce>
                         <div className='flex gap-4 items-center my-4'>
                             <div>
-                                <h1 className='text-gray-500'><FaLocationArrow /></h1>
+                                <h1 className=''><FaLocationArrow /></h1>
                             </div>
                             <div>
                                 <h1>Your Address Goes Here</h1>
@@ -124,7 +124,7 @@ const Contact = () => {
                         </div>
                         <div className='flex gap-4 items-center my-4'>
                             <div>
-                                <h1 className='text-gray-500'><HiPhone /></h1>
+                                <h1 className=''><HiPhone /></h1>
                             </div>
                             <div>
                                 <h1>+660 256444 24857</h1>
@@ -132,7 +132,7 @@ const Contact = () => {
                         </div>
                         <div className='flex gap-4 items-center my-4'>
                             <div>
-                                <h1 className='text-gray-500'><FaLocationArrow /></h1>
+                                <h1 className=''><FaLocationArrow /></h1>
                             </div>
                             <div>
                                 <h1>Info@Example.Com</h1>
@@ -143,7 +143,7 @@ const Contact = () => {
             </div>
             <div className='w-1/2 mx-auto'>
                 <Bounce>
-                    <h1 className='uppercase text-gray-600 text-4xl my-16'>send us a message</h1>
+                    <h1 className='uppercase  text-4xl my-16'>send us a message</h1>
                 </Bounce>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="relative z-0 mb-6 w-full group">

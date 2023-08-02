@@ -3,8 +3,8 @@ import { TiTick } from 'react-icons/ti';
 
 const Features = () => {
     return (
-        <div className='mt-48 lg:mt-32'>
-            <div className=' bg-violet-400 py-10'>
+        <div className='text-gray-800'>
+            <div className=' bg-violet-600 py-10'>
                 <div className='mb-10'>
                     <h1 className='text-4xl font-bold text-center text-white'>Technologies</h1>
                     <h1 className='text-md font-semibold text-center text-white'>Technologies what have user</h1>
