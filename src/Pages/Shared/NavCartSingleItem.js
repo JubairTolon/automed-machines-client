@@ -8,7 +8,7 @@ const NavCartSingleItem = ({ item }) => {
     const handleRemoveCartItem = useContext(RemoveItemContext)
     const quantity = item.minOrder
     return (
-        <div className='flex gap-2 items-center text-center px-2 my-0.5  bg-gray-100 rounded py-2 h-20 justify-between text-gray-800'>
+        <div className='flex w-full gap-2 items-center text-center px-2 my-0.5  bg-gray-100 rounded py-2 h-20 justify-between text-gray-800'>
             <div className='rounded w-24 '><img className='rounded-lg p-4' src={item?.pictures.img1} alt="" /></div>
             <div className='w-60'>
                 <h2>{item?.name}</h2>

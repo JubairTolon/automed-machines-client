@@ -5,13 +5,13 @@ import { BsCartPlusFill, BsFillHeartFill } from 'react-icons/bs';
 import { AiOutlineDown } from 'react-icons/ai';
 import NavCartSingleItem from './NavCartSingleItem';
 import './Nav.css'
-import auth from '../../firebase.init';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { signOut } from 'firebase/auth';
 import Loading from './Loading';
 import { useQuery } from 'react-query';
 import { useState } from "react";
-import AccessLink from './AccessLink';
+import auth from '../../firebase.init';
+// import AccessLink from './AccessLink';
 
 const Nav = ({ cart, subTotal, products }) => {
     const [user] = useAuthState(auth);
@@ -19,7 +19,7 @@ const Nav = ({ cart, subTotal, products }) => {
     const [wordEntered, setWordEntered] = useState("");
 
     const email = user?.email;
-    const { data: currentUser, isLoading, refetch } = useQuery(['user', user], () =>
+    const { data: currentUser, isLoading } = useQuery(['user', user], () =>
         fetch(`https://automed-machines-server.vercel.app/profileInfo?user=${email}`, {
             method: 'GET',
             headers: {
